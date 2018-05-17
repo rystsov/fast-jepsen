@@ -7,4 +7,8 @@ fi
 
 docker rm client1 || true
 
-docker run -i -t --name=client1 --hostname=client1 --network=jepsen mongo_client
+rm -rf logs
+
+mkdir logs
+
+docker run -i -t --name=client1 --hostname=client1 --network=jepsen -v $(pwd)/logs:/client/logs mongo_client | tee -a $(pwd)/logs/output

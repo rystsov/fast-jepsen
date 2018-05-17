@@ -12,4 +12,4 @@ if [ -z "$node1" ] ; then exit 1 ; fi;
 if [ -z "$node2" ] ; then exit 1 ; fi;
 if [ -z "$node3" ] ; then exit 1 ; fi;
 
-/mongo/mongodb-linux-x86_64-3.6.4/bin/mongod --dbpath /mongo/mem --replSet rs0 --port 27017 --bind_ip 0.0.0.0 >> /mongo/mem/$me.log
+/mongo/mongodb-linux-x86_64-3.6.4/bin/mongod --dbpath /mongo/mem --replSet rs0 --port 27017 --bind_ip 0.0.0.0 >> /mongo/logs/$me.log

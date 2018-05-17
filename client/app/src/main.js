@@ -1,5 +1,6 @@
 const request = require("request");
-const leftPad = require('left-pad');
+const leftPad = require("left-pad");
+const fs = require("fs");
 
 class KVApiClient {
     constructor(host, port) {
@@ -99,6 +100,7 @@ class KVApiClient {
     }
 }
 
+const events = [];
 const history = new Map();
 
 history.set("key1", []);
@@ -136,7 +138,9 @@ async function write(kv, key) {
         try {
             const attempt = ["" + i, false];
             log.push(attempt);
+            events.push({ "key": key, "value": attempt[0], "event": "write-start" });
             await kv.update(key, attempt[0]);
+            events.push({ "key": key, "event": "write-ack" });
             attempt[1] = true;
             dash.w[0]++;
         } catch (e) {
@@ -156,7 +160,9 @@ async function read(kv, nodeId, key) {
                 from--;
             }
             const front = from;
+            events.push({ "key": key, "from": nodeId, "event": "read-start" });
             const value = await kv.read(key);
+            events.push({ "key": key, "from": nodeId, "value": value, "event": "read-ack" });
             while (from < log.length) {
                 if (log[from][0] == value) {
                     break;
@@ -165,7 +171,7 @@ async function read(kv, nodeId, key) {
             }
             if (from == log.length) {
                 isActive = false;
-                console.info("read never written or stale data: " + value);
+                console.info(`read(${key}, ${nodeId}) never written or stale data: ${value}`);
                 console.info("known value on the beginning of the read is: " + front);
                 return;
             }
@@ -190,6 +196,7 @@ async function control() {
             const dash = stat.get(key);
             info += leftPad(dash.w[0], 5);
             info += leftPad(dash.w[1], 5);
+            info += " |";
             info += leftPad(dash.node1[0], 5);
             info += leftPad(dash.node1[1], 5);
             info += leftPad(dash.node2[0], 5);
@@ -211,14 +218,34 @@ async function control() {
     for (const [node, key] of [["node1", "key1"],["node2", "key2"],["node3", "key3"]]) {
         await init(key, new KVApiClient(node, 8000));
     }
-    control();
+    
+    const tasks = [];
+    
+    tasks.push(control());
     for (const [node, key] of [["node1", "key1"],["node2", "key2"],["node3", "key3"]]) {
-        write(new KVApiClient(node, 8000), key);
+        tasks.push(write(new KVApiClient(node, 8000), key));
     }
 
     for (const key of ["key1", "key2", "key3"]) {
-        read(new KVApiClient("node1", 8000), "node1", key);
-        read(new KVApiClient("node2", 8000), "node2", key);
-        read(new KVApiClient("node3", 8000), "node3", key);
+        tasks.push(read(new KVApiClient("node1", 8000), "node1", key));
+        tasks.push(read(new KVApiClient("node2", 8000), "node2", key));
+        tasks.push(read(new KVApiClient("node3", 8000), "node3", key));
     }
+
+    for (const task of tasks) {
+        await task;
+    }
+
+    let fd;
+    try {
+        fd = fs.openSync("/client/logs/events", 'a');
+        for (const event of events) {
+            fs.appendFileSync(fd, JSON.stringify(event) + "\n", 'utf8');
+        }
+    } catch (err) {
+        throw err
+    } finally {
+        if (fd !== undefined)
+            fs.closeSync(fd);
+        }
 })();
