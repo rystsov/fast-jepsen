@@ -7,4 +7,4 @@ fi
 
 docker rm client1 || true
 
-docker run -i -t --name=client1 --hostname=client1 --network=jepsen -v $(pwd)/app:/client/app mongo_client
+docker run -i -t --name=client1 --hostname=client1 --network=jepsen mongo_client

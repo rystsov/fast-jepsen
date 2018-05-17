@@ -45,7 +45,7 @@ class KVApiClient {
                     },
                     url: url,
                     json: true,
-                    timeout: 1000
+                    timeout: 4000
                 }, 
                 (err, res, body) => {
                     if (err) {

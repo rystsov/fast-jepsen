@@ -1,4 +1,3 @@
-const moment = require("moment");
 const MongoClient = require('mongodb').MongoClient;
 
 class MongoKV {
