@@ -50,3 +50,5 @@ All reads were done with "linearizable" read concern and "majority" write concer
 # Resume
 
 It looks like we found a violation of linearizability in the recent version of MongoDB (3.6.4). The bug may be either in the replication layer of the database or the official MongoDB driver for Node.js (3.1.0-beta4).
+
+Bug: https://jira.mongodb.org/browse/SERVER-35038
