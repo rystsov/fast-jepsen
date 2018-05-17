@@ -45,6 +45,8 @@ As we see, node `node1` read `375` and then `371` which violates consistency bec
 
 The client has three async/await coroutines to sequentially update value of its key using an increasing sequence. Each coroutine works with its key and node. Updates to key1 go to node1, key2 to node2 and key3 to node3. Also there are 9 reading coroutines: three coroutines per node to read "key1", "key2" and "key3" keys.
 
+All reads were done with "linearizable" read concern and "majority" write concern.
+
 # Resume
 
 We demonstrated an violation of linearizability in the recent version of MongoDB (3.6.4). The bug may be either in the replication layer of the database or the official MongoDB driver for Node.js (3.1.0-beta4).
