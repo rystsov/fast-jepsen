@@ -1,4 +1,4 @@
-It looks like MongoDB 3.6.4 with strictness write and read concerns (majority/linearizability) violates linearizability and returns stale data when a former isolated primary rejoined the cluster.
+It looks like MongoDB 3.6.4 with strictest write and read concerns (majority/linearizability) violates linearizability and returns stale data when a former isolated primary rejoined the cluster.
 
 Bug: https://jira.mongodb.org/browse/SERVER-35038
 
