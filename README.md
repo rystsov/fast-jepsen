@@ -47,8 +47,46 @@ The client has three async/await coroutines to sequentially update value of its 
 
 All reads were done with "linearizable" read concern and "majority" write concern.
 
-# Resume
+## Output legend
 
-It looks like we found a violation of linearizability in the recent version of MongoDB (3.6.4). The bug may be either in the replication layer of the database or the official MongoDB driver for Node.js (3.1.0-beta4).
+`output` contains output of the client:
+
+```
+0 ||   20    0 |   18    0   26    0   24    0 ||   26    0 |   18    0   25    0   27    0 ||   25    0 |   18    0   24    0   23    0
+1 ||   17    0 |   19    0   29    0   28    0 ||   28    0 |   18    0   28    0   28    0 ||   29    0 |   16    0   28    0   30    0
+2 ||   18    0 |   17    0   28    0   28    0 ||   26    0 |   18    0   27    0   28    0 ||   27    0 |   15    0   25    0   29    0
+```
+
+Each row summarize one second of the experiment.
+
+A row consists of several columns - the first column is the number of seconds passed since the beginning of the experiment, then there are three groups of columns, each group is dedicated to one of the nodes: node1, node2 and node3.
+
+The first two columns in a group represent a writer process with number of successful and failed writes per second. For example, during the first second of an experiment a client updated `key1` via `node1` 20 times, `key2` via `node2` 26 times and `key3` via `node3` 25 times.
+
+The last 6 columns correspond to reading a of each group represent the number of successful and failed reads, so a client read all keys via each client.
+
+If there is a consistency violation the log will also include something like:
+
+```
+read(key2, node3) never written or stale data: 362
+known value on the beginning of the read is: 371
+read(key2, node1) never written or stale data: 362
+known value on the beginning of the read is: 371
+read(key3, node1) never written or stale data: 371
+known value on the beginning of the read is: 375
+```
+
+In this case we know that a client read a value by `key3` and got 371 however it was known on the moment before a request was issued that the expected value should not be less than 375.
+
+## Events legend
+
+It's a log of events as they were observed by a client. Since Node.js is single threaded the order of events is consistent with wall clock.
+
+Each log entry may below to one of four classes:
+
+1. `{"key":"key3","from":"node3","event":"read-start"}` - a client started reading key `key3` from node `node3`.
+2. `{"key":"key3","from":"node3","value":"1","event":"read-ack"}` - a client read value `1` from node `node3`.
+3. `{"key":"key2","value":"3","event":"write-start"}` - a client started writing value `3` to key `key2` (via node `node2`)
+4. `{"key":"key2","event":"write-ack"}` - a client successfully wrote a value
 
 Bug: https://jira.mongodb.org/browse/SERVER-35038
