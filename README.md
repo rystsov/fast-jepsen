@@ -6,7 +6,7 @@ Bug: https://jira.mongodb.org/browse/SERVER-35038
 
 1. clone this repo https://github.com/rystsov/consistency-mongodb.git
 2. open a couple of terminals in consistency-mongodb
-3. start the mongodb cluster: `docker-compose up`
+3. start the mongodb cluster: `docker-compose build --no-cache && docker-compose up`
 4. start clients / consistency checker: `cd client && ./build-run.sh`
 5. figure out who is the primary: `./primary.sh`
 6. isolate the primary (in my case it's node1): `./isolate.sh node1`

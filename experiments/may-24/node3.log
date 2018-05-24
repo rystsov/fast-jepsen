@@ -1,0 +1,1256 @@
+2018-05-24T06:43:05.774+0000 I CONTROL  [initandlisten] MongoDB starting : pid=42 port=27017 dbpath=/mongo/mem 64-bit host=node3
+2018-05-24T06:43:05.775+0000 I CONTROL  [initandlisten] db version v3.6.4
+2018-05-24T06:43:05.775+0000 I CONTROL  [initandlisten] git version: d0181a711f7e7f39e60b5aeb1dc7097bf6ae5856
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] modules: none
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] build environment:
+2018-05-24T06:43:05.777+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2018-05-24T06:43:05.777+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2018-05-24T06:43:05.777+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "0.0.0.0", port: 27017 }, replication: { replSet: "rs0" }, storage: { dbPath: "/mongo/mem" } }
+2018-05-24T06:43:05.778+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=487M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),cache_cursors=false,log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2018-05-24T06:43:06.384+0000 I STORAGE  [initandlisten] WiredTiger message [1527144186:384830][42:0x7f6f15edc9c0], txn-recover: Set global recovery timestamp: 0
+2018-05-24T06:43:06.429+0000 I CONTROL  [initandlisten] 
+2018-05-24T06:43:06.436+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2018-05-24T06:43:06.437+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2018-05-24T06:43:06.437+0000 I CONTROL  [initandlisten] ** WARNING: You are running this process as the root user, which is not recommended.
+2018-05-24T06:43:06.438+0000 I CONTROL  [initandlisten] 
+2018-05-24T06:43:06.440+0000 I STORAGE  [initandlisten] createCollection: local.startup_log with no UUID.
+2018-05-24T06:43:06.442+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/mongo/mem/diagnostic.data'
+2018-05-24T06:43:06.446+0000 I STORAGE  [initandlisten] createCollection: local.me with no UUID.
+2018-05-24T06:43:06.467+0000 I STORAGE  [initandlisten] createCollection: local.replset.minvalid with no UUID.
+2018-05-24T06:43:06.497+0000 I REPL     [initandlisten] Did not find local voted for document at startup.
+2018-05-24T06:43:06.498+0000 I REPL     [initandlisten] Did not find local Rollback ID document at startup. Creating one.
+2018-05-24T06:43:06.498+0000 I STORAGE  [initandlisten] createCollection: local.system.rollback.id with no UUID.
+2018-05-24T06:43:06.501+0000 I REPL     [initandlisten] Initialized the rollback ID to 1
+2018-05-24T06:43:06.506+0000 I REPL     [initandlisten] Did not find local replica set configuration document at startup;  NoMatchingDocument: Did not find replica set configuration document in local.system.replset
+2018-05-24T06:43:06.507+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2018-05-24T06:43:11.001+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:37522 #1 (1 connection now open)
+2018-05-24T06:43:11.002+0000 I NETWORK  [conn1] end connection 172.23.0.2:37522 (0 connections now open)
+2018-05-24T06:43:11.009+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:37526 #2 (1 connection now open)
+2018-05-24T06:43:11.009+0000 I NETWORK  [conn2] received client metadata from 172.23.0.2:37526 conn2: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:43:11.011+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:43:11.013+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node1:27017, took 2ms (1 connections now open to node1:27017)
+2018-05-24T06:43:13.139+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:36150 #3 (2 connections now open)
+2018-05-24T06:43:13.165+0000 I STORAGE  [replexec-0] createCollection: local.system.replset with no UUID.
+2018-05-24T06:43:13.185+0000 I REPL     [replexec-0] New replica set config in use: { _id: "rs0", version: 1, protocolVersion: 1, members: [ { _id: 0, host: "node1:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 1, host: "node2:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 2, host: "node3:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 } ], settings: { chainingAllowed: true, heartbeatIntervalMillis: 2000, heartbeatTimeoutSecs: 10, electionTimeoutMillis: 10000, catchUpTimeoutMillis: -1, catchUpTakeoverDelayMillis: 30000, getLastErrorModes: {}, getLastErrorDefaults: { w: 1, wtimeout: 0 }, replicaSetId: ObjectId('5b065efeb405c746d93ab617') } }
+2018-05-24T06:43:13.185+0000 I REPL     [replexec-0] This node is node3:27017 in the config
+2018-05-24T06:43:13.185+0000 I NETWORK  [conn3] end connection 172.23.0.4:36150 (1 connection now open)
+2018-05-24T06:43:13.186+0000 I REPL     [replexec-0] transition to STARTUP2 from STARTUP
+2018-05-24T06:43:13.186+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:43:13.196+0000 I REPL     [replexec-1] Member node1:27017 is now in state SECONDARY
+2018-05-24T06:43:13.187+0000 I REPL     [replexec-0] Starting replication storage threads
+2018-05-24T06:43:13.198+0000 I STORAGE  [replexec-0] createCollection: local.temp_oplog_buffer with no UUID.
+2018-05-24T06:43:13.245+0000 I REPL     [replication-0] Starting initial sync (attempt 1 of 10)
+2018-05-24T06:43:13.246+0000 I STORAGE  [replication-0] Finishing collection drop for local.temp_oplog_buffer (no UUID).
+2018-05-24T06:43:13.248+0000 I STORAGE  [replication-0] createCollection: local.temp_oplog_buffer with no UUID.
+2018-05-24T06:43:13.325+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:36154 #4 (2 connections now open)
+2018-05-24T06:43:13.386+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node2:27017, took 200ms (1 connections now open to node2:27017)
+2018-05-24T06:43:13.411+0000 I REPL     [replexec-2] Member node2:27017 is now in state STARTUP2
+2018-05-24T06:43:13.411+0000 I NETWORK  [conn4] received client metadata from 172.23.0.4:36154 conn4: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:43:14.256+0000 I REPL     [replication-1] sync source candidate: node1:27017
+2018-05-24T06:43:14.257+0000 I REPL     [replication-1] ******
+2018-05-24T06:43:14.257+0000 I REPL     [replication-1] creating replication oplog of size: 990MB...
+2018-05-24T06:43:14.258+0000 I STORAGE  [replication-1] createCollection: local.oplog.rs with no UUID.
+2018-05-24T06:43:14.260+0000 I STORAGE  [replication-1] Starting WiredTigerRecordStoreThread local.oplog.rs
+2018-05-24T06:43:14.262+0000 I STORAGE  [replication-1] The size storer reports that the oplog contains 0 records totaling to 0 bytes
+2018-05-24T06:43:14.262+0000 I STORAGE  [replication-1] Scanning the oplog to determine where to place markers for truncation
+2018-05-24T06:43:14.478+0000 I REPL     [replication-1] ******
+2018-05-24T06:43:14.478+0000 I STORAGE  [replication-1] dropAllDatabasesExceptLocal 1
+2018-05-24T06:43:14.479+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:14.545+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 66ms (1 connections now open to node1:27017)
+2018-05-24T06:43:14.602+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:14.614+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 13ms (2 connections now open to node1:27017)
+2018-05-24T06:43:14.620+0000 I REPL     [replication-1] CollectionCloner::start called, on ns:admin.system.version
+2018-05-24T06:43:14.642+0000 I STORAGE  [repl writer worker 0] createCollection: admin.system.version with provided UUID: 0a8bf1ab-11b9-4a79-912c-bfeb8420820a
+2018-05-24T06:43:14.648+0000 I INDEX    [repl writer worker 0] build index on: admin.system.version properties: { v: 2, key: { _id: 1 }, name: "_id_", ns: "admin.system.version" }
+2018-05-24T06:43:14.664+0000 I INDEX    [repl writer worker 0] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2018-05-24T06:43:14.681+0000 I COMMAND  [repl writer worker 1] setting featureCompatibilityVersion to 3.6
+2018-05-24T06:43:14.682+0000 I NETWORK  [repl writer worker 1] Skip closing connection for connection # 4
+2018-05-24T06:43:14.682+0000 I NETWORK  [repl writer worker 1] Skip closing connection for connection # 2
+2018-05-24T06:43:14.682+0000 I REPL     [repl writer worker 1] CollectionCloner ns:admin.system.version finished cloning with status: OK
+2018-05-24T06:43:14.683+0000 I REPL     [repl writer worker 1] Finished cloning data: OK. Beginning oplog replay.
+2018-05-24T06:43:14.688+0000 I REPL     [replication-0] No need to apply operations. (currently at { : Timestamp(1527144191, 1) })
+2018-05-24T06:43:14.713+0000 I COMMAND  [replication-1] Assigning UUID 8fd0429e-3a73-4fc6-aa2b-c6c892899e32 to collection local.system.rollback.id
+2018-05-24T06:43:14.717+0000 I COMMAND  [replication-1] Assigning UUID 9a32b0b6-0f3c-44db-a9c3-10d3a2c34ac3 to collection local.temp_oplog_buffer
+2018-05-24T06:43:14.717+0000 I COMMAND  [replication-1] Assigning UUID 1f79f644-c6a7-4c75-8cd3-4cd216d845af to collection local.system.replset
+2018-05-24T06:43:14.718+0000 I COMMAND  [replication-1] Assigning UUID e9857a6b-abad-4f74-a379-e23535fd3488 to collection local.me
+2018-05-24T06:43:14.718+0000 I COMMAND  [replication-1] Assigning UUID dc2c0f6c-9f21-4654-802f-3e75a9455cce to collection local.startup_log
+2018-05-24T06:43:14.718+0000 I COMMAND  [replication-1] Assigning UUID 107f1300-9346-43f1-97c4-cf25e2617ee5 to collection local.replset.minvalid
+2018-05-24T06:43:14.719+0000 I COMMAND  [replication-1] Assigning UUID fc05df91-c8e4-4320-809e-04487aa576d4 to collection local.oplog.rs
+2018-05-24T06:43:14.720+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node1:27017 due to bad connection status; 1 connections to that host remain open
+2018-05-24T06:43:14.720+0000 I REPL     [replication-0] Finished fetching oplog during initial sync: CallbackCanceled: error in fetcher batch callback: oplog fetcher is shutting down. Last fetched optime and hash: { ts: Timestamp(0, 0), t: -1 }[0]
+2018-05-24T06:43:14.721+0000 I REPL     [replication-0] Initial sync attempt finishing up.
+2018-05-24T06:43:14.721+0000 I REPL     [replication-0] Initial Sync Attempt Statistics: { failedInitialSyncAttempts: 0, maxFailedInitialSyncAttempts: 10, initialSyncStart: new Date(1527144193245), initialSyncAttempts: [], fetchedMissingDocs: 0, appliedOps: 0, initialSyncOplogStart: Timestamp(1527144191, 1), initialSyncOplogEnd: Timestamp(1527144191, 1), databases: { databasesCloned: 1, admin: { collections: 1, clonedCollections: 1, start: new Date(1527144194610), end: new Date(1527144194687), elapsedMillis: 77, admin.system.version: { documentsToCopy: 1, documentsCopied: 1, indexes: 1, fetchedBatches: 1, start: new Date(1527144194622), end: new Date(1527144194687), elapsedMillis: 65 } } } }
+2018-05-24T06:43:14.722+0000 I STORAGE  [replication-0] Finishing collection drop for local.temp_oplog_buffer (9a32b0b6-0f3c-44db-a9c3-10d3a2c34ac3).
+2018-05-24T06:43:14.723+0000 I REPL     [replication-0] initial sync done; took 1s.
+2018-05-24T06:43:14.724+0000 I REPL     [replication-0] transition to RECOVERING from STARTUP2
+2018-05-24T06:43:14.724+0000 I REPL     [replication-0] Starting replication fetcher thread
+2018-05-24T06:43:14.724+0000 I REPL     [replication-0] Starting replication applier thread
+2018-05-24T06:43:14.725+0000 I REPL     [replication-0] Starting replication reporter thread
+2018-05-24T06:43:14.728+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:43:14.729+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Ending connection to host node1:27017 due to bad connection status; 0 connections to that host remain open
+2018-05-24T06:43:14.730+0000 I REPL     [rsSync] transition to SECONDARY from RECOVERING
+2018-05-24T06:43:14.738+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:43:14.742+0000 I REPL     [replexec-1] Member node2:27017 is now in state SECONDARY
+2018-05-24T06:43:14.780+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node1:27017, took 42ms (1 connections now open to node1:27017)
+2018-05-24T06:43:17.911+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:36166 #5 (3 connections now open)
+2018-05-24T06:43:17.926+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:57550 #6 (4 connections now open)
+2018-05-24T06:43:17.986+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:37572 #7 (5 connections now open)
+2018-05-24T06:43:17.994+0000 I NETWORK  [conn6] received client metadata from 172.23.0.3:57550 conn6: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:43:18.008+0000 I NETWORK  [conn5] received client metadata from 172.23.0.4:36166 conn5: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:43:18.095+0000 I NETWORK  [conn7] received client metadata from 172.23.0.2:37572 conn7: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:43:22.355+0000 I STORAGE  [conn2] createCollection: local.replset.election with generated UUID: f5e5b523-ef35-4a5d-a788-93905b5ad78e
+2018-05-24T06:43:22.385+0000 I REPL     [replexec-3] Member node1:27017 is now in state PRIMARY
+2018-05-24T06:43:24.751+0000 I REPL     [rsBackgroundSync] sync source candidate: node1:27017
+2018-05-24T06:43:24.755+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:24.758+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 4ms (2 connections now open to node1:27017)
+2018-05-24T06:43:24.759+0000 I STORAGE  [rsSync] createCollection: local.replset.oplogTruncateAfterPoint with generated UUID: 5c250764-ac2a-4fd1-b15e-11ee831e4ca0
+2018-05-24T06:43:24.767+0000 I STORAGE  [repl writer worker 7] createCollection: config.transactions with provided UUID: c2ac2a6e-a62c-4cb7-93a6-88575df68bec
+2018-05-24T06:43:24.771+0000 I STORAGE  [repl writer worker 9] createCollection: admin.system.keys with provided UUID: 1f772053-d966-4c53-97b1-eb84d977a076
+2018-05-24T06:43:24.777+0000 I STORAGE  [repl writer worker 13] createCollection: lily.storage with provided UUID: 74411b0e-cbf6-44e9-b7fc-f3a4f604670d
+2018-05-24T06:43:24.791+0000 I INDEX    [repl writer worker 15] build index on: lily.storage properties: { v: 2, unique: true, key: { key: 1 }, name: "key_1", ns: "lily.storage" }
+2018-05-24T06:43:24.792+0000 I INDEX    [repl writer worker 15] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2018-05-24T06:43:24.793+0000 I INDEX    [repl writer worker 15] build index done.  scanned 0 total records. 0 secs
+2018-05-24T06:43:24.855+0000 I NETWORK  [conn6] end connection 172.23.0.3:57550 (4 connections now open)
+2018-05-24T06:43:33.073+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:57580 #8 (5 connections now open)
+2018-05-24T06:43:33.095+0000 I NETWORK  [conn8] received client metadata from 172.23.0.3:57580 conn8: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:45:07.886+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:45:07.900+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 15ms (3 connections now open to node1:27017)
+2018-05-24T06:45:50.627+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node1:27017 due to bad connection status; 2 connections to that host remain open
+2018-05-24T06:45:50.632+0000 I REPL     [replication-0] Restarting oplog query due to error: NetworkInterfaceExceededTimeLimit: error in fetcher batch callback: Operation timed out. Last fetched optime (with hash): { ts: Timestamp(1527144340, 135), t: 1 }[-6665920723144456960]. Restarts remaining: 3
+2018-05-24T06:45:50.640+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node1:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144340, 135) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 1, readConcern: { afterClusterTime: Timestamp(1527144340, 135) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 11818 -- target:node1:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144340, 135) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 1, readConcern: { afterClusterTime: Timestamp(1527144340, 135) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:45:50.643+0000 I REPL     [replexec-0] Starting an election, since we've seen no PRIMARY in the past 10000ms
+2018-05-24T06:45:50.644+0000 I REPL     [replexec-0] conducting a dry run election to see if we could be elected. current term: 1
+2018-05-24T06:45:50.646+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:45:50.690+0000 I REPL     [replexec-0] VoteRequester(term 1 dry run) received a no vote from node2:27017 with reason "candidate's data is staler than mine. candidate's last applied OpTime: { ts: Timestamp(1527144340, 135), t: 1 }, my last applied OpTime: { ts: Timestamp(1527144340, 137), t: 1 }"; response message: { term: 1, voteGranted: false, reason: "candidate's data is staler than mine. candidate's last applied OpTime: { ts: Timestamp(1527144340, 135), t: 1 }, my last applied OpTime: { ts: Timesta...", ok: 1.0, operationTime: Timestamp(1527144340, 137), $clusterTime: { clusterTime: Timestamp(1527144340, 143), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } } }
+2018-05-24T06:45:51.023+0000 I REPL     [replexec-2] Member node2:27017 is now in state PRIMARY
+2018-05-24T06:45:51.052+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 11808) to node1:27017, response status: NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:45:51.053+0000 I REPL     [replexec-0] Member node1:27017 is now in state RS_DOWN
+2018-05-24T06:45:51.053+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Ending connection to host node1:27017 due to bad connection status; 1 connections to that host remain open
+2018-05-24T06:45:53.054+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:46:00.699+0000 I REPL     [replexec-2] VoteRequester(term 1 dry run) failed to receive response from node1:27017: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:46:00.702+0000 I REPL     [replexec-2] not running for primary, we have been superseded already during dry run. original term: 1, current term: 2
+2018-05-24T06:46:03.056+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 11828) to node1:27017, response status: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:46:07.496+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:54974 #9 (6 connections now open)
+2018-05-24T06:46:07.497+0000 I NETWORK  [conn9] received client metadata from 172.23.0.2:54974 conn9: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:08.538+0000 I NETWORK  [conn2] end connection 172.23.0.2:37526 (5 connections now open)
+2018-05-24T06:46:08.542+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node1:27017, took 15488ms (2 connections now open to node1:27017)
+2018-05-24T06:46:08.543+0000 I REPL     [replexec-2] Member node1:27017 is now in state SECONDARY
+2018-05-24T06:46:10.647+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:11.155+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:55172 #10 (6 connections now open)
+2018-05-24T06:46:11.155+0000 I NETWORK  [conn10] received client metadata from 172.23.0.2:55172 conn10: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:12.378+0000 I NETWORK  [conn7] end connection 172.23.0.2:37572 (5 connections now open)
+2018-05-24T06:46:18.790+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: InvalidSyncSource: Upstream node rolled back after choosing it as a sync source. Choosing new sync source.
+2018-05-24T06:46:18.791+0000 I REPL     [rsBackgroundSync] sync source candidate: node2:27017
+2018-05-24T06:46:18.791+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node2:27017
+2018-05-24T06:46:18.794+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node2:27017, took 3ms (1 connections now open to node2:27017)
+2018-05-24T06:46:18.796+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node2:27017
+2018-05-24T06:46:18.799+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node1:27017: InvalidSyncSource: Sync source changed from node1:27017 to node2:27017
+2018-05-24T06:46:18.803+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node2:27017, took 8ms (2 connections now open to node2:27017)
+2018-05-24T06:46:19.144+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node2:27017
+2018-05-24T06:46:19.162+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node2:27017, took 18ms (3 connections now open to node2:27017)
+2018-05-24T06:46:47.721+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node2:27017 due to bad connection status; 2 connections to that host remain open
+2018-05-24T06:46:47.722+0000 I REPL     [replication-0] Restarting oplog query due to error: NetworkInterfaceExceededTimeLimit: error in fetcher batch callback: Operation timed out. Last fetched optime (with hash): { ts: Timestamp(1527144397, 230), t: 2 }[8020818092978281000]. Restarts remaining: 3
+2018-05-24T06:46:47.723+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node2:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144397, 230) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 2, readConcern: { afterClusterTime: Timestamp(1527144397, 230) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 21281 -- target:node2:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144397, 230) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 2, readConcern: { afterClusterTime: Timestamp(1527144397, 230) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:46:48.587+0000 I REPL     [replexec-2] Member node1:27017 is now in state PRIMARY
+2018-05-24T06:46:49.093+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 21271) to node2:27017, response status: NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:49.094+0000 I REPL     [replexec-0] Member node2:27017 is now in state RS_DOWN
+2018-05-24T06:46:49.093+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Ending connection to host node2:27017 due to bad connection status; 0 connections to that host remain open
+2018-05-24T06:46:51.094+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:01.097+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 21287) to node2:27017, response status: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:47:01.669+0000 I REPL     [replication-0] Restarting oplog query due to error: StaleTerm: error in fetcher batch callback: Replication term of this node was stale; retry query. Last fetched optime (with hash): { ts: Timestamp(1527144407, 1), t: 2 }[-5928114736204738133]. Restarts remaining: 3
+2018-05-24T06:47:01.674+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node2:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144407, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3 } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 21302 -- target:node2:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144407, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3 } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:01.675+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: InvalidSyncSource: Sync source's last applied OpTime { ts: Timestamp(1527144407, 1), t: 2 } is not greater than our last fetched OpTime { ts: Timestamp(1527144407, 1), t: 2 }. Choosing new sync source.
+2018-05-24T06:47:01.682+0000 I REPL     [rsBackgroundSync] sync source candidate: node1:27017
+2018-05-24T06:47:01.684+0000 I REPL     [rsBackgroundSync] Starting rollback due to OplogStartMissing: Our last op time fetched: { ts: Timestamp(1527144407, 1), t: 2 }. source's GTE: { ts: Timestamp(1527144409, 1), t: 3 } hashes: (-5928114736204738133/-7528827815030926192)
+2018-05-24T06:47:01.685+0000 I REPL     [rsBackgroundSync] Replication commit point: { ts: Timestamp(1527144397, 230), t: 2 }
+2018-05-24T06:47:01.685+0000 I REPL     [rsBackgroundSync] Rollback using the 'rollbackViaRefetch' method because UUID support is feature compatible with featureCompatibilityVersion 3.6.
+2018-05-24T06:47:01.685+0000 I REPL     [rsBackgroundSync] transition to ROLLBACK from SECONDARY
+2018-05-24T06:47:01.686+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 10
+2018-05-24T06:47:01.686+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 4
+2018-05-24T06:47:01.686+0000 I ROLLBACK [rsBackgroundSync] Starting rollback. Sync source: node1:27017
+2018-05-24T06:47:01.687+0000 I NETWORK  [conn5] end connection 172.23.0.4:36166 (2 connections now open)
+2018-05-24T06:47:01.686+0000 I NETWORK  [conn8] end connection 172.23.0.3:57580 (3 connections now open)
+2018-05-24T06:47:01.686+0000 I NETWORK  [conn9] end connection 172.23.0.2:54974 (4 connections now open)
+2018-05-24T06:47:01.688+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:42758 #11 (3 connections now open)
+2018-05-24T06:47:01.689+0000 I ROLLBACK [rsBackgroundSync] Finding the Common Point
+2018-05-24T06:47:01.690+0000 I NETWORK  [conn11] received client metadata from 172.23.0.4:42758 conn11: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:01.691+0000 I ROLLBACK [rsBackgroundSync] our last optime:   Timestamp(1527144407, 1)
+2018-05-24T06:47:01.691+0000 I ROLLBACK [rsBackgroundSync] their last optime: Timestamp(1527144417, 5)
+2018-05-24T06:47:01.692+0000 I ROLLBACK [rsBackgroundSync] diff in end of log times: -10 seconds
+2018-05-24T06:47:01.693+0000 I ROLLBACK [rsBackgroundSync] Rollback common point is { ts: Timestamp(1527144397, 233), t: 2 }
+2018-05-24T06:47:01.694+0000 I ROLLBACK [rsBackgroundSync] Starting refetching documents
+2018-05-24T06:47:01.695+0000 I ROLLBACK [rsBackgroundSync] Finished refetching documents. Total size of documents refetched: 1
+2018-05-24T06:47:01.695+0000 I ROLLBACK [rsBackgroundSync] Checking the RollbackID and updating the MinValid if necessary
+2018-05-24T06:47:01.697+0000 I ROLLBACK [rsBackgroundSync] Setting minvalid to { ts: Timestamp(1527144417, 5), t: 3 }
+2018-05-24T06:47:01.697+0000 I ROLLBACK [rsBackgroundSync] Rolling back createIndexes commands.
+2018-05-24T06:47:01.698+0000 I ROLLBACK [rsBackgroundSync] Dropping collections to roll back create operations
+2018-05-24T06:47:01.700+0000 I ROLLBACK [rsBackgroundSync] Rolling back renameCollection commands and collection drop commands.
+2018-05-24T06:47:01.700+0000 I ROLLBACK [rsBackgroundSync] Rolling back collections pending being dropped: Removing them from the list of drop-pending collections in the DropPendingCollectionReaper.
+2018-05-24T06:47:01.701+0000 I ROLLBACK [rsBackgroundSync] Rolling back dropIndexes commands.
+2018-05-24T06:47:01.701+0000 I ROLLBACK [rsBackgroundSync] Deleting and updating documents to roll back insert, update and remove operations
+2018-05-24T06:47:01.702+0000 I ROLLBACK [rsBackgroundSync] Rollback deleted 0 documents and updated 1 documents.
+2018-05-24T06:47:01.702+0000 I ROLLBACK [rsBackgroundSync] Truncating the oplog at { ts: Timestamp(1527144397, 233), t: 2 }
+2018-05-24T06:47:01.703+0000 I REPL     [rsBackgroundSync] Incremented the rollback ID to 2
+2018-05-24T06:47:01.703+0000 I ROLLBACK [rsBackgroundSync] Rollback finished. The final minValid is: { ts: Timestamp(1527144417, 5), t: 3 }
+2018-05-24T06:47:01.704+0000 I REPL     [rsBackgroundSync] transition to RECOVERING from ROLLBACK
+2018-05-24T06:47:01.704+0000 I REPL     [rsBackgroundSync] sync source candidate: node1:27017
+2018-05-24T06:47:01.708+0000 I REPL     [rsSync] transition to SECONDARY from RECOVERING
+2018-05-24T06:47:01.710+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: InvalidSyncSource: sync source node1:27017 (config version: 1; last applied optime: { ts: Timestamp(1527144417, 5), t: 3 }; sync source index: -1; primary index: 0) is no longer valid
+2018-05-24T06:47:01.710+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:47:02.712+0000 I REPL     [rsBackgroundSync] sync source candidate: node1:27017
+2018-05-24T06:47:03.238+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:35956 #12 (4 connections now open)
+2018-05-24T06:47:03.239+0000 I NETWORK  [conn12] received client metadata from 172.23.0.3:35956 conn12: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:04.856+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:42442 #13 (5 connections now open)
+2018-05-24T06:47:04.857+0000 I NETWORK  [conn13] received client metadata from 172.23.0.4:42442 conn13: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:05.157+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:42866 #14 (6 connections now open)
+2018-05-24T06:47:05.158+0000 I NETWORK  [conn14] received client metadata from 172.23.0.4:42866 conn14: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:05.163+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:42868 #15 (7 connections now open)
+2018-05-24T06:47:05.164+0000 I NETWORK  [conn15] received client metadata from 172.23.0.4:42868 conn15: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:05.170+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:42870 #16 (8 connections now open)
+2018-05-24T06:47:05.171+0000 I NETWORK  [conn16] received client metadata from 172.23.0.4:42870 conn16: { driver: { name: "MongoDB Internal Client", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:05.184+0000 I NETWORK  [conn16] end connection 172.23.0.4:42870 (7 connections now open)
+2018-05-24T06:47:06.137+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node2:27017: InvalidSyncSource: Sync source changed from node2:27017 to node1:27017
+2018-05-24T06:47:06.140+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:47:06.150+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 10ms (3 connections now open to node1:27017)
+2018-05-24T06:47:06.235+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:42902 #17 (8 connections now open)
+2018-05-24T06:47:06.236+0000 I NETWORK  [conn17] received client metadata from 172.23.0.4:42902 conn17: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:06.777+0000 I NETWORK  [conn4] end connection 172.23.0.4:36154 (7 connections now open)
+2018-05-24T06:47:06.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node2:27017, took 15684ms (1 connections now open to node2:27017)
+2018-05-24T06:47:06.779+0000 I REPL     [replexec-5] Member node2:27017 is now in state SECONDARY
+2018-05-24T06:47:08.015+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:44312 #18 (8 connections now open)
+2018-05-24T06:47:08.016+0000 I NETWORK  [conn18] received client metadata from 172.23.0.2:44312 conn18: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:43.436+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node1:27017 due to bad connection status; 2 connections to that host remain open
+2018-05-24T06:47:43.436+0000 I REPL     [replication-0] Restarting oplog query due to error: HostUnreachable: error in fetcher batch callback: End of file. Last fetched optime (with hash): { ts: Timestamp(1527144459, 1), t: 3 }[-2205306380757969988]. Restarts remaining: 3
+2018-05-24T06:47:43.438+0000 I ASIO     [replication-0] dropping unhealthy pooled connection to node1:27017
+2018-05-24T06:47:43.439+0000 I ASIO     [replication-0] dropping unhealthy pooled connection to node1:27017
+2018-05-24T06:47:43.439+0000 I ASIO     [replication-0] after drop, pool was empty, going to spawn some connections
+2018-05-24T06:47:43.440+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node1:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144459, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3, readConcern: { afterClusterTime: Timestamp(1527144459, 1) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 22218 -- target:node1:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144459, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3, readConcern: { afterClusterTime: Timestamp(1527144459, 1) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:43.436+0000 I NETWORK  [conn10] end connection 172.23.0.2:55172 (7 connections now open)
+2018-05-24T06:47:43.440+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:47:43.445+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Failed to connect to node1:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:43.445+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:43.451+0000 I REPL     [replication-2] Restarting oplog query due to error: HostUnreachable: error in fetcher batch callback: Connection refused. Last fetched optime (with hash): { ts: Timestamp(1527144459, 1), t: 3 }[-2205306380757969988]. Restarts remaining: 2
+2018-05-24T06:47:43.459+0000 I REPL     [replication-2] Scheduled new oplog query Fetcher source: node1:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144459, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3, readConcern: { afterClusterTime: Timestamp(1527144459, 1) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 22220 -- target:node1:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144459, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3, readConcern: { afterClusterTime: Timestamp(1527144459, 1) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:43.459+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:47:43.460+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Failed to connect to node1:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:43.461+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:43.461+0000 I REPL     [replication-0] Restarting oplog query due to error: HostUnreachable: error in fetcher batch callback: Connection refused. Last fetched optime (with hash): { ts: Timestamp(1527144459, 1), t: 3 }[-2205306380757969988]. Restarts remaining: 1
+2018-05-24T06:47:43.461+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node1:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144459, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3, readConcern: { afterClusterTime: Timestamp(1527144459, 1) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 22222 -- target:node1:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144459, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 3, readConcern: { afterClusterTime: Timestamp(1527144459, 1) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:43.461+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:47:43.463+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Failed to connect to node1:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:43.463+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:43.464+0000 I REPL     [replication-2] Error returned from oplog query (no more query restarts left): HostUnreachable: error in fetcher batch callback: Connection refused
+2018-05-24T06:47:43.464+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: HostUnreachable: error in fetcher batch callback: Connection refused
+2018-05-24T06:47:43.465+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:47:43.465+0000 I ASIO     [replexec-5] dropping unhealthy pooled connection to node1:27017
+2018-05-24T06:47:43.465+0000 I ASIO     [replexec-5] after drop, pool was empty, going to spawn some connections
+2018-05-24T06:47:43.466+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:43.468+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:43.468+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:43.469+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22224) to node1:27017, response status: HostUnreachable: Connection refused
+2018-05-24T06:47:43.469+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:43.470+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:43.471+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:43.471+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22228) to node1:27017, response status: HostUnreachable: Connection refused
+2018-05-24T06:47:43.472+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:43.473+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:43.473+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:43.474+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22230) to node1:27017, response status: HostUnreachable: Connection refused
+2018-05-24T06:47:43.474+0000 I REPL     [replexec-0] Member node1:27017 is now in state RS_DOWN
+2018-05-24T06:47:43.582+0000 I NETWORK  [conn18] end connection 172.23.0.2:44312 (6 connections now open)
+2018-05-24T06:47:43.975+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.011+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.012+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.012+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22234) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.013+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.015+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.015+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.016+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22236) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.016+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.018+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.018+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.019+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22238) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.520+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.523+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.524+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.524+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22242) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.525+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.527+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.527+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.528+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22244) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.528+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.530+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.531+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.531+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22246) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.772+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node1:27017: InvalidSyncSource: Sync source was cleared. Was node1:27017
+2018-05-24T06:47:45.034+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.037+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.038+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.038+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22250) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.039+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.041+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.041+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.042+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22252) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.042+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.044+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.045+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.045+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22254) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.546+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.549+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.550+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.550+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22258) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.550+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.553+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.553+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.553+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22260) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.554+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.556+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.557+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.557+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22262) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.057+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.061+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.062+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.062+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22266) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.063+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.065+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.066+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.067+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22268) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.067+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.070+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.070+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.071+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22270) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.572+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.575+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.575+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.576+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22274) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.576+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.579+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.579+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.579+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22276) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.580+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.582+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.583+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.583+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22278) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.085+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.089+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.090+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.090+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22282) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.091+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.093+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.094+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.094+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22284) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.095+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.097+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.097+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.098+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22286) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.599+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.603+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.604+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.604+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22290) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.605+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.607+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.608+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.608+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22292) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.609+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.611+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.611+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.612+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22294) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.114+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.118+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.119+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.120+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22298) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.120+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.122+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.123+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.123+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22300) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.124+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.126+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.126+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.127+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22302) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.628+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.632+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.632+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.633+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22306) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.633+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.636+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.636+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.637+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22308) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.637+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.640+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.640+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.640+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22310) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.141+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.144+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.145+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.145+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22314) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.146+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.148+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.149+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.149+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22316) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.149+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.152+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.152+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.152+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22318) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.654+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.658+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.659+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.659+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22322) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.660+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.662+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.663+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.663+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22324) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.664+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.666+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.666+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.667+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22326) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.167+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.170+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.171+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.171+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22330) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.172+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.174+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.175+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.176+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22332) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.176+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.179+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.179+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.180+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22334) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.684+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.688+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.689+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.689+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22338) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.690+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.692+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.692+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.693+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22340) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.693+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.696+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.696+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.697+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22342) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.198+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.202+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.202+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.203+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22346) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.203+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.205+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.206+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.206+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22348) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.207+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.210+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.210+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.211+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22350) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.712+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.716+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.716+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.717+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22354) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.717+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.720+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.720+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.720+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22356) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.721+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.723+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.724+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.724+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22358) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.226+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.230+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.231+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.231+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22362) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.232+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.234+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.235+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.235+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22364) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.236+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.238+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.238+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.239+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22366) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.740+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.744+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.745+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.745+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22370) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.746+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.749+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.749+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.749+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22372) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.750+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.752+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.752+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.753+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22374) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.006+0000 I REPL     [replexec-0] Member node2:27017 is now in state PRIMARY
+2018-05-24T06:47:53.254+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:53.257+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.257+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:53.258+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22378) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.258+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:53.260+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.261+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:53.261+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22380) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.262+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:53.265+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.265+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:53.266+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22382) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.767+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:53.770+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.771+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:53.771+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22386) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.772+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:53.774+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.775+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:53.775+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22388) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.776+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:53.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:53.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:53.779+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22390) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.283+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.287+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.287+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.288+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22394) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.288+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.291+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.291+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.292+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22396) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.292+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.294+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.295+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.296+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22398) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.797+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.801+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.802+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.803+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22402) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.803+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.806+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.806+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.807+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22404) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.807+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.809+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.810+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.810+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22406) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.312+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:55.315+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.316+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:55.316+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22410) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.317+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:55.319+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.319+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:55.320+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22412) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.320+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:55.323+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.323+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:55.324+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22414) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.475+0000 I REPL     [rsBackgroundSync] sync source candidate: node2:27017
+2018-05-24T06:47:55.825+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:55.828+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.829+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:55.829+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22433) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.830+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:55.832+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.833+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:55.834+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22435) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.834+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:55.836+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:55.836+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:55.837+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22437) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.456+0000 I NETWORK  [conn15] end connection 172.23.0.4:42868 (5 connections now open)
+2018-05-24T06:47:56.457+0000 I NETWORK  [conn17] end connection 172.23.0.4:42902 (3 connections now open)
+2018-05-24T06:47:56.457+0000 I NETWORK  [conn14] end connection 172.23.0.4:42866 (4 connections now open)
+2018-05-24T06:47:56.458+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node2:27017 due to bad connection status; 1 connections to that host remain open
+2018-05-24T06:47:56.458+0000 I REPL     [replication-0] Restarting oplog query due to error: HostUnreachable: error in fetcher batch callback: End of file. Last fetched optime (with hash): { ts: Timestamp(1527144474, 1), t: 4 }[8771668102327636096]. Restarts remaining: 3
+2018-05-24T06:47:56.459+0000 I ASIO     [replication-0] dropping unhealthy pooled connection to node2:27017
+2018-05-24T06:47:56.459+0000 I ASIO     [replication-0] after drop, pool was empty, going to spawn some connections
+2018-05-24T06:47:56.459+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node2:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144474, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 4, readConcern: { afterClusterTime: Timestamp(1527144474, 1) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 22440 -- target:node2:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144474, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 4, readConcern: { afterClusterTime: Timestamp(1527144474, 1) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:56.459+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node2:27017
+2018-05-24T06:47:56.463+0000 I NETWORK  [conn13] end connection 172.23.0.4:42442 (2 connections now open)
+2018-05-24T06:47:56.463+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Failed to connect to node2:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:56.464+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:56.464+0000 I REPL     [replication-2] Restarting oplog query due to error: HostUnreachable: error in fetcher batch callback: Connection refused. Last fetched optime (with hash): { ts: Timestamp(1527144474, 1), t: 4 }[8771668102327636096]. Restarts remaining: 2
+2018-05-24T06:47:56.470+0000 I REPL     [replication-2] Scheduled new oplog query Fetcher source: node2:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144474, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 4, readConcern: { afterClusterTime: Timestamp(1527144474, 1) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 22442 -- target:node2:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144474, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 4, readConcern: { afterClusterTime: Timestamp(1527144474, 1) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:56.471+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node2:27017
+2018-05-24T06:47:56.475+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Failed to connect to node2:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:56.475+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:56.476+0000 I REPL     [replication-0] Restarting oplog query due to error: HostUnreachable: error in fetcher batch callback: Connection refused. Last fetched optime (with hash): { ts: Timestamp(1527144474, 1), t: 4 }[8771668102327636096]. Restarts remaining: 1
+2018-05-24T06:47:56.476+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node2:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144474, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 4, readConcern: { afterClusterTime: Timestamp(1527144474, 1) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 22444 -- target:node2:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144474, 1) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 4, readConcern: { afterClusterTime: Timestamp(1527144474, 1) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:47:56.476+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node2:27017
+2018-05-24T06:47:56.477+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Failed to connect to node2:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:56.478+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:56.478+0000 I REPL     [replication-2] Error returned from oplog query (no more query restarts left): HostUnreachable: error in fetcher batch callback: Connection refused
+2018-05-24T06:47:56.478+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: HostUnreachable: error in fetcher batch callback: Connection refused
+2018-05-24T06:47:56.479+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:47:56.479+0000 I ASIO     [replexec-0] dropping unhealthy pooled connection to node2:27017
+2018-05-24T06:47:56.479+0000 I ASIO     [replexec-0] after drop, pool was empty, going to spawn some connections
+2018-05-24T06:47:56.479+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:56.480+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:56.482+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.483+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:56.483+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22446) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.483+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:56.484+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:56.484+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22448) to node2:27017, response status: HostUnreachable: Connection refused
+2018-05-24T06:47:56.484+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:56.485+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:56.487+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.487+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:56.487+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22450) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.488+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:56.488+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:56.488+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22452) to node2:27017, response status: HostUnreachable: Connection refused
+2018-05-24T06:47:56.488+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:56.489+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:56.491+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.491+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:56.491+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22454) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.492+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: Connection refused
+2018-05-24T06:47:56.492+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:56.492+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22456) to node2:27017, response status: HostUnreachable: Connection refused
+2018-05-24T06:47:56.493+0000 I REPL     [replexec-0] Member node2:27017 is now in state RS_DOWN
+2018-05-24T06:47:56.606+0000 I NETWORK  [conn11] end connection 172.23.0.4:42758 (1 connection now open)
+2018-05-24T06:47:56.991+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:56.992+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:56.994+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.995+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:56.995+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22458) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:56.996+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:57.035+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.035+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:57.036+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22460) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.037+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:57.039+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.039+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:57.040+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22462) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.041+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:57.043+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.044+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:57.045+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22464) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.046+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:57.047+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.048+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:57.048+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22466) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.049+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.049+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:57.050+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22468) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.549+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:57.551+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:57.553+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.553+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:57.554+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22470) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.555+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:57.555+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.556+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:57.557+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22472) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.558+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.558+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:57.559+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:57.559+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22474) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.560+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:57.561+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.562+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:57.563+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22476) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.563+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.564+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:57.564+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:57.564+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22478) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.567+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:57.567+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:57.568+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22480) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.066+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:58.069+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:58.070+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.071+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:58.071+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22482) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.072+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:58.073+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.073+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:58.074+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22484) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.075+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:58.075+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.076+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:58.077+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22486) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.077+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:58.078+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.079+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:58.079+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22488) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.080+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.081+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:58.082+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:58.082+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22490) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.085+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.085+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:58.086+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22492) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.585+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:58.587+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:58.589+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.589+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:58.590+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22494) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.591+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:58.591+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.592+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:58.593+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22496) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.593+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:58.594+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.594+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:58.595+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22498) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.595+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:58.596+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.596+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:58.597+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22500) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.597+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:58.599+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.599+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:58.600+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22502) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.601+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:58.601+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:58.602+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22504) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.102+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:59.104+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:59.106+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.106+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:59.107+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22506) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.108+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:59.110+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.111+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:59.112+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22508) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.112+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.113+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:59.113+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:59.113+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22510) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.114+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:59.117+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.117+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:59.118+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22512) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.119+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:59.119+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.120+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:59.121+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22514) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.122+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.123+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:59.123+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22516) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.622+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:59.624+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:59.626+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.626+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:59.627+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22518) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.627+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:59.629+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.629+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:59.630+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22520) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.630+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:59.631+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.632+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:59.632+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22522) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.633+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:59.634+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.634+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:59.635+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22524) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.635+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:47:59.636+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.636+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:59.637+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22526) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.639+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:59.640+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:47:59.641+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22528) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.138+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:00.142+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:00.143+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.144+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:00.144+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22530) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.145+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:00.145+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.146+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:00.147+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22532) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.147+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:00.148+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.149+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:00.150+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22534) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.150+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:00.151+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.151+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:00.152+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22536) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.153+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:00.154+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.154+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:00.155+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22538) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.156+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.156+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:00.157+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22540) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.481+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node2:27017: InvalidSyncSource: Sync source was cleared. Was node2:27017
+2018-05-24T06:48:00.656+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:00.658+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:00.660+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.661+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:00.662+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22542) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.663+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:00.663+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.664+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:00.665+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22544) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.665+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.666+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:00.666+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:00.666+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22546) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.668+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:00.670+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.671+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:00.672+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22548) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.672+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.673+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:00.673+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:00.673+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22550) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.676+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:00.676+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:00.677+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22552) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.175+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:01.178+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.178+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:01.179+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22554) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.180+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:01.180+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:01.183+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.184+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:01.184+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22556) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.184+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.185+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:01.186+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22558) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.186+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:01.187+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:01.190+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.190+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:01.191+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22560) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.191+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.192+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:01.192+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22562) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.192+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:01.195+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.195+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:01.195+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22564) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.692+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:01.695+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:01.697+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.699+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:01.699+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22566) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.699+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.700+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:01.701+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22568) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.701+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:01.702+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:01.704+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.704+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:01.705+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22570) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.706+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.706+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:01.706+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22572) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.706+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:01.708+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:01.709+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.710+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:01.710+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22574) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.711+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:01.711+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:01.712+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22576) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.212+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:02.214+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:02.216+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.217+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:02.217+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22578) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.217+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.218+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:02.218+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22580) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.218+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:02.219+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:02.222+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.223+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:02.223+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.224+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:02.223+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22582) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.225+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22584) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.225+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:02.226+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:02.228+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.229+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:02.229+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22586) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.230+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.230+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:02.230+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22588) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.733+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:02.734+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:02.737+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.738+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:02.738+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22590) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.739+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:02.740+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.740+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:02.740+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22592) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.741+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:02.742+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.742+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:02.743+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22594) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.743+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:02.744+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.744+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:02.745+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22596) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.745+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:02.746+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.747+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:02.747+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22598) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.748+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:02.749+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:02.749+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22600) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.251+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:03.252+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:03.257+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.258+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:03.258+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22602) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.259+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.259+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:03.260+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22604) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.260+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:03.261+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:03.263+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.264+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:03.264+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22606) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.265+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:03.265+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.266+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:03.266+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22608) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.267+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:03.267+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.268+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:03.269+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22610) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.269+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.270+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:03.270+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22612) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.771+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:03.772+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:03.776+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.776+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:03.777+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22614) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:03.779+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:03.779+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22616) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.780+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:03.782+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.783+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:03.783+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22618) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.784+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.784+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:03.785+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:03.785+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22620) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.786+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:03.788+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.788+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:03.789+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22622) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.790+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:03.790+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:03.791+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22624) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.290+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:04.292+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:04.294+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.294+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:04.295+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22626) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.296+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:04.296+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.297+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:04.297+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22628) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.298+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:04.299+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.300+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:04.300+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22630) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.301+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:04.302+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.302+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:04.303+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22632) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.303+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:04.304+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.305+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:04.305+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22634) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.307+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.307+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:04.307+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22636) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.806+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:04.807+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:04.810+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.811+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:04.811+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22638) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.812+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:04.813+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.813+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:04.813+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22640) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.814+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:04.815+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.816+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:04.816+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22642) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.817+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:04.818+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.818+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:04.819+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22644) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.819+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:04.820+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.821+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:04.822+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22646) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.823+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:04.823+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:04.823+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22648) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.325+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:05.326+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:05.329+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.330+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:05.330+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22650) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.331+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:05.332+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.332+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:05.332+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22652) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.333+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:05.335+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.335+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:05.336+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22654) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.337+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:05.337+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.337+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:05.338+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22656) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.338+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:05.340+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.340+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:05.341+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22658) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.342+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.343+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:05.343+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22660) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.844+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:05.845+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:05.847+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.848+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:05.849+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22662) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.849+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:05.850+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.850+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:05.851+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22664) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.852+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:05.853+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.854+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:05.854+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22666) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.855+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:05.855+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.856+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:05.856+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22668) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.856+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:05.858+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.859+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:05.859+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22670) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.860+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:05.861+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:05.861+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22672) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.363+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:06.364+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:06.368+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.369+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:06.369+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22674) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.370+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:06.370+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.371+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:06.371+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22676) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.372+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:06.373+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.374+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:06.374+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22678) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.375+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:06.376+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.376+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:06.377+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22680) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.377+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:06.378+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.378+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:06.379+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22682) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.380+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.380+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:06.380+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22684) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.525+0000 I NETWORK  [thread19] Starting new replica set monitor for rs0/node1:27017,node2:27017,node3:27017
+2018-05-24T06:48:06.528+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:36096 #19 (2 connections now open)
+2018-05-24T06:48:06.530+0000 I NETWORK  [conn19] received client metadata from 172.23.0.3:36096 conn19: { driver: { name: "MongoDB Internal Client", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:48:06.530+0000 I NETWORK  [ReplicaSetMonitor-TaskExecutor-0] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:06.530+0000 I NETWORK  [thread19] Successfully connected to node3:27017 (1 connections now open to node3:27017 with a 5 second timeout)
+2018-05-24T06:48:06.533+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:06.535+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:06.881+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:06.882+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:06.884+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.885+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:06.885+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22686) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.886+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:06.886+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.887+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:06.888+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22688) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.888+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:06.889+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.889+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:06.890+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22690) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.890+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:06.891+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.892+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:06.893+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22692) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.894+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:06.894+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.895+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:06.895+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22694) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.896+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.897+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:06.897+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22696) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:06.959+0000 I REPL     [replexec-0] Not starting an election, since we are not electable due to: Not standing for election because I cannot see a majority (mask 0x1)
+2018-05-24T06:48:07.041+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:07.044+0000 I NETWORK  [thread19] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:07.044+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:07.397+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:07.400+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:07.401+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.402+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:07.403+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22698) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.404+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:07.405+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.406+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:07.406+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22700) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.407+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:07.407+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.408+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:07.408+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22702) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.409+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:07.410+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.411+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:07.411+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22704) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.412+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:07.412+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.413+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:07.413+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22706) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.415+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.416+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:07.416+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22708) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.549+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:07.551+0000 I NETWORK  [thread19] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:07.552+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:07.914+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:07.917+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:07.918+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.918+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:07.919+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22710) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.920+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:07.921+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.922+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:07.922+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22712) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.923+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:07.923+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.924+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:07.924+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22714) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.925+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:07.927+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.927+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:07.928+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22716) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.929+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:07.929+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.930+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:07.930+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22718) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.932+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:07.932+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:07.933+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22720) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.057+0000 I NETWORK  [thread19] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:08.059+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:08.060+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:08.432+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:08.434+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:08.436+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.437+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:08.437+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22722) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.438+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:08.439+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.439+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:08.440+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22724) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.441+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:08.441+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.442+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:08.442+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22726) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.443+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:08.444+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.445+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:08.445+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22728) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.446+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:08.447+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.447+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:08.448+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22730) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.450+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.450+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:08.450+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22732) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.565+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:08.568+0000 I NETWORK  [thread19] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:08.568+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:08.949+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:08.950+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:08.954+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.954+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:08.955+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22734) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.955+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:08.957+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.958+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:08.958+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22736) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.959+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.960+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:08.960+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:08.960+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22738) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.962+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:08.963+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.964+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:08.965+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22740) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.965+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:08.966+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.967+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:08.967+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22742) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.968+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:08.969+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:08.969+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22744) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.075+0000 I NETWORK  [thread19] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:09.078+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:09.079+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:09.468+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:09.470+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:09.473+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.474+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:09.474+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22746) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.475+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:09.476+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.476+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:09.477+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22748) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.477+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:09.479+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.481+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:09.481+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22750) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.482+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:09.483+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.483+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:09.484+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22752) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.484+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:09.486+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.487+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:09.487+0000 I REPL_HB  [replexec-0] Error in heartbeat (requestId: 22754) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.488+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.489+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:09.489+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22756) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.585+0000 I NETWORK  [thread19] getaddrinfo("node1") failed: Name or service not known
+2018-05-24T06:48:09.588+0000 I NETWORK  [thread19] getaddrinfo("node2") failed: Name or service not known
+2018-05-24T06:48:09.589+0000 W NETWORK  [thread19] Unable to reach primary for set rs0
+2018-05-24T06:48:09.987+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:09.990+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:09.991+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.992+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:09.992+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22758) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.993+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:09.995+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.996+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:09.996+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 22760) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.997+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:09.998+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:09.999+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:09.999+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22762) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:10.000+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:48:10.004+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:10.005+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:10.005+0000 I REPL_HB  [replexec-2] Error in heartbeat (requestId: 22764) to node2:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:10.006+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node2:27017
+2018-05-24T06:48:10.007+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:10.008+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:48:10.009+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 22766) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:48:10.011+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node2:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:48:10.012+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node2:27017 due to failed operation on a connection
+2018-05-24T06:48:10.012+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 22768) to node2:27017, response status: HostUnreachable: HostUnreachable

@@ -8,4 +8,4 @@ RUN mkdir -p /client
 COPY app /client/app
 WORKDIR /client/app
 RUN npm install
-CMD nodejs /client/app/src/main.js
+CMD nodejs /client/app/src/main.js 8000

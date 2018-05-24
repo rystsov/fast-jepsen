@@ -16,4 +16,4 @@ sleep 5s
 
 /mongo/mongodb-linux-x86_64-3.6.4/bin/mongo --host node1 < /mongo/topology
 
-nodejs /mongo/remote-tester/src/start.js > /mongo/mem/$me.tester.log
+nodejs /mongo/api-js/src/start.js > /mongo/mem/$me.tester.log

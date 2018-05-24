@@ -1,0 +1,7 @@
+1. start the mongodb cluster: docker-compose up
+2. start clients / consistency checker: cd client && ./build-run.sh
+3. figure out who is the primary: ./primary.sh
+4. isolate the primary (in my case it's node1): ./isolate.sh node1
+5. wait ~20 seconds
+6. heal the network: ./rejoin.sh node1
+7. observe the violation

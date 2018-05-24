@@ -1,0 +1,657 @@
+2018-05-24T06:43:05.774+0000 I CONTROL  [initandlisten] MongoDB starting : pid=41 port=27017 dbpath=/mongo/mem 64-bit host=node2
+2018-05-24T06:43:05.775+0000 I CONTROL  [initandlisten] db version v3.6.4
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] git version: d0181a711f7e7f39e60b5aeb1dc7097bf6ae5856
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] modules: none
+2018-05-24T06:43:05.776+0000 I CONTROL  [initandlisten] build environment:
+2018-05-24T06:43:05.777+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2018-05-24T06:43:05.777+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2018-05-24T06:43:05.777+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "0.0.0.0", port: 27017 }, replication: { replSet: "rs0" }, storage: { dbPath: "/mongo/mem" } }
+2018-05-24T06:43:05.778+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=487M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),cache_cursors=false,log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2018-05-24T06:43:06.383+0000 I STORAGE  [initandlisten] WiredTiger message [1527144186:383962][41:0x7f78b33219c0], txn-recover: Set global recovery timestamp: 0
+2018-05-24T06:43:06.389+0000 I CONTROL  [initandlisten] 
+2018-05-24T06:43:06.396+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2018-05-24T06:43:06.396+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2018-05-24T06:43:06.396+0000 I CONTROL  [initandlisten] ** WARNING: You are running this process as the root user, which is not recommended.
+2018-05-24T06:43:06.397+0000 I CONTROL  [initandlisten] 
+2018-05-24T06:43:06.400+0000 I STORAGE  [initandlisten] createCollection: local.startup_log with no UUID.
+2018-05-24T06:43:06.404+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/mongo/mem/diagnostic.data'
+2018-05-24T06:43:06.415+0000 I STORAGE  [initandlisten] createCollection: local.me with no UUID.
+2018-05-24T06:43:06.418+0000 I STORAGE  [initandlisten] createCollection: local.replset.minvalid with no UUID.
+2018-05-24T06:43:06.421+0000 I REPL     [initandlisten] Did not find local voted for document at startup.
+2018-05-24T06:43:06.422+0000 I REPL     [initandlisten] Did not find local Rollback ID document at startup. Creating one.
+2018-05-24T06:43:06.423+0000 I STORAGE  [initandlisten] createCollection: local.system.rollback.id with no UUID.
+2018-05-24T06:43:06.425+0000 I REPL     [initandlisten] Initialized the rollback ID to 1
+2018-05-24T06:43:06.426+0000 I REPL     [initandlisten] Did not find local replica set configuration document at startup;  NoMatchingDocument: Did not find replica set configuration document in local.system.replset
+2018-05-24T06:43:06.427+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2018-05-24T06:43:10.994+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:46010 #1 (1 connection now open)
+2018-05-24T06:43:11.006+0000 I NETWORK  [conn1] end connection 172.23.0.2:46010 (0 connections now open)
+2018-05-24T06:43:11.009+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:46014 #2 (1 connection now open)
+2018-05-24T06:43:11.018+0000 I NETWORK  [conn2] received client metadata from 172.23.0.2:46014 conn2: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:43:11.021+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:43:11.025+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node1:27017, took 4ms (1 connections now open to node1:27017)
+2018-05-24T06:43:13.116+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:57236 #3 (2 connections now open)
+2018-05-24T06:43:13.183+0000 I NETWORK  [conn3] end connection 172.23.0.3:57236 (1 connection now open)
+2018-05-24T06:43:13.184+0000 I STORAGE  [replexec-0] createCollection: local.system.replset with no UUID.
+2018-05-24T06:43:13.189+0000 I REPL     [replexec-0] New replica set config in use: { _id: "rs0", version: 1, protocolVersion: 1, members: [ { _id: 0, host: "node1:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 1, host: "node2:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 2, host: "node3:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 } ], settings: { chainingAllowed: true, heartbeatIntervalMillis: 2000, heartbeatTimeoutSecs: 10, electionTimeoutMillis: 10000, catchUpTimeoutMillis: -1, catchUpTakeoverDelayMillis: 30000, getLastErrorModes: {}, getLastErrorDefaults: { w: 1, wtimeout: 0 }, replicaSetId: ObjectId('5b065efeb405c746d93ab617') } }
+2018-05-24T06:43:13.197+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:57240 #4 (2 connections now open)
+2018-05-24T06:43:13.198+0000 I REPL     [replexec-0] This node is node2:27017 in the config
+2018-05-24T06:43:13.199+0000 I REPL     [replexec-0] transition to STARTUP2 from STARTUP
+2018-05-24T06:43:13.199+0000 I REPL     [replexec-0] Starting replication storage threads
+2018-05-24T06:43:13.206+0000 I STORAGE  [replexec-0] createCollection: local.temp_oplog_buffer with no UUID.
+2018-05-24T06:43:13.215+0000 I NETWORK  [conn4] received client metadata from 172.23.0.3:57240 conn4: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:43:13.224+0000 I REPL     [replication-0] Starting initial sync (attempt 1 of 10)
+2018-05-24T06:43:13.216+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node3:27017
+2018-05-24T06:43:13.216+0000 I REPL     [replexec-0] Member node1:27017 is now in state SECONDARY
+2018-05-24T06:43:13.325+0000 I COMMAND  [conn4] command admin.$cmd command: isMaster { isMaster: 1, hangUpOnStepDown: false, client: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }, compression: [ "snappy" ], internalClient: { minWireVersion: 0, maxWireVersion: 6 }, $db: "admin" } numYields:0 reslen:430 locks:{} protocol:op_query 109ms
+2018-05-24T06:43:13.332+0000 I STORAGE  [replication-0] Finishing collection drop for local.temp_oplog_buffer (no UUID).
+2018-05-24T06:43:13.333+0000 I STORAGE  [replication-0] createCollection: local.temp_oplog_buffer with no UUID.
+2018-05-24T06:43:13.424+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node3:27017, took 208ms (1 connections now open to node3:27017)
+2018-05-24T06:43:13.430+0000 I REPL     [replexec-2] Member node3:27017 is now in state STARTUP2
+2018-05-24T06:43:14.337+0000 I REPL     [replication-0] sync source candidate: node1:27017
+2018-05-24T06:43:14.339+0000 I REPL     [replication-0] ******
+2018-05-24T06:43:14.340+0000 I REPL     [replication-0] creating replication oplog of size: 990MB...
+2018-05-24T06:43:14.340+0000 I STORAGE  [replication-0] createCollection: local.oplog.rs with no UUID.
+2018-05-24T06:43:14.341+0000 I STORAGE  [replication-0] Starting WiredTigerRecordStoreThread local.oplog.rs
+2018-05-24T06:43:14.342+0000 I STORAGE  [replication-0] The size storer reports that the oplog contains 0 records totaling to 0 bytes
+2018-05-24T06:43:14.342+0000 I STORAGE  [replication-0] Scanning the oplog to determine where to place markers for truncation
+2018-05-24T06:43:14.478+0000 I REPL     [replication-0] ******
+2018-05-24T06:43:14.479+0000 I STORAGE  [replication-0] dropAllDatabasesExceptLocal 1
+2018-05-24T06:43:14.480+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:14.537+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 57ms (1 connections now open to node1:27017)
+2018-05-24T06:43:14.586+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:14.610+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 25ms (2 connections now open to node1:27017)
+2018-05-24T06:43:14.616+0000 I REPL     [replication-0] CollectionCloner::start called, on ns:admin.system.version
+2018-05-24T06:43:14.646+0000 I STORAGE  [repl writer worker 0] createCollection: admin.system.version with provided UUID: 0a8bf1ab-11b9-4a79-912c-bfeb8420820a
+2018-05-24T06:43:14.650+0000 I INDEX    [repl writer worker 0] build index on: admin.system.version properties: { v: 2, key: { _id: 1 }, name: "_id_", ns: "admin.system.version" }
+2018-05-24T06:43:14.651+0000 I INDEX    [repl writer worker 0] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2018-05-24T06:43:14.677+0000 I COMMAND  [repl writer worker 1] setting featureCompatibilityVersion to 3.6
+2018-05-24T06:43:14.677+0000 I NETWORK  [repl writer worker 1] Skip closing connection for connection # 4
+2018-05-24T06:43:14.677+0000 I NETWORK  [repl writer worker 1] Skip closing connection for connection # 2
+2018-05-24T06:43:14.678+0000 I REPL     [repl writer worker 1] CollectionCloner ns:admin.system.version finished cloning with status: OK
+2018-05-24T06:43:14.679+0000 I REPL     [repl writer worker 1] Finished cloning data: OK. Beginning oplog replay.
+2018-05-24T06:43:14.688+0000 I REPL     [replication-1] No need to apply operations. (currently at { : Timestamp(1527144191, 1) })
+2018-05-24T06:43:14.695+0000 I COMMAND  [replication-0] Assigning UUID b852bbc4-1cc8-4af6-bb37-5f26d8d28639 to collection local.system.rollback.id
+2018-05-24T06:43:14.696+0000 I COMMAND  [replication-0] Assigning UUID f2774c1b-5adc-40a8-bedd-20c1712ab520 to collection local.temp_oplog_buffer
+2018-05-24T06:43:14.697+0000 I COMMAND  [replication-0] Assigning UUID b409efc3-3cd8-4a2e-a444-3c5f2d0372ed to collection local.system.replset
+2018-05-24T06:43:14.697+0000 I COMMAND  [replication-0] Assigning UUID b2250a5e-03ac-4079-b1c2-ebba1d3368f4 to collection local.me
+2018-05-24T06:43:14.698+0000 I COMMAND  [replication-0] Assigning UUID 47e324f6-0fe1-4085-aa2f-c577c0a04f1b to collection local.startup_log
+2018-05-24T06:43:14.698+0000 I COMMAND  [replication-0] Assigning UUID 9674d4a5-aaf2-4d90-a9e5-2c9937880f82 to collection local.replset.minvalid
+2018-05-24T06:43:14.699+0000 I COMMAND  [replication-0] Assigning UUID ca17e90c-eff1-48ce-ba74-431de22c27d7 to collection local.oplog.rs
+2018-05-24T06:43:14.699+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node1:27017 due to bad connection status; 1 connections to that host remain open
+2018-05-24T06:43:14.706+0000 I REPL     [replication-1] Finished fetching oplog during initial sync: CallbackCanceled: error in fetcher batch callback: oplog fetcher is shutting down. Last fetched optime and hash: { ts: Timestamp(0, 0), t: -1 }[0]
+2018-05-24T06:43:14.707+0000 I REPL     [replication-1] Initial sync attempt finishing up.
+2018-05-24T06:43:14.707+0000 I REPL     [replication-1] Initial Sync Attempt Statistics: { failedInitialSyncAttempts: 0, maxFailedInitialSyncAttempts: 10, initialSyncStart: new Date(1527144193208), initialSyncAttempts: [], fetchedMissingDocs: 0, appliedOps: 0, initialSyncOplogStart: Timestamp(1527144191, 1), initialSyncOplogEnd: Timestamp(1527144191, 1), databases: { databasesCloned: 1, admin: { collections: 1, clonedCollections: 1, start: new Date(1527144194588), end: new Date(1527144194680), elapsedMillis: 92, admin.system.version: { documentsToCopy: 1, documentsCopied: 1, indexes: 1, fetchedBatches: 1, start: new Date(1527144194616), end: new Date(1527144194680), elapsedMillis: 64 } } } }
+2018-05-24T06:43:14.707+0000 I STORAGE  [replication-1] Finishing collection drop for local.temp_oplog_buffer (f2774c1b-5adc-40a8-bedd-20c1712ab520).
+2018-05-24T06:43:14.709+0000 I REPL     [replication-1] initial sync done; took 1s.
+2018-05-24T06:43:14.709+0000 I REPL     [replication-1] transition to RECOVERING from STARTUP2
+2018-05-24T06:43:14.711+0000 I REPL     [replication-1] Starting replication fetcher thread
+2018-05-24T06:43:14.712+0000 I REPL     [replication-1] Starting replication applier thread
+2018-05-24T06:43:14.712+0000 I REPL     [replication-1] Starting replication reporter thread
+2018-05-24T06:43:14.722+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:43:14.725+0000 I REPL     [rsSync] transition to SECONDARY from RECOVERING
+2018-05-24T06:43:14.755+0000 I REPL     [replexec-0] Member node3:27017 is now in state SECONDARY
+2018-05-24T06:43:17.924+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:57856 #5 (3 connections now open)
+2018-05-24T06:43:17.927+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:57262 #6 (4 connections now open)
+2018-05-24T06:43:17.990+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:46064 #7 (5 connections now open)
+2018-05-24T06:43:17.995+0000 I NETWORK  [conn6] received client metadata from 172.23.0.3:57262 conn6: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:43:18.022+0000 I NETWORK  [conn5] received client metadata from 172.23.0.4:57856 conn5: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:43:18.095+0000 I NETWORK  [conn7] received client metadata from 172.23.0.2:46064 conn7: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:43:22.355+0000 I STORAGE  [conn2] createCollection: local.replset.election with generated UUID: e384e497-bb7c-4bbe-a513-0503e0cf3b7a
+2018-05-24T06:43:22.858+0000 I REPL     [replexec-1] Member node1:27017 is now in state PRIMARY
+2018-05-24T06:43:24.752+0000 I REPL     [rsBackgroundSync] sync source candidate: node1:27017
+2018-05-24T06:43:24.753+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:24.756+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 3ms (2 connections now open to node1:27017)
+2018-05-24T06:43:24.758+0000 I STORAGE  [rsSync] createCollection: local.replset.oplogTruncateAfterPoint with generated UUID: ef0a29b5-f348-4feb-853a-c2064c731e0f
+2018-05-24T06:43:24.764+0000 I STORAGE  [repl writer worker 6] createCollection: config.transactions with provided UUID: c2ac2a6e-a62c-4cb7-93a6-88575df68bec
+2018-05-24T06:43:24.768+0000 I STORAGE  [repl writer worker 8] createCollection: admin.system.keys with provided UUID: 1f772053-d966-4c53-97b1-eb84d977a076
+2018-05-24T06:43:24.777+0000 I STORAGE  [repl writer worker 12] createCollection: lily.storage with provided UUID: 74411b0e-cbf6-44e9-b7fc-f3a4f604670d
+2018-05-24T06:43:24.780+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:43:24.791+0000 I INDEX    [repl writer worker 14] build index on: lily.storage properties: { v: 2, unique: true, key: { key: 1 }, name: "key_1", ns: "lily.storage" }
+2018-05-24T06:43:24.792+0000 I INDEX    [repl writer worker 14] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2018-05-24T06:43:24.793+0000 I INDEX    [repl writer worker 14] build index done.  scanned 0 total records. 0 secs
+2018-05-24T06:43:24.794+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 14ms (3 connections now open to node1:27017)
+2018-05-24T06:43:24.855+0000 I NETWORK  [conn6] end connection 172.23.0.3:57262 (4 connections now open)
+2018-05-24T06:43:33.074+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:57290 #8 (5 connections now open)
+2018-05-24T06:43:33.098+0000 I NETWORK  [conn8] received client metadata from 172.23.0.3:57290 conn8: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:44:24.792+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending idle connection to host node1:27017 because the pool meets constraints; 2 connections to that host remain open
+2018-05-24T06:45:07.756+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node1:27017
+2018-05-24T06:45:07.786+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node1:27017, took 30ms (3 connections now open to node1:27017)
+2018-05-24T06:45:50.631+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node1:27017 due to bad connection status; 2 connections to that host remain open
+2018-05-24T06:45:50.632+0000 I REPL     [replication-0] Restarting oplog query due to error: NetworkInterfaceExceededTimeLimit: error in fetcher batch callback: Operation timed out. Last fetched optime (with hash): { ts: Timestamp(1527144340, 137), t: 1 }[-1193011580131807774]. Restarts remaining: 3
+2018-05-24T06:45:50.639+0000 I REPL     [replication-0] Scheduled new oplog query Fetcher source: node1:27017 database: local query: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144340, 137) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 1, readConcern: { afterClusterTime: Timestamp(1527144340, 137) } } query metadata: { $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" } } active: 1 findNetworkTimeout: 65000ms getMoreNetworkTimeout: 10000ms shutting down?: 0 first: 1 firstCommandScheduler: RemoteCommandRetryScheduler request: RemoteCommand 11928 -- target:node1:27017 db:local cmd:{ find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144340, 137) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 1, readConcern: { afterClusterTime: Timestamp(1527144340, 137) } } active: 1 callbackHandle.valid: 1 callbackHandle.cancelled: 0 attempt: 1 retryPolicy: RetryPolicyImpl maxAttempts: 1 maxTimeMillis: -1ms
+2018-05-24T06:45:50.890+0000 I REPL     [replexec-3] Starting an election, since we've seen no PRIMARY in the past 10000ms
+2018-05-24T06:45:50.891+0000 I REPL     [replexec-3] conducting a dry run election to see if we could be elected. current term: 1
+2018-05-24T06:45:50.892+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:45:50.895+0000 I REPL     [replexec-4] VoteRequester(term 1 dry run) received a yes vote from node3:27017; response message: { term: 1, voteGranted: true, reason: "", ok: 1.0, operationTime: Timestamp(1527144340, 135), $clusterTime: { clusterTime: Timestamp(1527144340, 143), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } } }
+2018-05-24T06:45:50.896+0000 I REPL     [replexec-4] dry election run succeeded, running for election in term 2
+2018-05-24T06:45:50.901+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:45:50.903+0000 I REPL     [replexec-5] VoteRequester(term 2) received a yes vote from node3:27017; response message: { term: 2, voteGranted: true, reason: "", ok: 1.0, operationTime: Timestamp(1527144340, 135), $clusterTime: { clusterTime: Timestamp(1527144340, 143), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } } }
+2018-05-24T06:45:50.904+0000 I REPL     [replexec-5] election succeeded, assuming primary role in term 2
+2018-05-24T06:45:50.904+0000 I REPL     [replexec-5] transition to PRIMARY from SECONDARY
+2018-05-24T06:45:50.904+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Ending connection to host node1:27017 due to bad connection status; 2 connections to that host remain open
+2018-05-24T06:45:50.905+0000 I REPL     [replexec-5] Entering primary catch-up mode.
+2018-05-24T06:45:50.905+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:45:51.057+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 11938) to node1:27017, response status: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:45:51.058+0000 I REPL     [replexec-3] Member node1:27017 is now in state RS_DOWN
+2018-05-24T06:45:51.058+0000 I REPL     [replexec-3] Caught up to the latest optime known via heartbeats after becoming primary.
+2018-05-24T06:45:51.059+0000 I REPL     [replexec-3] Exited primary catch-up mode.
+2018-05-24T06:45:51.059+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Ending connection to host node1:27017 due to bad connection status; 1 connections to that host remain open
+2018-05-24T06:45:51.060+0000 I REPL     [rsBackgroundSync] Replication producer stopped after oplog fetcher finished returning a batch from our sync source.  Abandoning this batch of oplog entries and re-evaluating our sync source.
+2018-05-24T06:45:52.646+0000 I REPL     [rsSync] transition to primary complete; database writes are now permitted
+2018-05-24T06:46:00.681+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:46920 #9 (6 connections now open)
+2018-05-24T06:46:00.684+0000 I NETWORK  [conn9] received client metadata from 172.23.0.4:46920 conn9: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.692+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:46940 #10 (7 connections now open)
+2018-05-24T06:46:00.710+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:46946 #11 (8 connections now open)
+2018-05-24T06:46:00.710+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:46948 #12 (9 connections now open)
+2018-05-24T06:46:00.711+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46350 #13 (10 connections now open)
+2018-05-24T06:46:00.711+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46352 #14 (11 connections now open)
+2018-05-24T06:46:00.712+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46354 #15 (12 connections now open)
+2018-05-24T06:46:00.712+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46358 #16 (13 connections now open)
+2018-05-24T06:46:00.713+0000 I NETWORK  [conn10] received client metadata from 172.23.0.4:46940 conn10: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.713+0000 I NETWORK  [conn12] received client metadata from 172.23.0.4:46948 conn12: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.713+0000 I NETWORK  [conn13] received client metadata from 172.23.0.3:46350 conn13: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.713+0000 I NETWORK  [conn11] received client metadata from 172.23.0.4:46946 conn11: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.713+0000 I NETWORK  [conn14] received client metadata from 172.23.0.3:46352 conn14: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.713+0000 I NETWORK  [conn15] received client metadata from 172.23.0.3:46354 conn15: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:00.714+0000 I NETWORK  [conn16] received client metadata from 172.23.0.3:46358 conn16: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:03.058+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 11945) to node1:27017, response status: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:46:07.496+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35230 #17 (14 connections now open)
+2018-05-24T06:46:07.497+0000 I NETWORK  [conn17] received client metadata from 172.23.0.2:35230 conn17: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:07.504+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35306 #18 (15 connections now open)
+2018-05-24T06:46:07.505+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35312 #19 (16 connections now open)
+2018-05-24T06:46:07.506+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35310 #20 (17 connections now open)
+2018-05-24T06:46:07.506+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35308 #21 (18 connections now open)
+2018-05-24T06:46:07.506+0000 I NETWORK  [conn19] received client metadata from 172.23.0.2:35312 conn19: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:07.506+0000 I NETWORK  [conn18] received client metadata from 172.23.0.2:35306 conn18: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:07.507+0000 I NETWORK  [conn21] received client metadata from 172.23.0.2:35308 conn21: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:07.507+0000 I NETWORK  [conn20] received client metadata from 172.23.0.2:35310 conn20: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:08.538+0000 I NETWORK  [conn2] end connection 172.23.0.2:46014 (17 connections now open)
+2018-05-24T06:46:08.540+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node1:27017: InvalidSyncSource: Sync source was cleared. Was node1:27017
+2018-05-24T06:46:10.735+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46604 #22 (18 connections now open)
+2018-05-24T06:46:10.737+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:47206 #23 (19 connections now open)
+2018-05-24T06:46:10.737+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46608 #24 (20 connections now open)
+2018-05-24T06:46:10.738+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:47210 #25 (21 connections now open)
+2018-05-24T06:46:10.740+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46618 #26 (22 connections now open)
+2018-05-24T06:46:10.741+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:47220 #27 (23 connections now open)
+2018-05-24T06:46:10.745+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:47222 #28 (24 connections now open)
+2018-05-24T06:46:10.749+0000 I NETWORK  [conn28] received client metadata from 172.23.0.4:47222 conn28: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.752+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:46632 #29 (25 connections now open)
+2018-05-24T06:46:10.754+0000 I NETWORK  [conn22] received client metadata from 172.23.0.3:46604 conn22: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.742+0000 I NETWORK  [conn26] received client metadata from 172.23.0.3:46618 conn26: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.755+0000 I NETWORK  [conn23] received client metadata from 172.23.0.4:47206 conn23: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.755+0000 I NETWORK  [conn24] received client metadata from 172.23.0.3:46608 conn24: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.755+0000 I NETWORK  [conn25] received client metadata from 172.23.0.4:47210 conn25: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.755+0000 I NETWORK  [conn27] received client metadata from 172.23.0.4:47220 conn27: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.757+0000 I NETWORK  [conn29] received client metadata from 172.23.0.3:46632 conn29: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:10.893+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:10.903+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:10.906+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:10.907+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:46:10.911+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node1:27017, took 4ms (1 connections now open to node1:27017)
+2018-05-24T06:46:10.912+0000 I REPL     [replexec-4] Member node1:27017 is now in state SECONDARY
+2018-05-24T06:46:11.208+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35432 #30 (26 connections now open)
+2018-05-24T06:46:11.208+0000 I NETWORK  [conn30] received client metadata from 172.23.0.2:35432 conn30: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:11.309+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35434 #31 (27 connections now open)
+2018-05-24T06:46:11.310+0000 I NETWORK  [conn31] received client metadata from 172.23.0.2:35434 conn31: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:11.315+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35436 #32 (28 connections now open)
+2018-05-24T06:46:11.316+0000 I NETWORK  [conn32] received client metadata from 172.23.0.2:35436 conn32: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:11.327+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35438 #33 (29 connections now open)
+2018-05-24T06:46:11.328+0000 I NETWORK  [conn33] received client metadata from 172.23.0.2:35438 conn33: { driver: { name: "MongoDB Internal Client", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:11.348+0000 I NETWORK  [conn33] end connection 172.23.0.2:35438 (28 connections now open)
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn27] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 6), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("9c70600d-2004-4947-a90a-abc7db1c3c0c") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 581ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn15] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144340, 131), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("7b29adbe-7f6a-4939-a44b-b867aff1cb3b") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10634ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn21] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144367, 4), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("ff13322c-8078-4bb1-b9ab-95c8d3b1ba5a") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 3843ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn28] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("b31e3876-99bb-45bc-85cc-f6aa6cc58cc0") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 593ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn24] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 2), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("7b29adbe-7f6a-4939-a44b-b867aff1cb3b") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 587ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn11] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("b31e3876-99bb-45bc-85cc-f6aa6cc58cc0") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10634ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn26] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 2), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("d6eb466a-a3fd-4384-a00b-24c3336307a6") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 590ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn23] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("91902db3-5a06-4f16-8758-eb6b2887cf8e") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 585ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn29] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 2), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("f845e373-8883-4698-9f0e-0f959b321fc2") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 583ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn10] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("9c70600d-2004-4947-a90a-abc7db1c3c0c") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10640ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn14] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 8), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("f845e373-8883-4698-9f0e-0f959b321fc2") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10629ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn9] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144340, 132), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("82e2129e-cce5-4e19-81dc-d3a093d6553f") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10634ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn19] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144341, 164), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("866ab5f1-af8a-4d70-9977-fa6c7aab5f98") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 3849ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn22] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 8), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("41a7ece1-e612-47c1-a99e-2c6a135afebb") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 594ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn13] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144340, 131), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("41a7ece1-e612-47c1-a99e-2c6a135afebb") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10634ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn12] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144360, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("91902db3-5a06-4f16-8758-eb6b2887cf8e") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10640ms
+2018-05-24T06:46:11.374+0000 I NETWORK  [conn12] end connection 172.23.0.4:46948 (22 connections now open)
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn25] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 6), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("82e2129e-cce5-4e19-81dc-d3a093d6553f") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 582ms
+2018-05-24T06:46:11.358+0000 I COMMAND  [conn18] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144341, 164), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("62f62ff2-2318-43d1-802f-fb853d569f3b") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 3846ms
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn20] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144341, 164), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("59f71419-3952-4ca7-9501-91faa754edb5") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 3847ms
+2018-05-24T06:46:11.359+0000 I NETWORK  [conn15] end connection 172.23.0.3:46354 (27 connections now open)
+2018-05-24T06:46:11.363+0000 I NETWORK  [conn11] end connection 172.23.0.4:46946 (26 connections now open)
+2018-05-24T06:46:11.370+0000 I NETWORK  [conn10] end connection 172.23.0.4:46940 (25 connections now open)
+2018-05-24T06:46:11.371+0000 I NETWORK  [conn14] end connection 172.23.0.3:46352 (24 connections now open)
+2018-05-24T06:46:11.371+0000 I NETWORK  [conn9] end connection 172.23.0.4:46920 (23 connections now open)
+2018-05-24T06:46:11.359+0000 I COMMAND  [conn16] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144340, 131), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("d6eb466a-a3fd-4384-a00b-24c3336307a6") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10629ms
+2018-05-24T06:46:11.374+0000 I NETWORK  [conn13] end connection 172.23.0.3:46350 (21 connections now open)
+2018-05-24T06:46:11.383+0000 I NETWORK  [conn16] end connection 172.23.0.3:46358 (20 connections now open)
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn27] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 10), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("69bf868d-59ca-4b88-aaba-32616327b251") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1013ms
+2018-05-24T06:46:12.375+0000 I NETWORK  [conn7] end connection 172.23.0.2:46064 (19 connections now open)
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn29] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 5), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("a8dffd97-b90a-43d0-910e-6bba5a3ceb89") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1004ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn24] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144370, 10), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("bb2584b4-9cc9-45b6-8f39-2edf90c9d740") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1010ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn25] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 4), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("9d1df907-1a28-4044-934e-d8ed7431fd49") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 998ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn23] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 4), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("88bc9639-a60b-46e4-8c16-fd6d74cdad7e") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1003ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn18] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 2), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("6f203a26-81a4-41eb-b323-791bd6101a48") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 996ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn19] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 2), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("c575c02e-79a6-4967-b38b-7cecc0175be5") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1002ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn28] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 4), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("67ed960b-c8d4-4745-938c-2c54dfee7ea4") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1005ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn21] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 2), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("6a45f220-075d-4476-9407-b7b035542ae6") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1005ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn26] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 5), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("5a69af3c-ec69-4090-8aff-2b9a735853ed") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:315 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1004ms
+2018-05-24T06:46:12.375+0000 I COMMAND  [conn20] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 15), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("6bdd9fbb-4388-4388-9e0f-dc6e7fb9c7e7") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 994ms
+2018-05-24T06:46:12.374+0000 I COMMAND  [conn22] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144371, 5), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("d4d60e21-d916-44d6-8caa-fabda4f02861") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 1000ms
+2018-05-24T06:46:12.429+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:35464 #34 (20 connections now open)
+2018-05-24T06:46:12.435+0000 I NETWORK  [conn34] received client metadata from 172.23.0.2:35464 conn34: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:18.793+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:50828 #35 (21 connections now open)
+2018-05-24T06:46:18.794+0000 I NETWORK  [conn35] received client metadata from 172.23.0.3:50828 conn35: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:18.798+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:50830 #36 (22 connections now open)
+2018-05-24T06:46:18.803+0000 I NETWORK  [conn36] received client metadata from 172.23.0.3:50830 conn36: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:19.153+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:51040 #37 (23 connections now open)
+2018-05-24T06:46:19.161+0000 I NETWORK  [conn37] received client metadata from 172.23.0.3:51040 conn37: { driver: { name: "NetworkInterfaceASIO-RS", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:46:20.109+0000 I COMMAND  [conn24] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144379, 329), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("eaeaac27-b82b-42f6-ac74-00c196aaa291") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 104ms
+2018-05-24T06:46:20.114+0000 I COMMAND  [conn25] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144379, 330), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("e44bb24a-8d62-4d4c-b2cd-cc98085e0f5a") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 103ms
+2018-05-24T06:46:20.114+0000 I COMMAND  [conn18] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144379, 329), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("999f43eb-2487-48e1-99ac-e13f71faea16") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 116ms
+2018-05-24T06:46:20.115+0000 I COMMAND  [conn20] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144379, 329), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("fc14c575-ea9d-43a1-bcb7-5bebaf314fcf") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:316 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 120ms
+2018-05-24T06:46:29.470+0000 I COMMAND  [conn36] command local.oplog.rs command: getMore { getMore: 36128016576, collection: "oplog.rs", batchSize: 13981010, maxTimeMS: 5000, term: 2, lastKnownCommittedOpTime: { ts: Timestamp(1527144389, 97), t: 2 }, $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" }, $clusterTime: { clusterTime: Timestamp(1527144389, 98), signature: { hash: BinData(0, 2F0477532B0FA8F719AA8885CB7B315FA2309EA9), keyId: 6559034412455952385 } }, $db: "local" } originatingCommand: { find: "oplog.rs", filter: { ts: { $gte: Timestamp(1527144340, 135) } }, tailable: true, oplogReplay: true, awaitData: true, maxTimeMS: 60000, batchSize: 13981010, term: 2, $replData: 1, $oplogQueryData: 1, $readPreference: { mode: "secondaryPreferred" }, $clusterTime: { clusterTime: Timestamp(1527144378, 303), signature: { hash: BinData(0, AE273F38973F60D6B4A98F53BBDDE1E88BBE0642), keyId: 6559034412455952385 } }, $db: "local" } planSummary: COLLSCAN cursorid:36128016576 keysExamined:0 docsExamined:65 numYields:0 nreturned:65 reslen:10224 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, oplog: { acquireCount: { r: 1 } } } protocol:op_msg 140ms
+2018-05-24T06:46:47.706+0000 I REPL     [replexec-5] Member node1:27017 is now in state RS_DOWN
+2018-05-24T06:46:47.712+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:35830 #38 (24 connections now open)
+2018-05-24T06:46:47.714+0000 I NETWORK  [conn38] received client metadata from 172.23.0.4:35830 conn38: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:47.728+0000 I REPL     [replexec-3] Member node3:27017 is now in state RS_DOWN
+2018-05-24T06:46:47.729+0000 I REPL     [replexec-3] can't see a majority of the set, relinquishing primary
+2018-05-24T06:46:47.729+0000 I REPL     [replexec-3] Stepping down from primary in response to heartbeat
+2018-05-24T06:46:47.729+0000 I REPL     [replexec-3] transition to SECONDARY from PRIMARY
+2018-05-24T06:46:47.730+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 37
+2018-05-24T06:46:47.730+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 36
+2018-05-24T06:46:47.730+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 35
+2018-05-24T06:46:47.731+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 34
+2018-05-24T06:46:47.732+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 32
+2018-05-24T06:46:47.732+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 31
+2018-05-24T06:46:47.732+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 30
+2018-05-24T06:46:47.731+0000 I COMMAND  [conn23] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key1" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144397, 231), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("f04f132d-67d7-4548-9a67-36a075e0ddc9") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:218 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 9975ms
+2018-05-24T06:46:47.733+0000 I NETWORK  [conn23] Error sending response to client: SocketException: Broken pipe. Ending connection from 172.23.0.4:47206 (connection id: 23)
+2018-05-24T06:46:47.731+0000 I COMMAND  [conn28] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144397, 228), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("b1936a0f-0127-4696-862a-3adeb4d3c7c6") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:218 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10031ms
+2018-05-24T06:46:47.730+0000 I COMMAND  [conn20] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144397, 228), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("7dae9a74-fae2-4939-aa19-b77eaff38250") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:218 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10022ms
+2018-05-24T06:46:47.735+0000 I NETWORK  [conn20] Error sending response to client: SocketException: Broken pipe. Ending connection from 172.23.0.2:35310 (connection id: 20)
+2018-05-24T06:46:47.730+0000 I COMMAND  [conn27] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144397, 231), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("12489f81-bd68-4bae-8215-2be0fe21fa79") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:218 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 9974ms
+2018-05-24T06:46:47.739+0000 I NETWORK  [conn27] Error sending response to client: SocketException: Broken pipe. Ending connection from 172.23.0.4:47220 (connection id: 27)
+2018-05-24T06:46:47.733+0000 I NETWORK  [replexec-3] Skip closing connection for connection # 4
+2018-05-24T06:46:47.765+0000 I NETWORK  [conn38] end connection 172.23.0.4:35830 (23 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:35844 #39 (14 connections now open)
+2018-05-24T06:46:47.730+0000 I COMMAND  [conn25] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key3" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144398, 178), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("f2f7f9fd-b98c-4fed-b707-bf291e7e29c8") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:218 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 9055ms
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn26] end connection 172.23.0.3:46618 (22 connections now open)
+2018-05-24T06:46:47.731+0000 I COMMAND  [conn22] command lily.storage command: find { find: "storage", readConcern: { level: "linearizable" }, filter: { key: "key2" }, limit: 1, singleBatch: true, $db: "lily", $clusterTime: { clusterTime: Timestamp(1527144397, 229), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } }, lsid: { id: UUID("e9011662-8be8-44a2-83c2-83876e2111e4") } } planSummary: IXSCAN { key: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:218 locks:{ Global: { acquireCount: { r: 4, w: 2 } }, Database: { acquireCount: { r: 1, w: 2 } }, Collection: { acquireCount: { r: 1 } }, oplog: { acquireCount: { w: 2 } } } protocol:op_msg 10011ms
+2018-05-24T06:46:47.767+0000 I NETWORK  [conn22] Error sending response to client: SocketException: Broken pipe. Ending connection from 172.23.0.3:46604 (connection id: 22)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn24] end connection 172.23.0.3:46608 (20 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn8] end connection 172.23.0.3:57290 (19 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn5] end connection 172.23.0.4:57856 (18 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn21] end connection 172.23.0.2:35308 (17 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn18] end connection 172.23.0.2:35306 (16 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn19] end connection 172.23.0.2:35312 (15 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn17] end connection 172.23.0.2:35230 (14 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn20] end connection 172.23.0.2:35310 (13 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn27] end connection 172.23.0.4:47220 (12 connections now open)
+2018-05-24T06:46:47.734+0000 I NETWORK  [conn28] Error sending response to client: SocketException: Broken pipe. Ending connection from 172.23.0.4:47222 (connection id: 28)
+2018-05-24T06:46:47.771+0000 I NETWORK  [conn28] end connection 172.23.0.4:47222 (10 connections now open)
+2018-05-24T06:46:47.767+0000 I NETWORK  [conn25] Error sending response to client: SocketException: Broken pipe. Ending connection from 172.23.0.4:47210 (connection id: 25)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn29] end connection 172.23.0.3:46632 (21 connections now open)
+2018-05-24T06:46:47.768+0000 I NETWORK  [conn22] end connection 172.23.0.3:46604 (11 connections now open)
+2018-05-24T06:46:47.766+0000 I NETWORK  [conn23] end connection 172.23.0.4:47206 (13 connections now open)
+2018-05-24T06:46:47.772+0000 I NETWORK  [conn25] end connection 172.23.0.4:47210 (9 connections now open)
+2018-05-24T06:46:47.786+0000 I NETWORK  [conn39] received client metadata from 172.23.0.4:35844 conn39: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:46:48.961+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Ending connection to host node3:27017 due to bad connection status; 0 connections to that host remain open
+2018-05-24T06:46:48.962+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12020) to node3:27017, response status: NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:49.004+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Ending connection to host node1:27017 due to bad connection status; 0 connections to that host remain open
+2018-05-24T06:46:49.004+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12021) to node1:27017, response status: NetworkInterfaceExceededTimeLimit: Operation timed out
+2018-05-24T06:46:49.463+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node3:27017
+2018-05-24T06:46:49.505+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:46:58.827+0000 I REPL     [replexec-8] Not starting an election, since we are not electable due to: Not standing for election because I cannot see a majority (mask 0x1)
+2018-05-24T06:46:59.465+0000 I REPL_HB  [replexec-5] Error in heartbeat (requestId: 12024) to node3:27017, response status: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:46:59.506+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12026) to node1:27017, response status: NetworkInterfaceExceededTimeLimit: Couldn't get a connection within the time limit
+2018-05-24T06:47:01.657+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52634 #40 (10 connections now open)
+2018-05-24T06:47:01.658+0000 I NETWORK  [conn31] end connection 172.23.0.2:35434 (9 connections now open)
+2018-05-24T06:47:01.659+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:35610 #41 (10 connections now open)
+2018-05-24T06:47:01.659+0000 I NETWORK  [conn40] received client metadata from 172.23.0.2:52634 conn40: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:01.659+0000 I NETWORK  [conn41] received client metadata from 172.23.0.3:35610 conn41: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:03.575+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52294 #42 (11 connections now open)
+2018-05-24T06:47:03.576+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52296 #43 (12 connections now open)
+2018-05-24T06:47:03.576+0000 I NETWORK  [conn42] received client metadata from 172.23.0.2:52294 conn42: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:03.577+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52298 #44 (13 connections now open)
+2018-05-24T06:47:03.577+0000 I NETWORK  [conn43] received client metadata from 172.23.0.2:52296 conn43: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:03.578+0000 I NETWORK  [conn44] received client metadata from 172.23.0.2:52298 conn44: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:04.858+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node1:27017, took 15353ms (1 connections now open to node1:27017)
+2018-05-24T06:47:04.859+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to node3:27017, took 15396ms (1 connections now open to node3:27017)
+2018-05-24T06:47:04.860+0000 I REPL     [replexec-4] Member node3:27017 is now in state SECONDARY
+2018-05-24T06:47:04.861+0000 I REPL     [replexec-8] Member node1:27017 is now in state PRIMARY
+2018-05-24T06:47:04.936+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52548 #45 (14 connections now open)
+2018-05-24T06:47:04.937+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52546 #46 (15 connections now open)
+2018-05-24T06:47:04.937+0000 I NETWORK  [conn45] received client metadata from 172.23.0.2:52548 conn45: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:04.938+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52544 #47 (16 connections now open)
+2018-05-24T06:47:04.938+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52530 #48 (17 connections now open)
+2018-05-24T06:47:04.938+0000 I NETWORK  [conn47] received client metadata from 172.23.0.2:52544 conn47: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:04.939+0000 I NETWORK  [conn48] received client metadata from 172.23.0.2:52530 conn48: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:04.944+0000 I NETWORK  [conn45] end connection 172.23.0.2:52548 (16 connections now open)
+2018-05-24T06:47:04.938+0000 I NETWORK  [conn46] received client metadata from 172.23.0.2:52546 conn46: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:04.949+0000 I NETWORK  [conn47] end connection 172.23.0.2:52544 (15 connections now open)
+2018-05-24T06:47:04.954+0000 I NETWORK  [conn46] end connection 172.23.0.2:52546 (14 connections now open)
+2018-05-24T06:47:04.955+0000 I NETWORK  [conn48] end connection 172.23.0.2:52530 (13 connections now open)
+2018-05-24T06:47:05.154+0000 I REPL     [rsBackgroundSync] sync source candidate: node3:27017
+2018-05-24T06:47:05.155+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node3:27017
+2018-05-24T06:47:05.158+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node3:27017, took 3ms (1 connections now open to node3:27017)
+2018-05-24T06:47:05.160+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node3:27017
+2018-05-24T06:47:05.162+0000 I REPL     [rsBackgroundSync] Starting rollback due to OplogStartMissing: Our last op time fetched: { ts: Timestamp(1527144407, 1), t: 2 }. source's GTE: { ts: Timestamp(1527144409, 1), t: 3 } hashes: (-5928114736204738133/-7528827815030926192)
+2018-05-24T06:47:05.162+0000 I REPL     [rsBackgroundSync] Replication commit point: { ts: Timestamp(1527144397, 230), t: 2 }
+2018-05-24T06:47:05.163+0000 I REPL     [rsBackgroundSync] Rollback using the 'rollbackViaRefetch' method because UUID support is feature compatible with featureCompatibilityVersion 3.6.
+2018-05-24T06:47:05.163+0000 I REPL     [rsBackgroundSync] transition to ROLLBACK from SECONDARY
+2018-05-24T06:47:05.163+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 44
+2018-05-24T06:47:05.164+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 43
+2018-05-24T06:47:05.164+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 42
+2018-05-24T06:47:05.165+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node3:27017, took 5ms (2 connections now open to node3:27017)
+2018-05-24T06:47:05.165+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 37
+2018-05-24T06:47:05.166+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 36
+2018-05-24T06:47:05.166+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 35
+2018-05-24T06:47:05.167+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 34
+2018-05-24T06:47:05.167+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 32
+2018-05-24T06:47:05.168+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 30
+2018-05-24T06:47:05.168+0000 I NETWORK  [rsBackgroundSync] Skip closing connection for connection # 4
+2018-05-24T06:47:05.168+0000 I NETWORK  [conn41] end connection 172.23.0.3:35610 (12 connections now open)
+2018-05-24T06:47:05.168+0000 I ROLLBACK [rsBackgroundSync] Starting rollback. Sync source: node3:27017
+2018-05-24T06:47:05.169+0000 I NETWORK  [conn40] end connection 172.23.0.2:52634 (10 connections now open)
+2018-05-24T06:47:05.169+0000 I NETWORK  [conn39] end connection 172.23.0.4:35844 (11 connections now open)
+2018-05-24T06:47:05.172+0000 I ROLLBACK [rsBackgroundSync] Finding the Common Point
+2018-05-24T06:47:05.173+0000 I ROLLBACK [rsBackgroundSync] our last optime:   Timestamp(1527144407, 1)
+2018-05-24T06:47:05.174+0000 I ROLLBACK [rsBackgroundSync] their last optime: Timestamp(1527144424, 5)
+2018-05-24T06:47:05.174+0000 I ROLLBACK [rsBackgroundSync] diff in end of log times: -17 seconds
+2018-05-24T06:47:05.175+0000 I ROLLBACK [rsBackgroundSync] Rollback common point is { ts: Timestamp(1527144397, 233), t: 2 }
+2018-05-24T06:47:05.176+0000 I ROLLBACK [rsBackgroundSync] Starting refetching documents
+2018-05-24T06:47:05.177+0000 I ROLLBACK [rsBackgroundSync] Finished refetching documents. Total size of documents refetched: 1
+2018-05-24T06:47:05.177+0000 I ROLLBACK [rsBackgroundSync] Checking the RollbackID and updating the MinValid if necessary
+2018-05-24T06:47:05.178+0000 I ROLLBACK [rsBackgroundSync] Setting minvalid to { ts: Timestamp(1527144424, 5), t: 3 }
+2018-05-24T06:47:05.179+0000 I ROLLBACK [rsBackgroundSync] Rolling back createIndexes commands.
+2018-05-24T06:47:05.179+0000 I ROLLBACK [rsBackgroundSync] Dropping collections to roll back create operations
+2018-05-24T06:47:05.180+0000 I ROLLBACK [rsBackgroundSync] Rolling back renameCollection commands and collection drop commands.
+2018-05-24T06:47:05.180+0000 I ROLLBACK [rsBackgroundSync] Rolling back collections pending being dropped: Removing them from the list of drop-pending collections in the DropPendingCollectionReaper.
+2018-05-24T06:47:05.180+0000 I ROLLBACK [rsBackgroundSync] Rolling back dropIndexes commands.
+2018-05-24T06:47:05.181+0000 I ROLLBACK [rsBackgroundSync] Deleting and updating documents to roll back insert, update and remove operations
+2018-05-24T06:47:05.181+0000 I ROLLBACK [rsBackgroundSync] Rollback deleted 0 documents and updated 1 documents.
+2018-05-24T06:47:05.182+0000 I ROLLBACK [rsBackgroundSync] Truncating the oplog at { ts: Timestamp(1527144397, 233), t: 2 }
+2018-05-24T06:47:05.183+0000 I REPL     [rsBackgroundSync] Incremented the rollback ID to 2
+2018-05-24T06:47:05.184+0000 I ROLLBACK [rsBackgroundSync] Rollback finished. The final minValid is: { ts: Timestamp(1527144424, 5), t: 3 }
+2018-05-24T06:47:05.184+0000 I REPL     [rsBackgroundSync] transition to RECOVERING from ROLLBACK
+2018-05-24T06:47:05.185+0000 I REPL     [rsBackgroundSync] sync source candidate: node3:27017
+2018-05-24T06:47:05.189+0000 I REPL     [rsSync] transition to SECONDARY from RECOVERING
+2018-05-24T06:47:05.190+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: InvalidSyncSource: sync source node3:27017 (config version: 1; last applied optime: { ts: Timestamp(1527144424, 5), t: 3 }; sync source index: 0; primary index: 0) is no longer valid
+2018-05-24T06:47:05.190+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node3:27017: InvalidSyncSource: Sync source was cleared. Was node3:27017
+2018-05-24T06:47:05.191+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:47:05.328+0000 I NETWORK  [listener] connection accepted from 172.23.0.4:36328 #49 (11 connections now open)
+2018-05-24T06:47:05.329+0000 I NETWORK  [conn49] received client metadata from 172.23.0.4:36328 conn49: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:05.446+0000 I NETWORK  [listener] connection accepted from 172.23.0.2:52756 #50 (12 connections now open)
+2018-05-24T06:47:05.448+0000 I NETWORK  [conn50] received client metadata from 172.23.0.2:52756 conn50: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:06.135+0000 I NETWORK  [conn32] end connection 172.23.0.2:35436 (11 connections now open)
+2018-05-24T06:47:06.137+0000 I NETWORK  [conn37] end connection 172.23.0.3:51040 (10 connections now open)
+2018-05-24T06:47:06.192+0000 I REPL     [rsBackgroundSync] sync source candidate: node3:27017
+2018-05-24T06:47:06.234+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Connecting to node3:27017
+2018-05-24T06:47:06.237+0000 I ASIO     [NetworkInterfaceASIO-RS-0] Successfully connected to node3:27017, took 2ms (3 connections now open to node3:27017)
+2018-05-24T06:47:06.776+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:35350 #51 (11 connections now open)
+2018-05-24T06:47:06.777+0000 I NETWORK  [conn30] end connection 172.23.0.2:35432 (10 connections now open)
+2018-05-24T06:47:06.777+0000 I NETWORK  [conn51] received client metadata from 172.23.0.3:35350 conn51: { driver: { name: "NetworkInterfaceASIO-Replication", version: "3.6.4" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "17.10" } }
+2018-05-24T06:47:07.415+0000 I NETWORK  [conn4] end connection 172.23.0.3:57240 (9 connections now open)
+2018-05-24T06:47:11.678+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:35778 #52 (10 connections now open)
+2018-05-24T06:47:11.679+0000 I NETWORK  [conn52] received client metadata from 172.23.0.3:35778 conn52: { driver: { name: "mongo-java-driver", version: "unknown" }, os: { type: "Linux", name: "Linux", architecture: "amd64", version: "4.9.87-linuxkit-aufs" }, platform: "Java/Oracle Corporation/1.8.0_171-8u171-b11-0ubuntu0.17.10.1-b11" }
+2018-05-24T06:47:43.436+0000 I NETWORK  [conn43] end connection 172.23.0.2:52296 (9 connections now open)
+2018-05-24T06:47:43.436+0000 I NETWORK  [conn42] end connection 172.23.0.2:52294 (8 connections now open)
+2018-05-24T06:47:43.436+0000 I NETWORK  [conn34] end connection 172.23.0.2:35464 (7 connections now open)
+2018-05-24T06:47:43.436+0000 I NETWORK  [conn44] end connection 172.23.0.2:52298 (6 connections now open)
+2018-05-24T06:47:43.582+0000 I NETWORK  [conn50] end connection 172.23.0.2:52756 (5 connections now open)
+2018-05-24T06:47:44.226+0000 I ASIO     [replexec-10] dropping unhealthy pooled connection to node1:27017
+2018-05-24T06:47:44.227+0000 I ASIO     [replexec-10] after drop, pool was empty, going to spawn some connections
+2018-05-24T06:47:44.228+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.232+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.233+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.233+0000 I REPL_HB  [replexec-4] Error in heartbeat (requestId: 12638) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.234+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.236+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.236+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.237+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12642) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.237+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.240+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.240+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.240+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12644) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.241+0000 I REPL     [replexec-6] Member node1:27017 is now in state RS_DOWN
+2018-05-24T06:47:44.772+0000 I REPL     [replication-3] Choosing new sync source because our current sync source, node3:27017, has an OpTime ({ ts: Timestamp(1527144459, 1), t: 3 }) which is not ahead of ours ({ ts: Timestamp(1527144459, 1), t: 3 }), it does not have a sync source, and it's not the primary (sync source does not know the primary)
+2018-05-24T06:47:44.772+0000 I REPL     [replication-3] Canceling oplog query due to OplogQueryMetadata. We have to choose a new sync source. Current source: node3:27017, OpTime { ts: Timestamp(1527144459, 1), t: 3 }, its sync source index:-1
+2018-05-24T06:47:44.773+0000 W REPL     [rsBackgroundSync] Fetcher stopped querying remote oplog with error: InvalidSyncSource: sync source node3:27017 (config version: 1; last applied optime: { ts: Timestamp(1527144459, 1), t: 3 }; sync source index: -1; primary index: -1) is no longer valid
+2018-05-24T06:47:44.774+0000 I REPL     [rsBackgroundSync] could not find member to sync from
+2018-05-24T06:47:44.775+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.777+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.778+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12651) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.778+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.781+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.782+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.782+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12655) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.783+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:44.785+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:44.785+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:44.786+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12657) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.286+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.290+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.290+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.291+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12661) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.291+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.294+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.294+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.295+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12663) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.295+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.297+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.298+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.298+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12665) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.800+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.802+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.802+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.803+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12669) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.804+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.806+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.806+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.806+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12671) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.807+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:45.809+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:45.809+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:45.809+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12673) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.311+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.316+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.317+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.317+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12677) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.317+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.320+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.321+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.321+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12679) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.321+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.324+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.324+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.325+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12681) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.829+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.833+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.833+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.834+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12685) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.834+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.837+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.837+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.838+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12687) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.838+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:46.841+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:46.841+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:46.842+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12689) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.344+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.348+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.349+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.349+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12693) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.350+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.353+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.353+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.353+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12695) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.354+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.356+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.357+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.357+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12697) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.858+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.860+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.861+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.861+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12701) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.862+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.864+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.864+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.865+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12703) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.865+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:47.867+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:47.868+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:47.868+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12705) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.369+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.372+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.372+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.372+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12709) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.373+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.375+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.376+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.376+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12711) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.377+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.379+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.380+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.385+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12713) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.887+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.891+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.892+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.892+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12717) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.893+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.895+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.896+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.896+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12719) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.897+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:48.899+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:48.899+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:48.900+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12721) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.401+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.405+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.406+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.406+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12725) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.407+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.409+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.410+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.410+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12727) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.411+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.414+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.415+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.415+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12729) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.772+0000 I REPL     [SyncSourceFeedback] SyncSourceFeedback error sending update to node3:27017: InvalidSyncSource: Sync source was cleared. Was node3:27017
+2018-05-24T06:47:49.916+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.921+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.921+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.922+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12733) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.922+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.925+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.925+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.926+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12735) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.926+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:49.928+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:49.929+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:49.929+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12737) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.430+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.433+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.434+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.434+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12741) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.435+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.437+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.438+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.438+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12743) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.439+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.441+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.442+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.442+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12745) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.943+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.947+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.947+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.948+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12749) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.948+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.951+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.951+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.952+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12751) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.952+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:50.955+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:50.955+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:50.956+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12753) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.457+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.461+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.462+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.462+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12757) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.463+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.465+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.465+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.466+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12759) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.466+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.468+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.469+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.469+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12761) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.970+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.974+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.975+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.975+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12765) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.976+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.979+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.979+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.980+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12767) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.980+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:51.983+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:51.984+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:51.984+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12769) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.485+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.489+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.489+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.490+0000 I REPL_HB  [replexec-8] Error in heartbeat (requestId: 12773) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.490+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.492+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.493+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.493+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12775) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.493+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.496+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.496+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.497+0000 I REPL_HB  [replexec-3] Error in heartbeat (requestId: 12777) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.850+0000 I REPL     [replexec-4] Starting an election, since we've seen no PRIMARY in the past 10000ms
+2018-05-24T06:47:52.851+0000 I REPL     [replexec-4] conducting a dry run election to see if we could be elected. current term: 3
+2018-05-24T06:47:52.851+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.853+0000 I REPL     [replexec-10] VoteRequester(term 3 dry run) received a yes vote from node3:27017; response message: { term: 3, voteGranted: true, reason: "", ok: 1.0, operationTime: Timestamp(1527144459, 1), $clusterTime: { clusterTime: Timestamp(1527144459, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } } }
+2018-05-24T06:47:52.854+0000 I REPL     [replexec-10] dry election run succeeded, running for election in term 4
+2018-05-24T06:47:52.854+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.855+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.855+0000 I REPL     [replexec-10] VoteRequester(term 4) failed to receive response from node1:27017: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.855+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.857+0000 I REPL     [replexec-7] VoteRequester(term 4) received a yes vote from node3:27017; response message: { term: 4, voteGranted: true, reason: "", ok: 1.0, operationTime: Timestamp(1527144459, 1), $clusterTime: { clusterTime: Timestamp(1527144459, 1), signature: { hash: BinData(0, 0000000000000000000000000000000000000000), keyId: 0 } } }
+2018-05-24T06:47:52.858+0000 I REPL     [replexec-7] election succeeded, assuming primary role in term 4
+2018-05-24T06:47:52.858+0000 I REPL     [replexec-7] transition to PRIMARY from SECONDARY
+2018-05-24T06:47:52.858+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.859+0000 I REPL     [replexec-7] Entering primary catch-up mode.
+2018-05-24T06:47:52.859+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.862+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.863+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.863+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12790) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.864+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.866+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.867+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.867+0000 I REPL_HB  [replexec-6] Error in heartbeat (requestId: 12793) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.868+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:52.870+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.871+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:52.871+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12795) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:52.871+0000 I REPL     [replexec-10] Caught up to the latest optime known via heartbeats after becoming primary.
+2018-05-24T06:47:52.872+0000 I REPL     [replexec-10] Exited primary catch-up mode.
+2018-05-24T06:47:54.780+0000 I REPL     [rsSync] transition to primary complete; database writes are now permitted
+2018-05-24T06:47:54.871+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.875+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.875+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.876+0000 I REPL_HB  [replexec-4] Error in heartbeat (requestId: 12799) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.876+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.879+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.879+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.880+0000 I REPL_HB  [replexec-10] Error in heartbeat (requestId: 12801) to node1:27017, response status: HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.880+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Connecting to node1:27017
+2018-05-24T06:47:54.883+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Failed to connect to node1:27017 - HostUnreachable: HostUnreachable
+2018-05-24T06:47:54.884+0000 I ASIO     [NetworkInterfaceASIO-Replication-0] Dropping all pooled connections to node1:27017 due to failed operation on a connection
+2018-05-24T06:47:54.884+0000 I REPL_HB  [replexec-7] Error in heartbeat (requestId: 12803) to node1:27017, response status: HostUnreachable: HostUnreachable

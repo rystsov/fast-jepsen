@@ -214,22 +214,24 @@ async function control() {
     }
 }
 
+const port = parseInt(process.argv[2]);
+
 (async () => {
     for (const [node, key] of [["node1", "key1"],["node2", "key2"],["node3", "key3"]]) {
-        await init(key, new KVApiClient(node, 8000));
+        await init(key, new KVApiClient(node, port));
     }
     
     const tasks = [];
     
     tasks.push(control());
     for (const [node, key] of [["node1", "key1"],["node2", "key2"],["node3", "key3"]]) {
-        tasks.push(write(new KVApiClient(node, 8000), key));
+        tasks.push(write(new KVApiClient(node, port), key));
     }
 
     for (const key of ["key1", "key2", "key3"]) {
-        tasks.push(read(new KVApiClient("node1", 8000), "node1", key));
-        tasks.push(read(new KVApiClient("node2", 8000), "node2", key));
-        tasks.push(read(new KVApiClient("node3", 8000), "node3", key));
+        tasks.push(read(new KVApiClient("node1", port), "node1", key));
+        tasks.push(read(new KVApiClient("node2", port), "node2", key));
+        tasks.push(read(new KVApiClient("node3", port), "node3", key));
     }
 
     for (const task of tasks) {
