@@ -1,0 +1,966 @@
+{:type :invoke, :f :write, :value 0, :host nil, :process 8, :time 345041500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 356411900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 362694100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 421422400}
+{:type :ok, :f :write, :value 0, :host nil, :process 8, :time 494542000}
+{:type :invoke, :f :write, :value 1, :host nil, :process 8, :time 520267500}
+{:type :ok, :f :read, :value 130, :host "node1", :process 10, :time 506386800}
+{:type :ok, :f :read, :value 0, :host "node3", :process 9, :time 624860300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 613655900}
+{:type :ok, :f :read, :value 0, :host "node2", :process 11, :time 663562400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 681369200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 701316900}
+{:type :ok, :f :write, :value 1, :host nil, :process 8, :time 776049100}
+{:type :invoke, :f :write, :value 2, :host nil, :process 8, :time 800955100}
+{:type :ok, :f :read, :value 1, :host "node3", :process 9, :time 819174500}
+{:type :ok, :f :read, :value 1, :host "node2", :process 11, :time 836360300}
+{:type :ok, :f :read, :value 1, :host "node1", :process 10, :time 810981700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 869133100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 11, :time 888352300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 10, :time 906079700}
+{:type :ok, :f :write, :value 2, :host nil, :process 8, :time 980233200}
+{:type :ok, :f :read, :value 2, :host "node2", :process 10, :time 974916000}
+{:type :ok, :f :read, :value 2, :host "node1", :process 9, :time 979227400}
+{:type :ok, :f :read, :value 2, :host "node3", :process 11, :time 987454500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 1053089200}
+{:type :invoke, :f :write, :value 3, :host nil, :process 9, :time 1056510800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1043089800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 11, :time 1063501800}
+{:type :ok, :f :read, :value 2, :host "node1", :process 10, :time 1115322100}
+{:type :ok, :f :read, :value 3, :host "node3", :process 11, :time 1124959000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 1142764400}
+{:type :ok, :f :write, :value 3, :host nil, :process 9, :time 1140020000}
+{:type :invoke, :f :write, :value 4, :host nil, :process 9, :time 1246527200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 11, :time 1227553500}
+{:type :ok, :f :read, :value 3, :host "node2", :process 8, :time 1258017300}
+{:type :ok, :f :read, :value 3, :host "node1", :process 10, :time 1299596700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1319611000}
+{:type :ok, :f :write, :value 4, :host nil, :process 9, :time 1342670000}
+{:type :ok, :f :read, :value 3, :host "node3", :process 11, :time 1343381100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 1346642900}
+{:type :invoke, :f :write, :value 5, :host nil, :process 11, :time 1391003800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 1402211000}
+{:type :ok, :f :read, :value 4, :host "node2", :process 8, :time 1422586500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1453047500}
+{:type :ok, :f :read, :value 4, :host "node1", :process 10, :time 1467640800}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 1498661600}
+{:type :ok, :f :write, :value 5, :host nil, :process 11, :time 1535189600}
+{:type :ok, :f :read, :value 5, :host "node2", :process 8, :time 1551640000}
+{:type :invoke, :f :write, :value 6, :host nil, :process 11, :time 1574401900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1574788300}
+{:type :ok, :f :read, :value 5, :host "node3", :process 9, :time 1566662500}
+{:type :ok, :f :read, :value 5, :host "node1", :process 10, :time 1599906300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 1628432000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 1636213400}
+{:type :ok, :f :read, :value 5, :host "node2", :process 8, :time 1648551800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1687086400}
+{:type :ok, :f :write, :value 6, :host nil, :process 11, :time 1732373600}
+{:type :invoke, :f :write, :value 7, :host nil, :process 11, :time 1781729500}
+{:type :ok, :f :read, :value 6, :host "node3", :process 9, :time 1792185400}
+{:type :ok, :f :read, :value 6, :host "node2", :process 8, :time 1798250300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 1819338400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1833652200}
+{:type :ok, :f :write, :value 7, :host nil, :process 11, :time 1847241300}
+{:type :ok, :f :read, :value 7, :host "node1", :process 10, :time 1861036400}
+{:type :ok, :f :read, :value 7, :host "node3", :process 9, :time 1870112700}
+{:type :invoke, :f :write, :value 8, :host nil, :process 11, :time 1913870200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 1927193200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 1936756200}
+{:type :ok, :f :read, :value 7, :host "node2", :process 8, :time 1936337200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 1985628100}
+{:type :ok, :f :write, :value 8, :host nil, :process 11, :time 2011269100}
+{:type :invoke, :f :write, :value 9, :host nil, :process 11, :time 2048401300}
+{:type :ok, :f :read, :value 8, :host "node2", :process 8, :time 2064342800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 2097975900}
+{:type :ok, :f :read, :value 8, :host "node1", :process 10, :time 2114418100}
+{:type :ok, :f :write, :value 9, :host nil, :process 11, :time 2115492100}
+{:type :ok, :f :read, :value 8, :host "node3", :process 9, :time 2138338900}
+{:type :invoke, :f :write, :value 10, :host nil, :process 11, :time 2148381500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 2146980900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 2168284200}
+{:type :ok, :f :read, :value 9, :host "node2", :process 8, :time 2187550800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 2207122000}
+{:type :ok, :f :write, :value 10, :host nil, :process 11, :time 2231158100}
+{:type :ok, :f :read, :value 10, :host "node1", :process 10, :time 2252890500}
+{:type :invoke, :f :write, :value 11, :host nil, :process 11, :time 2265552600}
+{:type :ok, :f :read, :value 10, :host "node3", :process 9, :time 2265858200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 2280497000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 2333985200}
+{:type :ok, :f :read, :value 10, :host "node2", :process 8, :time 2322542800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 2392627000}
+{:type :ok, :f :read, :value 10, :host "node1", :process 10, :time 2398962300}
+{:type :ok, :f :write, :value 11, :host nil, :process 11, :time 2399809700}
+{:type :ok, :f :read, :value 11, :host "node2", :process 8, :time 2444803100}
+{:type :ok, :f :read, :value 11, :host "node3", :process 9, :time 2426537700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 2458973200}
+{:type :invoke, :f :write, :value 12, :host nil, :process 11, :time 2467721000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 8, :time 2474100400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 9, :time 2479392400}
+{:type :ok, :f :read, :value 11, :host "node3", :process 8, :time 2527442200}
+{:type :ok, :f :read, :value 11, :host "node1", :process 10, :time 2526485500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 2553595300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 2565547500}
+{:type :ok, :f :read, :value 11, :host "node3", :process 10, :time 2619639100}
+{:type :ok, :f :read, :value 11, :host "node1", :process 8, :time 2624708800}
+{:type :ok, :f :read, :value 11, :host "node2", :process 9, :time 2632310300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 2638282300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 2647463600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 9, :time 2655591600}
+{:type :ok, :f :write, :value 12, :host nil, :process 11, :time 2663131000}
+{:type :invoke, :f :write, :value 13, :host nil, :process 11, :time 2690873200}
+{:type :ok, :f :read, :value 12, :host "node3", :process 10, :time 2719281500}
+{:type :ok, :f :read, :value 12, :host "node1", :process 8, :time 2720825600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 2735248000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 2753526000}
+{:type :ok, :f :read, :value 12, :host "node2", :process 9, :time 2770690600}
+{:type :ok, :f :read, :value 13, :host "node3", :process 10, :time 2816410300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 9, :time 2816263900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 2833237300}
+{:type :ok, :f :write, :value 13, :host nil, :process 11, :time 2839190800}
+{:type :ok, :f :read, :value 13, :host "node1", :process 8, :time 2861923800}
+{:type :ok, :f :read, :value 13, :host "node3", :process 10, :time 2882821600}
+{:type :invoke, :f :write, :value 14, :host nil, :process 11, :time 2871059600}
+{:type :ok, :f :read, :value 13, :host "node2", :process 9, :time 2895717100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 2906276000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 2914713000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 9, :time 2929232600}
+{:type :ok, :f :write, :value 14, :host nil, :process 11, :time 2937101200}
+{:type :ok, :f :read, :value 14, :host "node1", :process 8, :time 2946594300}
+{:type :ok, :f :read, :value 14, :host "node3", :process 10, :time 2985600500}
+{:type :invoke, :f :write, :value 15, :host nil, :process 11, :time 3021570200}
+{:type :ok, :f :read, :value 14, :host "node2", :process 9, :time 3044667400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 3059086500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 3047005100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 9, :time 3076030800}
+{:type :ok, :f :write, :value 15, :host nil, :process 11, :time 3128591400}
+{:type :invoke, :f :write, :value 16, :host nil, :process 11, :time 3156789800}
+{:type :ok, :f :read, :value 15, :host "node2", :process 9, :time 3165014500}
+{:type :ok, :f :read, :value 15, :host "node3", :process 10, :time 3161947000}
+{:type :ok, :f :read, :value 15, :host "node1", :process 8, :time 3185000900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 3195597200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 10, :time 3197364100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 3219069500}
+{:type :ok, :f :read, :value 16, :host "node2", :process 10, :time 3248518200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 10, :time 3288793900}
+{:type :ok, :f :write, :value 16, :host nil, :process 11, :time 3259873600}
+{:type :ok, :f :read, :value 16, :host "node3", :process 9, :time 3300784200}
+{:type :invoke, :f :write, :value 17, :host nil, :process 11, :time 3322666600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 3325888000}
+{:type :ok, :f :read, :value 16, :host "node1", :process 8, :time 3324748900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 3362417900}
+{:type :ok, :f :read, :value 16, :host "node2", :process 10, :time 3369637200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 10, :time 3390193900}
+{:type :ok, :f :read, :value 17, :host "node1", :process 8, :time 3436141900}
+{:type :ok, :f :write, :value 17, :host nil, :process 11, :time 3425744900}
+{:type :ok, :f :read, :value 17, :host "node3", :process 9, :time 3472954100}
+{:type :invoke, :f :write, :value 18, :host nil, :process 8, :time 3475549300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 11, :time 3476337700}
+{:type :ok, :f :read, :value 17, :host "node2", :process 10, :time 3488888500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 3508560100}
+{:type :ok, :f :read, :value 17, :host "node1", :process 11, :time 3525720000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 10, :time 3533515000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 11, :time 3576716200}
+{:type :ok, :f :read, :value 18, :host "node3", :process 9, :time 3619133600}
+{:type :ok, :f :write, :value 18, :host nil, :process 8, :time 3622310600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 3644991300}
+{:type :ok, :f :read, :value 18, :host "node1", :process 11, :time 3645887900}
+{:type :invoke, :f :write, :value 19, :host nil, :process 8, :time 3651376700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 11, :time 3669554000}
+{:type :ok, :f :read, :value 18, :host "node3", :process 9, :time 3694701000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 3717515200}
+{:type :ok, :f :read, :value 18, :host "node2", :process 10, :time 3718686500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 10, :time 3731806800}
+{:type :ok, :f :read, :value 18, :host "node3", :process 9, :time 3802205300}
+{:type :ok, :f :write, :value 19, :host nil, :process 8, :time 3802198600}
+{:type :ok, :f :read, :value 19, :host "node2", :process 10, :time 3821562400}
+{:type :ok, :f :read, :value 19, :host "node1", :process 11, :time 3819628700}
+{:type :invoke, :f :write, :value 20, :host nil, :process 9, :time 3837624000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 8, :time 3839896500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 3841887700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 3843734300}
+{:type :ok, :f :read, :value 19, :host "node3", :process 8, :time 3884437500}
+{:type :ok, :f :write, :value 20, :host nil, :process 9, :time 3917806300}
+{:type :ok, :f :read, :value 20, :host "node1", :process 10, :time 3921166800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 8, :time 3947099800}
+{:type :ok, :f :read, :value 20, :host "node2", :process 11, :time 3949239300}
+{:type :invoke, :f :write, :value 21, :host nil, :process 9, :time 3952907200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 3972942500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4000765200}
+{:type :ok, :f :read, :value 20, :host "node2", :process 11, :time 4079228400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4118578200}
+{:type :ok, :f :read, :value 20, :host "node1", :process 10, :time 4092703300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 4145381400}
+{:type :ok, :f :read, :value 20, :host "node2", :process 11, :time 4171642500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4194892600}
+{:type :ok, :f :read, :value 20, :host "node3", :process 8, :time 4222046300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 8, :time 4251962300}
+{:type :ok, :f :write, :value 21, :host nil, :process 9, :time 4274707300}
+{:type :ok, :f :read, :value 20, :host "node1", :process 10, :time 4285097100}
+{:type :invoke, :f :write, :value 22, :host nil, :process 9, :time 4294860200}
+{:type :ok, :f :read, :value 21, :host "node2", :process 11, :time 4308777400}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 4302125400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4338043700}
+{:type :ok, :f :read, :value 21, :host "node3", :process 8, :time 4337080000}
+{:type :ok, :f :write, :value 22, :host nil, :process 9, :time 4350199100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 8, :time 4366304200}
+{:type :invoke, :f :write, :value 23, :host nil, :process 9, :time 4371538100}
+{:type :ok, :f :read, :value 22, :host "node2", :process 11, :time 4421743300}
+{:type :ok, :f :read, :value 22, :host "node3", :process 8, :time 4450671200}
+{:type :ok, :f :read, :value 22, :host "node1", :process 10, :time 4453593800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4466067800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 8, :time 4486400400}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 4499393500}
+{:type :ok, :f :write, :value 23, :host nil, :process 9, :time 4503369700}
+{:type :invoke, :f :write, :value 24, :host nil, :process 9, :time 4520120800}
+{:type :ok, :f :read, :value 23, :host "node3", :process 8, :time 4574781200}
+{:type :ok, :f :read, :value 23, :host "node1", :process 10, :time 4578345000}
+{:type :ok, :f :read, :value 23, :host "node2", :process 11, :time 4560393500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 4588295700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 11, :time 4605089300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 4605059900}
+{:type :ok, :f :read, :value 24, :host "node2", :process 8, :time 4664342600}
+{:type :ok, :f :read, :value 24, :host "node1", :process 11, :time 4666953900}
+{:type :ok, :f :write, :value 24, :host nil, :process 9, :time 4638327200}
+{:type :invoke, :f :write, :value 25, :host nil, :process 8, :time 4709638400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4724646200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 4732217900}
+{:type :ok, :f :read, :value 24, :host "node3", :process 10, :time 4734758200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 4777478700}
+{:type :ok, :f :write, :value 25, :host nil, :process 8, :time 4807621100}
+{:type :invoke, :f :write, :value 26, :host nil, :process 8, :time 4819268800}
+{:type :ok, :f :read, :value 25, :host "node2", :process 11, :time 4828005900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4837196200}
+{:type :ok, :f :write, :value 26, :host nil, :process 8, :time 4877806300}
+{:type :ok, :f :read, :value 26, :host "node3", :process 10, :time 4900739100}
+{:type :ok, :f :read, :value 25, :host "node1", :process 9, :time 4901892900}
+{:type :ok, :f :read, :value 26, :host "node2", :process 11, :time 4917147000}
+{:type :invoke, :f :write, :value 27, :host nil, :process 8, :time 4918370900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 4924877600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 4924518100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 4936312200}
+{:type :ok, :f :write, :value 27, :host nil, :process 8, :time 4963466400}
+{:type :ok, :f :read, :value 27, :host "node2", :process 11, :time 4998455900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 5051288000}
+{:type :invoke, :f :write, :value 28, :host nil, :process 11, :time 5051800000}
+{:type :ok, :f :read, :value 27, :host "node3", :process 10, :time 5074322700}
+{:type :ok, :f :read, :value 27, :host "node2", :process 8, :time 5111599100}
+{:type :ok, :f :read, :value 27, :host "node1", :process 9, :time 5119021100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 5147238900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 5150128000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 5160312200}
+{:type :ok, :f :write, :value 28, :host nil, :process 11, :time 5167913300}
+{:type :info, :f :isolate-rejoin-primary, :value nil, :process :nemesis, :time 5254826500}
+{:type :ok, :f :read, :value 28, :host "node2", :process 8, :time 5231138600}
+{:type :ok, :f :read, :value 28, :host "node1", :process 9, :time 5232111500}
+{:type :invoke, :f :write, :value 29, :host nil, :process 11, :time 5225817900}
+{:type :ok, :f :read, :value 28, :host "node3", :process 10, :time 5268758000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 5276099100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 5278541200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 5291351800}
+{:type :ok, :f :read, :value 28, :host "node2", :process 8, :time 5334502100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 8, :time 5369437600}
+{:type :ok, :f :read, :value 28, :host "node3", :process 10, :time 5367745000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 5393653500}
+{:type :ok, :f :write, :value 29, :host nil, :process 11, :time 5424163600}
+{:type :ok, :f :read, :value 28, :host "node2", :process 8, :time 5421267400}
+{:type :ok, :f :read, :value 29, :host "node3", :process 10, :time 5471821200}
+{:type :ok, :f :read, :value 29, :host "node1", :process 9, :time 5468745500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 5478880900}
+{:type :invoke, :f :write, :value 30, :host nil, :process 8, :time 5479508800}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 10, :time 5505580900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 9, :time 5522956200}
+{:type :ok, :f :read, :value 30, :host "node2", :process 11, :time 5591681200}
+{:type :ok, :f :write, :value 30, :host nil, :process 8, :time 5593580500}
+{:type :invoke, :f :write, :value 31, :host nil, :process 8, :time 5622079800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 5619579600}
+{:type :ok, :f :read, :value 30, :host "node1", :process 10, :time 5675010000}
+{:type :ok, :f :read, :value 30, :host "node3", :process 9, :time 5673063500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 5685647700}
+{:type :ok, :f :write, :value 31, :host nil, :process 8, :time 5703060900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 5699577200}
+{:type :ok, :f :read, :value 31, :host "node2", :process 11, :time 5722893200}
+{:type :invoke, :f :write, :value 32, :host nil, :process 8, :time 5723593800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 5753369500}
+{:type :ok, :f :read, :value 31, :host "node1", :process 9, :time 5791075700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 5803938400}
+{:type :ok, :f :write, :value 32, :host nil, :process 8, :time 5859043200}
+{:type :ok, :f :read, :value 32, :host "node3", :process 10, :time 5864676200}
+{:type :invoke, :f :write, :value 33, :host nil, :process 8, :time 5901752600}
+{:type :ok, :f :read, :value 32, :host "node2", :process 11, :time 5872723500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 5921324500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 5925436600}
+{:type :ok, :f :write, :value 33, :host nil, :process 8, :time 5986187700}
+{:type :ok, :f :read, :value 32, :host "node1", :process 9, :time 5966380500}
+{:type :invoke, :f :write, :value 34, :host nil, :process 9, :time 6005213300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6005023300}
+{:type :ok, :f :read, :value 33, :host "node3", :process 10, :time 6050004500}
+{:type :ok, :f :read, :value 33, :host "node2", :process 11, :time 6075470800}
+{:type :ok, :f :write, :value 34, :host nil, :process 9, :time 6090334400}
+{:type :ok, :f :read, :value 34, :host "node1", :process 8, :time 6104914400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6132325200}
+{:type :invoke, :f :write, :value 35, :host nil, :process 9, :time 6135005300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6154908000}
+{:type :ok, :f :read, :value 34, :host "node2", :process 11, :time 6230570500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 6124055200}
+{:type :ok, :f :write, :value 35, :host nil, :process 9, :time 6240795800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6279150400}
+{:type :invoke, :f :write, :value 36, :host nil, :process 9, :time 6285421300}
+{:type :ok, :f :read, :value 35, :host "node1", :process 8, :time 6345184700}
+{:type :ok, :f :read, :value 35, :host "node3", :process 10, :time 6358505200}
+{:type :ok, :f :read, :value 35, :host "node2", :process 11, :time 6368522100}
+{:type :ok, :f :write, :value 36, :host nil, :process 9, :time 6403338400}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6399182900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 6406184000}
+{:type :invoke, :f :write, :value 37, :host nil, :process 9, :time 6422915800}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6407813800}
+{:type :ok, :f :read, :value 36, :host "node1", :process 8, :time 6519007200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6556533000}
+{:type :ok, :f :read, :value 36, :host "node2", :process 11, :time 6561839900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6576848800}
+{:type :ok, :f :read, :value 36, :host "node3", :process 10, :time 6627864400}
+{:type :ok, :f :read, :value 37, :host "node1", :process 8, :time 6632596200}
+{:type :ok, :f :write, :value 37, :host nil, :process 9, :time 6642813800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 6645964500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6651271700}
+{:type :invoke, :f :write, :value 38, :host nil, :process 9, :time 6652853000}
+{:type :ok, :f :read, :value 37, :host "node2", :process 11, :time 6655067000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6681270100}
+{:type :ok, :f :read, :value 37, :host "node1", :process 8, :time 6706618200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6733533000}
+{:type :ok, :f :read, :value 37, :host "node2", :process 11, :time 6753626400}
+{:type :ok, :f :read, :value 37, :host "node1", :process 8, :time 6795800100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6776183900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6815018600}
+{:type :ok, :f :read, :value 37, :host "node2", :process 11, :time 6908004600}
+{:type :ok, :f :read, :value 37, :host "node1", :process 8, :time 6920555700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 6931331400}
+{:type :ok, :f :read, :value 37, :host "node3", :process 10, :time 6947325100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 6972836700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 6978177900}
+{:type :ok, :f :write, :value 38, :host nil, :process 9, :time 6997577300}
+{:type :invoke, :f :write, :value 39, :host nil, :process 9, :time 7007068500}
+{:type :ok, :f :read, :value 38, :host "node2", :process 11, :time 7031360900}
+{:type :ok, :f :read, :value 38, :host "node3", :process 10, :time 7053803900}
+{:type :ok, :f :read, :value 38, :host "node1", :process 8, :time 7056132500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7059884100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7072474000}
+{:type :ok, :f :read, :value 39, :host "node2", :process 11, :time 7126463200}
+{:type :ok, :f :read, :value 39, :host "node3", :process 10, :time 7131502600}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 8, :time 7118993600}
+{:type :ok, :f :write, :value 39, :host nil, :process 9, :time 7131519200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7161780500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7163244700}
+{:type :invoke, :f :write, :value 40, :host nil, :process 9, :time 7168165100}
+{:type :ok, :f :read, :value 39, :host "node3", :process 10, :time 7210075000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7223055400}
+{:type :ok, :f :read, :value 39, :host "node2", :process 11, :time 7228735900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7236174100}
+{:type :ok, :f :write, :value 40, :host nil, :process 9, :time 7303184500}
+{:type :ok, :f :read, :value 40, :host "node3", :process 10, :time 7308687200}
+{:type :invoke, :f :write, :value 41, :host nil, :process 9, :time 7307271700}
+{:type :ok, :f :read, :value 40, :host "node2", :process 11, :time 7310710800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7318475000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7321173700}
+{:type :ok, :f :write, :value 41, :host nil, :process 9, :time 7363213100}
+{:type :invoke, :f :write, :value 42, :host nil, :process 9, :time 7377615700}
+{:type :ok, :f :read, :value 41, :host "node2", :process 11, :time 7379049300}
+{:type :ok, :f :read, :value 41, :host "node3", :process 10, :time 7392688400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7404250300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7410989800}
+{:type :ok, :f :write, :value 42, :host nil, :process 9, :time 7423727900}
+{:type :invoke, :f :write, :value 43, :host nil, :process 9, :time 7425721900}
+{:type :ok, :f :write, :value 43, :host nil, :process 9, :time 7454561500}
+{:type :ok, :f :read, :value 43, :host "node3", :process 10, :time 7477080600}
+{:type :invoke, :f :write, :value 44, :host nil, :process 9, :time 7488784300}
+{:type :ok, :f :read, :value 43, :host "node2", :process 11, :time 7490774700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7492055900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7512456300}
+{:type :ok, :f :write, :value 44, :host nil, :process 9, :time 7559872400}
+{:type :ok, :f :read, :value 44, :host "node2", :process 11, :time 7570206400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7591574300}
+{:type :invoke, :f :write, :value 45, :host nil, :process 9, :time 7590670700}
+{:type :ok, :f :read, :value 44, :host "node3", :process 10, :time 7601685700}
+{:type :ok, :f :read, :value 44, :host "node2", :process 11, :time 7632866400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7641569600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7652656600}
+{:type :ok, :f :write, :value 45, :host nil, :process 9, :time 7677122300}
+{:type :ok, :f :read, :value 45, :host "node3", :process 10, :time 7683588400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7697527100}
+{:type :invoke, :f :write, :value 46, :host nil, :process 9, :time 7691103700}
+{:type :ok, :f :read, :value 45, :host "node3", :process 10, :time 7747661800}
+{:type :ok, :f :read, :value 45, :host "node2", :process 11, :time 7762581100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7770829600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7778224300}
+{:type :ok, :f :write, :value 46, :host nil, :process 9, :time 7799559500}
+{:type :invoke, :f :write, :value 47, :host nil, :process 9, :time 7807847700}
+{:type :ok, :f :read, :value 46, :host "node2", :process 11, :time 7842646400}
+{:type :ok, :f :read, :value 46, :host "node3", :process 10, :time 7868599900}
+{:type :ok, :f :write, :value 47, :host nil, :process 9, :time 7877103000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7880579400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7894485300}
+{:type :invoke, :f :write, :value 48, :host nil, :process 9, :time 7897488700}
+{:type :ok, :f :read, :value 47, :host "node2", :process 11, :time 7962943000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 7964202400}
+{:type :ok, :f :write, :value 48, :host nil, :process 9, :time 7970048900}
+{:type :ok, :f :read, :value 47, :host "node3", :process 10, :time 7976781900}
+{:type :invoke, :f :write, :value 49, :host nil, :process 9, :time 7986357000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 7995866600}
+{:type :ok, :f :read, :value 48, :host "node2", :process 11, :time 8031577000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 8032800700}
+{:type :ok, :f :read, :value 48, :host "node3", :process 10, :time 8069620200}
+{:type :ok, :f :read, :value 48, :host "node2", :process 11, :time 8092800200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 8099287100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 8097121700}
+{:type :ok, :f :write, :value 49, :host nil, :process 9, :time 8123619100}
+{:type :invoke, :f :write, :value 50, :host nil, :process 9, :time 8140589600}
+{:type :ok, :f :read, :value 49, :host "node2", :process 11, :time 8149823900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 8163917700}
+{:type :ok, :f :read, :value 49, :host "node3", :process 10, :time 8180370300}
+{:type :info, :f :read, :value nil, :host "node1", :process 8, :time 8231388700, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 10, :time 8199715900}
+{:type :ok, :f :read, :value 50, :host "node2", :process 11, :time 8229610300}
+{:type :ok, :f :write, :value 50, :host nil, :process 9, :time 8242520400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 11, :time 8269144800}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 9, :time 8311925500}
+{:type :ok, :f :read, :value 50, :host "node3", :process 10, :time 8380034000}
+{:type :invoke, :f :write, :value 51, :host nil, :process 10, :time 8408658600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 20, :time 8481395200}
+{:type :info, :f :read, :value nil, :host "node1", :process 9, :time 9344928600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 21, :time 9362874400}
+{:type :info, :f :read, :value nil, :host "node2", :process 11, :time 9405677500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 23, :time 9412638300}
+{:type :info, :f :write, :value 51, :host nil, :process 10, :time 9418545400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 52, :host nil, :process 22, :time 9441700500}
+{:type :info, :f :read, :value nil, :host "node3", :process 20, :time 9486914100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 32, :time 9495208200}
+{:type :info, :f :read, :value nil, :host "node1", :process 21, :time 10368775300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 33, :time 10375754200}
+{:type :info, :f :read, :value nil, :host "node2", :process 23, :time 10452947900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 35, :time 10468567100}
+{:type :info, :f :write, :value 52, :host nil, :process 22, :time 10486563400, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node3", :process 32, :time 10506263600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 53, :host nil, :process 34, :time 10504629700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 44, :time 10527418900}
+{:type :info, :f :read, :value nil, :host "node1", :process 33, :time 11381757900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 45, :time 11385193800}
+{:type :info, :f :read, :value nil, :host "node2", :process 35, :time 11480738000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 47, :time 11487830900}
+{:type :info, :f :write, :value 53, :host nil, :process 34, :time 11521936800, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node3", :process 44, :time 11542027400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 54, :host nil, :process 46, :time 11540094600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 56, :time 11566642600}
+{:type :info, :f :read, :value nil, :host "node1", :process 45, :time 12391345600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 57, :time 12395061700}
+{:type :info, :f :read, :value nil, :host "node2", :process 47, :time 12512913300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 59, :time 12523785100}
+{:type :info, :f :write, :value 54, :host nil, :process 46, :time 12567858900, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node3", :process 56, :time 12585378800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 55, :host nil, :process 58, :time 12595457300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 68, :time 12603481700}
+{:type :info, :f :read, :value nil, :host "node1", :process 57, :time 13401154300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 69, :time 13404612000}
+{:type :info, :f :read, :value nil, :host "node2", :process 59, :time 13531596500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 71, :time 13536618800}
+{:type :info, :f :write, :value 55, :host nil, :process 58, :time 13639697600, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node3", :process 68, :time 13641685300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 56, :host nil, :process 70, :time 13656084400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 80, :time 13656928400}
+{:type :info, :f :read, :value nil, :host "node1", :process 69, :time 14412252300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 81, :time 14417878500}
+{:type :info, :f :read, :value nil, :host "node2", :process 71, :time 14545563000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 83, :time 14551800700}
+{:type :info, :f :write, :value 56, :host nil, :process 70, :time 14675651100, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node3", :process 80, :time 14686781100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 57, :host nil, :process 82, :time 14726589400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 92, :time 14767583900}
+{:type :info, :f :read, :value nil, :host "node1", :process 81, :time 15425565200, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 93, :time 15428095900}
+{:type :info, :f :read, :value nil, :host "node2", :process 83, :time 15559591500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 95, :time 15571609600}
+{:type :info, :f :read, :value nil, :host "node3", :process 92, :time 15786225800, :error "indeterminate: Read timed out"}
+{:type :info, :f :write, :value 57, :host nil, :process 82, :time 15792056600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 104, :time 15811007000}
+{:type :invoke, :f :write, :value 58, :host nil, :process 94, :time 15817257300}
+{:type :info, :f :read, :value nil, :host "node1", :process 93, :time 16432518400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 105, :time 16434121000}
+{:type :info, :f :read, :value nil, :host "node2", :process 95, :time 16575853100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 107, :time 16600525500}
+{:type :info, :f :read, :value nil, :host "node3", :process 104, :time 16824944500, :error "indeterminate: Read timed out"}
+{:type :info, :f :write, :value 58, :host nil, :process 94, :time 16830811700, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 116, :time 16828362900}
+{:type :invoke, :f :write, :value 59, :host nil, :process 106, :time 16837099100}
+{:type :info, :f :read, :value nil, :host "node1", :process 105, :time 17438268100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 117, :time 17440577300}
+{:type :info, :f :read, :value nil, :host "node2", :process 107, :time 17607457600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 119, :time 17632235100}
+{:type :info, :f :read, :value nil, :host "node3", :process 116, :time 17837838900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 128, :time 17840393500}
+{:type :info, :f :write, :value 59, :host nil, :process 106, :time 17864339800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 60, :host nil, :process 118, :time 17874900500}
+{:type :info, :f :read, :value nil, :host "node1", :process 117, :time 18445258000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 129, :time 18452679100}
+{:type :info, :f :read, :value nil, :host "node2", :process 119, :time 18637039000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 131, :time 18640770000}
+{:type :info, :f :read, :value nil, :host "node3", :process 128, :time 18852626700, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 140, :time 18867074700}
+{:type :info, :f :write, :value 60, :host nil, :process 118, :time 18909584300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 61, :host nil, :process 130, :time 18915035500}
+{:type :info, :f :read, :value nil, :host "node1", :process 129, :time 19457986500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 141, :time 19464380600}
+{:type :info, :f :read, :value nil, :host "node2", :process 131, :time 19645614600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 143, :time 19650275300}
+{:type :info, :f :read, :value nil, :host "node3", :process 140, :time 19879271100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 152, :time 19884249300}
+{:type :info, :f :write, :value 61, :host nil, :process 130, :time 19924975800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 62, :host nil, :process 142, :time 19932769600}
+{:type :info, :f :read, :value nil, :host "node1", :process 141, :time 20469411300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 153, :time 20478556600}
+{:type :info, :f :read, :value nil, :host "node2", :process 143, :time 20658619300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 155, :time 20663494700}
+{:type :info, :f :read, :value nil, :host "node3", :process 152, :time 20888355900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 164, :time 20890077300}
+{:type :info, :f :write, :value 62, :host nil, :process 142, :time 20951100600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 63, :host nil, :process 154, :time 20966127900}
+{:type :info, :f :read, :value nil, :host "node1", :process 153, :time 21482520100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 165, :time 21487605200}
+{:type :info, :f :read, :value nil, :host "node2", :process 155, :time 21672878900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 167, :time 21688377300}
+{:type :info, :f :read, :value nil, :host "node3", :process 164, :time 21898277000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 176, :time 21900603100}
+{:type :info, :f :write, :value 63, :host nil, :process 154, :time 21981691800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 64, :host nil, :process 166, :time 22015403100}
+{:type :info, :f :read, :value nil, :host "node1", :process 165, :time 22491655000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 177, :time 22506001000}
+{:type :info, :f :read, :value nil, :host "node2", :process 167, :time 22695333000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 179, :time 22714984200}
+{:type :info, :f :read, :value nil, :host "node3", :process 176, :time 22904948100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 188, :time 22906841600}
+{:type :info, :f :write, :value 64, :host nil, :process 166, :time 23023110400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 65, :host nil, :process 178, :time 23024366600}
+{:type :info, :f :read, :value nil, :host "node1", :process 177, :time 23511401900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 189, :time 23512997000}
+{:type :info, :f :read, :value nil, :host "node2", :process 179, :time 23726761800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 191, :time 23741451500}
+{:type :info, :f :read, :value nil, :host "node3", :process 188, :time 23911537100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 200, :time 23914087900}
+{:type :info, :f :write, :value 65, :host nil, :process 178, :time 24035107600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 66, :host nil, :process 190, :time 24037455400}
+{:type :info, :f :read, :value nil, :host "node1", :process 189, :time 24528231900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 201, :time 24542808500}
+{:type :info, :f :read, :value nil, :host "node2", :process 191, :time 24750634700, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 203, :time 24769848800}
+{:type :info, :f :read, :value nil, :host "node3", :process 200, :time 24918369200, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 212, :time 24919848000}
+{:type :info, :f :write, :value 66, :host nil, :process 190, :time 25046571500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 67, :host nil, :process 202, :time 25047917800}
+{:type :info, :f :read, :value nil, :host "node1", :process 201, :time 25552265800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 213, :time 25563244700}
+{:type :info, :f :read, :value nil, :host "node2", :process 203, :time 25779416100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 215, :time 25800455200}
+{:type :info, :f :read, :value nil, :host "node3", :process 212, :time 25924660500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 224, :time 25927428200}
+{:type :info, :f :write, :value 67, :host nil, :process 202, :time 26052660700, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 68, :host nil, :process 214, :time 26055446800}
+{:type :info, :f :read, :value nil, :host "node1", :process 213, :time 26571820600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 225, :time 26584065000}
+{:type :info, :f :read, :value nil, :host "node2", :process 215, :time 26816540400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 227, :time 26839069500}
+{:type :info, :f :read, :value nil, :host "node3", :process 224, :time 26932286100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 236, :time 26934818400}
+{:type :info, :f :write, :value 68, :host nil, :process 214, :time 27061967000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 69, :host nil, :process 226, :time 27092062600}
+{:type :info, :f :read, :value nil, :host "node1", :process 225, :time 27589645400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 237, :time 27610844400}
+{:type :info, :f :read, :value nil, :host "node2", :process 227, :time 27853269400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 239, :time 27889160800}
+{:type :info, :f :read, :value nil, :host "node3", :process 236, :time 27938308800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 248, :time 27939651600}
+{:type :info, :f :write, :value 69, :host nil, :process 226, :time 28098730500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 70, :host nil, :process 238, :time 28123863600}
+{:type :info, :f :read, :value nil, :host "node1", :process 237, :time 28616431600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 249, :time 28618803900}
+{:type :info, :f :read, :value nil, :host "node2", :process 239, :time 28936049700, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node3", :process 248, :time 28945809800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 251, :time 28965849500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 260, :time 28970401400}
+{:type :info, :f :isolate-rejoin-primary, :value "Isolated/rejoined", :process :nemesis, :time 28995235000}
+{:type :info, :f :write, :value 70, :host nil, :process 238, :time 29139310800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 71, :host nil, :process 250, :time 29155142400}
+{:type :info, :f :read, :value nil, :host "node1", :process 249, :time 29639234000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 261, :time 29641458900}
+{:type :info, :f :read, :value nil, :host "node3", :process 260, :time 29987365600, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node2", :process 251, :time 29988210900, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 263, :time 30013030900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 272, :time 30014572700}
+{:type :info, :f :write, :value 71, :host nil, :process 250, :time 30162519300, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 72, :host nil, :process 262, :time 30176832100}
+{:type :info, :f :read, :value nil, :host "node1", :process 261, :time 30646210000, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 273, :time 30648424000}
+{:type :info, :f :read, :value nil, :host "node3", :process 263, :time 31032687600, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node2", :process 272, :time 31041268600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 275, :time 31066805300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 284, :time 31071325700}
+{:type :info, :f :write, :value 72, :host nil, :process 262, :time 31186248400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 73, :host nil, :process 274, :time 31206959400}
+{:type :info, :f :read, :value nil, :host "node1", :process 273, :time 31653195500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 285, :time 31655692800}
+{:type :info, :f :read, :value nil, :host "node3", :process 275, :time 32072762800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 287, :time 32076279900}
+{:type :info, :f :read, :value nil, :host "node2", :process 284, :time 32081051800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 296, :time 32086133700}
+{:type :info, :f :write, :value 73, :host nil, :process 274, :time 32213215500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 74, :host nil, :process 286, :time 32217881500}
+{:type :info, :f :read, :value nil, :host "node1", :process 285, :time 32660130400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 297, :time 32670864600}
+{:type :info, :f :read, :value nil, :host "node3", :process 287, :time 33090441100, :error "indeterminate: Read timed out"}
+{:type :info, :f :read, :value nil, :host "node2", :process 296, :time 33091826400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 299, :time 33103195600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 308, :time 33104052000}
+{:type :info, :f :write, :value 74, :host nil, :process 286, :time 33225652400, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 75, :host nil, :process 298, :time 33229010900}
+{:type :ok, :f :read, :value 67, :host "node3", :process 299, :time 33373719200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 299, :time 33374561400}
+{:type :ok, :f :write, :value 75, :host nil, :process 298, :time 33459092600}
+{:type :invoke, :f :write, :value 76, :host nil, :process 298, :time 33460316700}
+{:type :info, :f :read, :value nil, :host "node1", :process 297, :time 33674085600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 309, :time 33678875000}
+{:type :info, :f :read, :value nil, :host "node2", :process 308, :time 34108327800, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 320, :time 34117602600}
+{:type :info, :f :read, :value nil, :host "node3", :process 299, :time 34381107500, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 34383424600}
+{:type :info, :f :write, :value 76, :host nil, :process 298, :time 34464923200, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :write, :value 77, :host nil, :process 310, :time 34473823900}
+{:type :info, :f :read, :value nil, :host "node1", :process 309, :time 34683705600, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 34686850300}
+{:type :ok, :f :read, :value 76, :host "node3", :process 311, :time 35069858900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 35070650300}
+{:type :ok, :f :write, :value 77, :host nil, :process 310, :time 35104159700}
+{:type :invoke, :f :write, :value 78, :host nil, :process 310, :time 35107867800}
+{:type :info, :f :read, :value nil, :host "node2", :process 320, :time 35125493100, :error "indeterminate: Read timed out"}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 35130506400}
+{:type :ok, :f :read, :value 77, :host "node3", :process 311, :time 35133382400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 35144314200}
+{:type :ok, :f :read, :value 77, :host "node1", :process 321, :time 35169814300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35171681100}
+{:type :ok, :f :write, :value 78, :host nil, :process 310, :time 35180631100}
+{:type :invoke, :f :write, :value 79, :host nil, :process 310, :time 35181547000}
+{:type :ok, :f :read, :value 78, :host "node3", :process 311, :time 35205636000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 35209485900}
+{:type :ok, :f :write, :value 79, :host nil, :process 310, :time 35222636400}
+{:type :invoke, :f :write, :value 80, :host nil, :process 310, :time 35230468800}
+{:type :ok, :f :read, :value 78, :host "node2", :process 332, :time 35240495500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 35241589700}
+{:type :ok, :f :read, :value 79, :host "node3", :process 311, :time 35255257100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 35259708800}
+{:type :ok, :f :write, :value 80, :host nil, :process 310, :time 35311356900}
+{:type :invoke, :f :write, :value 81, :host nil, :process 310, :time 35313833800}
+{:type :ok, :f :read, :value 80, :host "node1", :process 321, :time 35325106800}
+{:type :ok, :f :read, :value 80, :host "node3", :process 311, :time 35327110100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 35344038400}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35343483400}
+{:type :ok, :f :write, :value 81, :host nil, :process 310, :time 35353922300}
+{:type :invoke, :f :write, :value 82, :host nil, :process 310, :time 35363901400}
+{:type :ok, :f :read, :value 81, :host "node3", :process 311, :time 35364264300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 35372689100}
+{:type :ok, :f :read, :value 81, :host "node3", :process 311, :time 35404576600}
+{:type :ok, :f :read, :value 80, :host "node2", :process 332, :time 35413183500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 35421744400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 35423326000}
+{:type :ok, :f :read, :value 82, :host "node1", :process 321, :time 35436794000}
+{:type :ok, :f :write, :value 82, :host nil, :process 310, :time 35439479500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35444212300}
+{:type :invoke, :f :write, :value 83, :host nil, :process 310, :time 35445055000}
+{:type :ok, :f :read, :value 82, :host "node3", :process 332, :time 35458426600}
+{:type :ok, :f :read, :value 82, :host "node2", :process 311, :time 35478940400}
+{:type :ok, :f :read, :value 82, :host "node1", :process 321, :time 35478940400}
+{:type :ok, :f :write, :value 83, :host nil, :process 310, :time 35480784900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 35485579300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 35513196800}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35513786400}
+{:type :invoke, :f :write, :value 84, :host nil, :process 310, :time 35514395500}
+{:type :ok, :f :read, :value 83, :host "node1", :process 321, :time 35567525100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35588733700}
+{:type :ok, :f :write, :value 84, :host nil, :process 310, :time 35589983500}
+{:type :ok, :f :read, :value 84, :host "node2", :process 311, :time 35595411800}
+{:type :ok, :f :read, :value 83, :host "node3", :process 332, :time 35602448700}
+{:type :invoke, :f :write, :value 85, :host nil, :process 310, :time 35615420000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 35617687600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 35622857900}
+{:type :ok, :f :read, :value 84, :host "node1", :process 321, :time 35645562300}
+{:type :ok, :f :write, :value 85, :host nil, :process 310, :time 35662045700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35682203300}
+{:type :invoke, :f :write, :value 86, :host nil, :process 310, :time 35686445400}
+{:type :ok, :f :read, :value 85, :host "node2", :process 311, :time 35700673200}
+{:type :ok, :f :read, :value 85, :host "node1", :process 321, :time 35731970900}
+{:type :ok, :f :write, :value 86, :host nil, :process 310, :time 35736130300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 35748354500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35750423200}
+{:type :invoke, :f :write, :value 87, :host nil, :process 310, :time 35751319600}
+{:type :ok, :f :read, :value 86, :host "node2", :process 311, :time 35803657600}
+{:type :ok, :f :read, :value 87, :host "node1", :process 321, :time 35808684800}
+{:type :ok, :f :write, :value 87, :host nil, :process 310, :time 35812374700}
+{:type :ok, :f :read, :value 87, :host "node3", :process 332, :time 35820560100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 35826320600}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 321, :time 35828497100}
+{:type :invoke, :f :write, :value 88, :host nil, :process 310, :time 35834617200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 35845079900}
+{:type :ok, :f :read, :value 87, :host "node1", :process 321, :time 35872734700}
+{:type :ok, :f :read, :value 87, :host "node2", :process 311, :time 35863891400}
+{:type :ok, :f :read, :value 88, :host "node3", :process 332, :time 35910956600}
+{:type :ok, :f :write, :value 88, :host nil, :process 310, :time 35915519000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 35935277700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 35938258400}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 35941811900}
+{:type :invoke, :f :write, :value 89, :host nil, :process 310, :time 35948586500}
+{:type :ok, :f :read, :value 88, :host "node2", :process 321, :time 35971686400}
+{:type :ok, :f :read, :value 88, :host "node3", :process 332, :time 36002551300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36005683700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 36029074400}
+{:type :ok, :f :write, :value 89, :host nil, :process 310, :time 36036025900}
+{:type :ok, :f :read, :value 89, :host "node1", :process 311, :time 36037233500}
+{:type :ok, :f :read, :value 89, :host "node2", :process 321, :time 36057697800}
+{:type :invoke, :f :write, :value 90, :host nil, :process 310, :time 36065167700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36066456200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36087045100}
+{:type :ok, :f :write, :value 90, :host nil, :process 310, :time 36149546900}
+{:type :invoke, :f :write, :value 91, :host nil, :process 310, :time 36163022400}
+{:type :ok, :f :read, :value 90, :host "node2", :process 321, :time 36195721000}
+{:type :ok, :f :read, :value 90, :host "node3", :process 332, :time 36207952000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36220871700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 36230659900}
+{:type :ok, :f :write, :value 91, :host nil, :process 310, :time 36284688900}
+{:type :invoke, :f :write, :value 92, :host nil, :process 310, :time 36293810700}
+{:type :ok, :f :read, :value 91, :host "node1", :process 311, :time 36303919700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36315266200}
+{:type :ok, :f :read, :value 91, :host "node2", :process 321, :time 36314665100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36322210900}
+{:type :ok, :f :read, :value 91, :host "node1", :process 311, :time 36363635200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36395935500}
+{:type :ok, :f :write, :value 92, :host nil, :process 310, :time 36403031700}
+{:type :ok, :f :read, :value 92, :host "node2", :process 321, :time 36410225400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36413852800}
+{:type :invoke, :f :write, :value 93, :host nil, :process 310, :time 36410884600}
+{:type :ok, :f :read, :value 92, :host "node3", :process 332, :time 36427649400}
+{:type :ok, :f :read, :value 92, :host "node1", :process 311, :time 36447216300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 36447344400}
+{:type :ok, :f :read, :value 92, :host "node2", :process 321, :time 36455510700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36458958000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36484248700}
+{:type :ok, :f :read, :value 93, :host "node3", :process 332, :time 36500301500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 36523583400}
+{:type :ok, :f :write, :value 93, :host nil, :process 310, :time 36512568100}
+{:type :invoke, :f :write, :value 94, :host nil, :process 310, :time 36548245900}
+{:type :ok, :f :read, :value 93, :host "node1", :process 311, :time 36551946700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36567824900}
+{:type :ok, :f :read, :value 93, :host "node2", :process 321, :time 36570287800}
+{:type :ok, :f :write, :value 94, :host nil, :process 310, :time 36609244400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36610830900}
+{:type :ok, :f :read, :value 93, :host "node3", :process 332, :time 36614469400}
+{:type :invoke, :f :write, :value 95, :host nil, :process 310, :time 36626718100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 332, :time 36630905300}
+{:type :ok, :f :read, :value 94, :host "node1", :process 311, :time 36661390100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36678822600}
+{:type :ok, :f :read, :value 94, :host "node2", :process 321, :time 36721281100}
+{:type :ok, :f :read, :value 95, :host "node3", :process 332, :time 36746368300}
+{:type :ok, :f :write, :value 95, :host nil, :process 310, :time 36746949300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36747599700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 36759730500}
+{:type :invoke, :f :write, :value 96, :host nil, :process 332, :time 36760768000}
+{:type :ok, :f :read, :value 95, :host "node2", :process 321, :time 36796359700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36807960900}
+{:type :ok, :f :read, :value 95, :host "node3", :process 310, :time 36816706300}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 36818223900}
+{:type :ok, :f :read, :value 95, :host "node1", :process 311, :time 36823197100}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 36829289600}
+{:type :ok, :f :read, :value 95, :host "node2", :process 321, :time 36843041700}
+{:type :ok, :f :read, :value 95, :host "node3", :process 310, :time 36854020300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36870413100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 36872638500}
+{:type :ok, :f :write, :value 96, :host nil, :process 332, :time 36898194900}
+{:type :invoke, :f :write, :value 97, :host nil, :process 332, :time 36913038700}
+{:type :ok, :f :read, :value 96, :host "node3", :process 310, :time 36919938700}
+{:type :ok, :f :read, :value 96, :host "node2", :process 321, :time 36922376500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 36953429800}
+{:type :ok, :f :write, :value 97, :host nil, :process 332, :time 36963900900}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 321, :time 36966475200}
+{:type :invoke, :f :write, :value 98, :host nil, :process 332, :time 37003732800}
+{:type :ok, :f :read, :value 97, :host "node3", :process 310, :time 37032876000}
+{:type :ok, :f :read, :value 96, :host "node1", :process 311, :time 37047695900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 37074292500}
+{:type :ok, :f :write, :value 98, :host nil, :process 332, :time 37098345700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 37070644400}
+{:type :ok, :f :read, :value 97, :host "node2", :process 321, :time 37096081600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 37150771700}
+{:type :invoke, :f :write, :value 99, :host nil, :process 321, :time 37155011000}
+{:type :ok, :f :read, :value 98, :host "node1", :process 311, :time 37166632300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 311, :time 37186217800}
+{:type :ok, :f :read, :value 98, :host "node3", :process 310, :time 37205016000}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 37219994600}
+{:type :ok, :f :write, :value 99, :host nil, :process 321, :time 37222665900}
+{:type :ok, :f :read, :value 99, :host "node1", :process 311, :time 37246927900}
+{:type :ok, :f :read, :value 99, :host "node2", :process 332, :time 37253810300}
+{:type :invoke, :f :write, :value 100, :host nil, :process 321, :time 37257982600}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 37276082500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 37285590700}
+{:type :ok, :f :read, :value 99, :host "node1", :process 332, :time 37318321600}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 37329197500}
+{:type :ok, :f :read, :value 99, :host "node3", :process 310, :time 37329895300}
+{:type :ok, :f :write, :value 100, :host nil, :process 321, :time 37330691100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 37368101300}
+{:type :invoke, :f :write, :value 101, :host nil, :process 321, :time 37369315300}
+{:type :ok, :f :read, :value 100, :host "node2", :process 311, :time 37406830800}
+{:type :ok, :f :read, :value 100, :host "node1", :process 332, :time 37414049600}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 37458680200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 37454735600}
+{:type :ok, :f :write, :value 101, :host nil, :process 321, :time 37464210200}
+{:type :ok, :f :read, :value 100, :host "node3", :process 310, :time 37465060200}
+{:type :invoke, :f :write, :value 102, :host nil, :process 310, :time 37509219700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 37516210500}
+{:type :ok, :f :read, :value 101, :host "node3", :process 321, :time 37609183800}
+{:type :ok, :f :read, :value 101, :host "node2", :process 311, :time 37609264000}
+{:type :ok, :f :write, :value 102, :host nil, :process 310, :time 37625068100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 37637612100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 37640911100}
+{:type :invoke, :f :write, :value 103, :host nil, :process 310, :time 37654329200}
+{:type :ok, :f :read, :value 102, :host "node3", :process 321, :time 37700944500}
+{:type :ok, :f :read, :value 102, :host "node1", :process 332, :time 37713204900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 37716139700}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 37720590700}
+{:type :ok, :f :read, :value 103, :host "node2", :process 311, :time 37727446500}
+{:type :ok, :f :write, :value 103, :host nil, :process 310, :time 37731797700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 37751864700}
+{:type :invoke, :f :write, :value 104, :host nil, :process 310, :time 37795626400}
+{:type :ok, :f :read, :value 103, :host "node1", :process 332, :time 37829975900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 37896394000}
+{:type :ok, :f :read, :value 103, :host "node2", :process 311, :time 37893513000}
+{:type :ok, :f :write, :value 104, :host nil, :process 310, :time 37953563900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 310, :time 37970672200}
+{:type :ok, :f :read, :value 103, :host "node3", :process 321, :time 37922151300}
+{:type :invoke, :f :write, :value 105, :host nil, :process 321, :time 37986881400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 37955833900}
+{:type :ok, :f :read, :value 104, :host "node3", :process 310, :time 38021447100}
+{:type :ok, :f :write, :value 105, :host nil, :process 321, :time 38024837700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38053070600}
+{:type :invoke, :f :write, :value 106, :host nil, :process 310, :time 38060025500}
+{:type :ok, :f :read, :value 105, :host "node1", :process 332, :time 38089463400}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 38100762000}
+{:type :ok, :f :read, :value 105, :host "node2", :process 311, :time 38125810700}
+{:type :ok, :f :read, :value 105, :host "node3", :process 321, :time 38128572800}
+{:type :ok, :f :read, :value 106, :host "node1", :process 332, :time 38139504000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 311, :time 38154994500}
+{:type :invoke, :f :write, :value 107, :host nil, :process 332, :time 38161884800}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38158159900}
+{:type :ok, :f :write, :value 106, :host nil, :process 310, :time 38131730300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 310, :time 38203996300}
+{:type :ok, :f :read, :value 106, :host "node2", :process 311, :time 38218080000}
+{:type :ok, :f :write, :value 107, :host nil, :process 332, :time 38234085200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 38245038400}
+{:type :invoke, :f :write, :value 108, :host nil, :process 311, :time 38248583800}
+{:type :ok, :f :read, :value 107, :host "node2", :process 332, :time 38284738400}
+{:type :ok, :f :read, :value 107, :host "node1", :process 310, :time 38265894600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38298241200}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 38298072000}
+{:type :ok, :f :read, :value 106, :host "node3", :process 321, :time 38310911600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38356482900}
+{:type :ok, :f :read, :value 108, :host "node1", :process 332, :time 38373252100}
+{:type :ok, :f :read, :value 108, :host "node2", :process 310, :time 38383288400}
+{:type :ok, :f :write, :value 108, :host nil, :process 311, :time 38383702000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 38405389200}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38408165400}
+{:type :invoke, :f :write, :value 109, :host nil, :process 311, :time 38408901600}
+{:type :ok, :f :read, :value 108, :host "node3", :process 321, :time 38457363100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38475643300}
+{:type :ok, :f :read, :value 108, :host "node2", :process 310, :time 38489532400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38509984300}
+{:type :ok, :f :read, :value 108, :host "node1", :process 332, :time 38524356400}
+{:type :ok, :f :write, :value 109, :host nil, :process 311, :time 38563910000}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 38580143800}
+{:type :ok, :f :read, :value 109, :host "node3", :process 321, :time 38608849100}
+{:type :ok, :f :read, :value 109, :host "node2", :process 310, :time 38609206900}
+{:type :invoke, :f :write, :value 110, :host nil, :process 311, :time 38618923200}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38629337500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38630960000}
+{:type :ok, :f :read, :value 109, :host "node3", :process 321, :time 38697919600}
+{:type :ok, :f :write, :value 110, :host nil, :process 311, :time 38699461500}
+{:type :ok, :f :read, :value 109, :host "node2", :process 310, :time 38707010900}
+{:type :invoke, :f :write, :value 111, :host nil, :process 311, :time 38719572300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38725631500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38717649800}
+{:type :ok, :f :write, :value 111, :host nil, :process 311, :time 38766058500}
+{:type :invoke, :f :write, :value 112, :host nil, :process 311, :time 38769755000}
+{:type :ok, :f :read, :value 111, :host "node2", :process 310, :time 38781966700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38783506300}
+{:type :ok, :f :read, :value 111, :host "node3", :process 321, :time 38797883500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38801613200}
+{:type :ok, :f :write, :value 112, :host nil, :process 311, :time 38853147200}
+{:type :invoke, :f :write, :value 113, :host nil, :process 311, :time 38855172800}
+{:type :ok, :f :read, :value 110, :host "node1", :process 332, :time 38864472900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 38877352100}
+{:type :ok, :f :read, :value 112, :host "node3", :process 321, :time 38896797700}
+{:type :ok, :f :read, :value 112, :host "node2", :process 310, :time 38906688100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 38954608600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 38956054500}
+{:type :ok, :f :write, :value 113, :host nil, :process 311, :time 39007545600}
+{:type :ok, :f :read, :value 113, :host "node1", :process 332, :time 39007870300}
+{:type :invoke, :f :write, :value 114, :host nil, :process 311, :time 39014578400}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 39020659200}
+{:type :ok, :f :read, :value 113, :host "node2", :process 310, :time 39055391300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 39062036700}
+{:type :ok, :f :read, :value 113, :host "node2", :process 310, :time 39159835400}
+{:type :ok, :f :read, :value 113, :host "node1", :process 332, :time 39168157500}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 39187664600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 39185488300}
+{:type :ok, :f :read, :value 113, :host "node2", :process 310, :time 39235491300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 39253011900}
+{:type :ok, :f :read, :value 113, :host "node1", :process 332, :time 39339198900}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 332, :time 39356976500}
+{:type :ok, :f :read, :value 114, :host "node2", :process 310, :time 39366014400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 39368904900}
+{:type :ok, :f :read, :value 114, :host "node2", :process 310, :time 39418054500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 39421526700}
+{:type :ok, :f :write, :value 114, :host nil, :process 311, :time 39469393200}
+{:type :ok, :f :read, :value 113, :host "node3", :process 321, :time 39474407900}
+{:type :invoke, :f :write, :value 115, :host nil, :process 311, :time 39478198600}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 39485451500}
+{:type :ok, :f :read, :value 114, :host "node2", :process 310, :time 39597867300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 310, :time 39600522200}
+{:type :ok, :f :write, :value 115, :host nil, :process 311, :time 39718450200}
+{:type :ok, :f :read, :value 114, :host "node3", :process 321, :time 39720534100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 39727983100}
+{:type :invoke, :f :write, :value 116, :host nil, :process 311, :time 39722295800}
+{:type :ok, :f :read, :value 114, :host "node1", :process 332, :time 39756195000}
+{:type :ok, :f :read, :value 114, :host "node2", :process 310, :time 39753831400}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 39764374300}
+{:type :invoke, :f :read, :value nil, :host "node1", :process 310, :time 39771218400}
+{:type :ok, :f :read, :value 115, :host "node3", :process 321, :time 39774635100}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 321, :time 39803652900}
+{:type :ok, :f :write, :value 116, :host nil, :process 311, :time 39819567000}
+{:type :invoke, :f :write, :value 117, :host nil, :process 311, :time 39822178300}
+{:type :ok, :f :read, :value 116, :host "node2", :process 332, :time 39850314500}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 39858650700}
+{:type :ok, :f :write, :value 117, :host nil, :process 311, :time 39868977900}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 39871367200}
+{:type :ok, :f :read, :value 116, :host "node3", :process 321, :time 39860977300}
+{:type :ok, :f :read, :value 117, :host "node2", :process 332, :time 39918039400}
+{:type :invoke, :f :write, :value 118, :host nil, :process 321, :time 39920397000}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 39925446900}
+{:type :ok, :f :read, :value 117, :host "node3", :process 311, :time 39960303700}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 39977745700}
+{:type :ok, :f :read, :value 118, :host "node2", :process 332, :time 39991198300}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 39996849200}
+{:type :ok, :f :read, :value 118, :host "node2", :process 332, :time 40014434100}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 40015477400}
+{:type :ok, :f :write, :value 118, :host nil, :process 321, :time 40033100700}
+{:type :invoke, :f :write, :value 119, :host nil, :process 321, :time 40036090500}
+{:type :ok, :f :read, :value 118, :host "node2", :process 332, :time 40043394600}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 40052063700}
+{:type :ok, :f :read, :value 118, :host "node2", :process 332, :time 40130364700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 40133569400}
+{:type :ok, :f :read, :value 118, :host "node3", :process 311, :time 40174499500}
+{:type :invoke, :f :read, :value nil, :host "node3", :process 311, :time 40179307400}
+{:type :ok, :f :read, :value 118, :host "node2", :process 332, :time 40243005700}
+{:type :invoke, :f :read, :value nil, :host "node2", :process 332, :time 40248979200}
+{:type :ok, :f :read, :value 119, :host "node2", :process 332, :time 40335218600}
+{:type :ok, :f :read, :value 118, :host "node1", :process 310, :time 40341669900}
+{:type :ok, :f :write, :value 119, :host nil, :process 321, :time 40380078400}
+{:type :ok, :f :read, :value 119, :host "node3", :process 311, :time 40459843400}

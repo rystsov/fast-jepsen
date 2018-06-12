@@ -5,6 +5,7 @@ class MongoKV {
         this.url = url;
         this.client = null;
     }
+
     async read(key) {
         try {
             const client = await this.connect();
@@ -25,6 +26,7 @@ class MongoKV {
             throw e;
         }
     }
+
     async create(key, val) {
         try {
             const client = await this.connect();
@@ -40,6 +42,7 @@ class MongoKV {
             throw e;
         }
     }
+
     async update(key, val) {
         try {
             const client = await this.connect();
@@ -50,6 +53,18 @@ class MongoKV {
                 {"key": key}, {$set: {"val": val}},
                 { writeConcern: { w: "majority" } }
             );
+        } catch (e) {
+            this.reset();
+            throw e;
+        }
+    }
+
+    async primary() {
+        try {
+            const client = await this.connect();
+            var info = await client.db("admin").command({replSetGetStatus: 1});
+            var name = info.members.filter(x=>x.stateStr=="PRIMARY")[0].name;
+            return name.substring(0, name.indexOf(":"));
         } catch (e) {
             this.reset();
             throw e;
