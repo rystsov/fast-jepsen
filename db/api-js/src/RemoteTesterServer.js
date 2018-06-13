@@ -25,11 +25,26 @@ class RemoteTesterServer {
         router.route("/update").post((req, res) => {
             this.update(req, res);
         });
+        router.route("/increase").post((req, res) => {
+            this.increase(req, res);
+        });
         router.route("/primary").get((req, res) => {
             this.primary(req, res);
         });
 
         this.app.use('/', router);
+    }
+
+    increase(req, res) {
+        (async () => {
+            const key = req.body.key;
+            const value = req.body.value;
+            await this.kv.increase(key, value);
+            res.status(200).json({
+                "key": key,
+                "value": value
+            });
+        })();
     }
 
     primary(req, res) {

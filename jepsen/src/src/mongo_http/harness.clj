@@ -73,7 +73,7 @@
                     (schedule (get dispatchers key) (:host op) :read nil)
                     (throw e))))
         :write 
-               (try (do (db/update key key value)
+               (try (do (db/increase key key value)
                         (schedule (get dispatchers key) nil :write (+ 1 value))
                         (assoc op :type :ok))
                  (catch Exception e

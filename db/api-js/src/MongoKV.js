@@ -49,10 +49,34 @@ class MongoKV {
             const db = client.db("lily");
             const collection = db.collection("storage");
             
-            await collection.updateOne(
+            var status = await collection.updateOne(
                 {"key": key}, {$set: {"val": val}},
                 { writeConcern: { w: "majority" } }
             );
+
+            if (status.modifiedCount != 1) {
+                throw new Error("Something went wrong");
+            }
+        } catch (e) {
+            this.reset();
+            throw e;
+        }
+    }
+
+    async increase(key, val) {
+        try {
+            const client = await this.connect();
+            const db = client.db("lily");
+            const collection = db.collection("storage");
+            
+            var status = await collection.updateOne(
+                {"key": key, "val": { $lt: val} }, {$set: {"val": val}},
+                { writeConcern: { w: "majority" } }
+            );
+
+            if (status.modifiedCount != 1) {
+                throw new Error("Precondition failed");
+            }
         } catch (e) {
             this.reset();
             throw e;
