@@ -14,6 +14,6 @@ if [ -z "$node3" ] ; then exit 1 ; fi;
 
 sleep 5s
 
-/mongo/mongodb-linux-x86_64-3.6.4/bin/mongo --host node1 < /mongo/topology
+/mongo/mongodb-linux-x86_64-2.6.7/bin/mongo --host node1 < /mongo/topology
 
 nodejs /mongo/api-js/src/start.js > /mongo/mem/$me.tester.log

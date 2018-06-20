@@ -4,3 +4,4 @@ db/id_rsa.pub
 jepsen/id_rsa
 jepsen/id_rsa.pub
 keys/data
+jepsen/store

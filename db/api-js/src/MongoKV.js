@@ -13,8 +13,7 @@ class MongoKV {
             const collection = db.collection("storage");
             
             const data = await collection.find(
-                {"key": key},
-                { readConcern: { level: "linearizable" } }
+                {"key": key}
             ).toArray();
             if (data.length==0) {
                 return null;
