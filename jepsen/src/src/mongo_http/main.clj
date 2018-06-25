@@ -32,7 +32,4 @@
     (let [config {:concurrency 12
                   :timelimit (Integer/parseInt timelimit) ;100
                   }]
-      (doseq [key ["node1" "node2" "node3"]]
-        (try (db/overwrite "node1" key "00000000-0000-0000-0000-000000000000" 0)
-          (catch Exception e (db/create "node1" key "00000000-0000-0000-0000-000000000000" 0))))
       (jepsen.core/run! (mongo-http.harness/basic-test config)))))

@@ -11,55 +11,16 @@
     [mongo-http.isolate :as isolate]
     [mongo-http.db :as db]
     [mongo-http.oracle :as id-oracle]
+    [mongo-http.dispatcher :as dispatch]
     [mongo-http.checker :refer [monotonic-checker]]
     [jepsen.checker.timeline :as timeline]
     [knossos.model :as model]
     [jepsen.db]
     [jepsen.os]))
 
-;;;; Generators
-
-(defn uuid [] (.toString (java.util.UUID/randomUUID)))
-
-(defprotocol TaskDispatcherProtocol
-  (generator [self])
-  (schedule [self host f value]))
-
-(defrecord TaskDispatcher [state oracle]
-  TaskDispatcherProtocol
-    (generator [self]
-      (reify gen/Generator
-        (op [generator test process]
-          (let [task (atom nil)]
-            (swap! state update-in [:tasks] (fn [queue] 
-                                              (reset! task (peek queue))
-                                              (pop queue)))
-            (case (:f @task)
-              :read
-                {:type :invoke, :f :read, :host (:host @task)}
-              :write
-                {:type :invoke
-                 :f :write
-                 :value (:value @task)
-                 :write-id (uuid)
-                 :prev-write-id (id-oracle/guess-write-id oracle)})))))
-    (schedule [self host f value]
-      (swap! state update-in [:tasks] (fn [queue]
-                                              (conj queue {:host host, :f f, :value value})))))
-
-(defn create-dispatcher [oracle]
-  (TaskDispatcher. 
-    (atom { :tasks (-> (clojure.lang.PersistentQueue/EMPTY)
-                       (conj
-                         { :host nil     :f :write :value 0 }
-                         { :host "node1" :f :read :value nil }
-                         { :host "node2" :f :read :value nil }
-                         { :host "node3" :f :read :value nil })) })
-    oracle))
-
 ;;;; Client
 
-(defrecord MongoClient [dispatchers oracles]
+(defrecord MongoClient [dispatcher oracle]
   client/Client
 
   (setup! [this test node] this)
@@ -73,35 +34,23 @@
                  (let [result (db/read (:host op) key)
                        write-id (:write-id result)
                        value (:value result)]
-                   (id-oracle/observe-write-id (get oracles key) write-id)
-                   (schedule (get dispatchers key) (:host op) :read nil)
+                   (id-oracle/observe-write-id oracle key write-id)
+                   (dispatch/schedule-read dispatcher key (:host op))
                    (assoc op :type :ok, :value (independent/tuple key value), :write-id write-id))
                  (catch Exception e
                    (do
-                     (schedule (get dispatchers key) (:host op) :read nil)
+                     (dispatch/schedule-read dispatcher key (:host op))
                      (throw e))))
         
-        :write (try (do (id-oracle/propose-write-id (get oracles key) (:prev-write-id op) (:write-id op))
-                        (db/cas key key (:prev-write-id op) (:write-id op) value)
-                        (id-oracle/observe-write-id (get oracles key) (:write-id op))
-                        (schedule (get dispatchers key) nil :write (+ 1 value))
+        :write (try (do (id-oracle/propose-write-id oracle key (:prev-write-id op) (:write-id op))
+                        (db/cas (:host op) key (:prev-write-id op) (:write-id op) value)
+                        (id-oracle/observe-write-id oracle key (:write-id op))
+                        (dispatch/schedule-write dispatcher key (:host op) (+ 1 value))
                         (assoc op :type :ok))
                  (catch Exception e
                    (do
-                     (schedule (get dispatchers key) nil :write (+ 1 value))
+                     (dispatch/schedule-write dispatcher key (:host op) (+ 1 value))
                      (throw e))))))))
-
-(def oracles {
-  "node1" (id-oracle/create-oracle)
-  "node2" (id-oracle/create-oracle)
-  "node3" (id-oracle/create-oracle)
-})
-
-(def dispatchers {
-  "node1" (create-dispatcher (get oracles "node1"))
-  "node2" (create-dispatcher (get oracles "node2"))
-  "node3" (create-dispatcher (get oracles "node3"))
-})
 
 (defn nemesis []
   (->> (gen/once (gen/seq 
@@ -111,24 +60,32 @@
 (defn basic-test
   "Returns a Jepsen Test Case"
   [config]
-  {:name        "memdb"
-   :client      (MongoClient. dispatchers oracles)
-   :concurrency 12
-   :model       (model/cas-register 0)
-   :net         net/iptables
-   :generator   (->> (independent/concurrent-generator
-                            4
-                            ["node1" "node2" "node3"]
-                            (fn [k] (generator (get dispatchers k))))
-                      (gen/nemesis (nemesis))
-                      (gen/time-limit (:timelimit config)))
-   :checker     (checker/compose
-                     {:perf     (checker/perf)
-                      :indep (independent/checker
-                               (checker/compose
-                                 {:timeline (timeline/html)
-                                  :linear   (monotonic-checker)}))})
-   :nodes       ["node1" "node2" "node3"]
-   :os          jepsen.os/noop
-   :db          jepsen.db/noop
-   :nemesis     (isolate/nemesis ["node1" "node2" "node3"])})
+  (let [oracle (id-oracle/create-oracle "00000000-0000-0000-0000-000000000000")
+        key-to-write-node { "key1" "node1"
+                            "key2" "node2"
+                            "key3" "node3"}
+        dispatcher (dispatch/create-dispatcher oracle ["node1" "node2" "node3"])]
+    (doseq [key ["key1" "key2" "key3"]]
+      (try (db/overwrite "node1" key "00000000-0000-0000-0000-000000000000" 0)
+        (catch Exception e (db/create "node1" key "00000000-0000-0000-0000-000000000000" 0))))
+    { :name        "memdb"
+      :client      (MongoClient. dispatcher oracle)
+      :concurrency 12
+      :model       (model/cas-register 0)
+      :net         net/iptables
+      :generator   (->> (independent/concurrent-generator
+                               4
+                               ["key1" "key2" "key3"]
+                               (fn [key] (dispatch/generator dispatcher key (get key-to-write-node key))))
+                         (gen/nemesis (nemesis))
+                         (gen/time-limit (:timelimit config)))
+      :checker     (checker/compose
+                        {:perf     (checker/perf)
+                         :indep (independent/checker
+                                  (checker/compose
+                                    {:timeline (timeline/html)
+                                     :linear   (monotonic-checker)}))})
+      :nodes       ["node1" "node2" "node3"]
+      :os          jepsen.os/noop
+      :db          jepsen.db/noop
+      :nemesis     (isolate/nemesis ["node1" "node2" "node3"])}))

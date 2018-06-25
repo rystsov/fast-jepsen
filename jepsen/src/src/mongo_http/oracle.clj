@@ -2,35 +2,44 @@
   (:require
     [clojure.tools.logging :refer [debug info warn]]))
 
-(defn create-oracle []
-  (atom { :latests (conj clojure.lang.PersistentQueue/EMPTY
-                      "00000000-0000-0000-0000-000000000000"
-                      "00000000-0000-0000-0000-000000000000"
-                      "00000000-0000-0000-0000-000000000000"
-                      "00000000-0000-0000-0000-000000000000"
-                      "00000000-0000-0000-0000-000000000000")
-          :accepted-chain   { "00000000-0000-0000-0000-000000000000" nil}
-          :accepted-latest  "00000000-0000-0000-0000-000000000000"
-          :pending          {}}))
-
 (defn str-state [state]
   (update-in @state [:latests] vec))
 
-(defn propose-write-id [oracle prev-write-id write-id]
-  (swap! oracle (fn [state]
-    (cond
-      (contains? (:accepted-chain state) write-id)
-        (do (info (str "Write-id '" write-id "' has been already proposed"))
-            state)
-      (contains? (:pending state) write-id)
-        (do (info (str "Write-id '" write-id "' has been already proposed"))
-            state)
-      :else
-        (assoc-in state [:pending write-id] prev-write-id)))))
+(defn create-key-oracle-state [initial-write-id]
+  { :latests (conj clojure.lang.PersistentQueue/EMPTY
+                initial-write-id
+                initial-write-id
+                initial-write-id
+                initial-write-id
+                initial-write-id)
+    :accepted-chain   { initial-write-id nil}
+    :accepted-latest  initial-write-id
+    :pending          {} })
 
-(defn observe-write-id [oracle write-id]
-  (swap! oracle (fn [state]
-    (let [latest-canditate write-id
+(defn create-oracle [initial-write-id]
+  (atom { :initial-write-id initial-write-id
+          :states {}}))
+
+(defn propose-write-id [oracle key prev-write-id write-id]
+  (swap! oracle update-in [:states key]
+    (fn [state]
+      (let [initial-write-id (:initial-write-id @oracle)
+            state (if (nil? state) (create-key-oracle-state initial-write-id) state)]
+        (cond
+          (contains? (:accepted-chain state) write-id)
+            (do (info (str "Write-id '" write-id "' has been already proposed"))
+                state)
+          (contains? (:pending state) write-id)
+            (do (info (str "Write-id '" write-id "' has been already proposed"))
+                state)
+          :else
+            (assoc-in state [:pending write-id] prev-write-id))))))
+
+(defn observe-write-id [oracle key write-id]
+  (swap! oracle update-in [:states key] (fn [state]
+    (let [initial-write-id (:initial-write-id @oracle)
+          state (if (nil? state) (create-key-oracle-state initial-write-id) state)
+          latest-canditate write-id
           ref-state (atom state)
           ref-tail (atom [])]
       (swap! ref-state update-in [:latests] (fn [latests] (pop (conj latests write-id))))
@@ -51,7 +60,14 @@
         (swap! ref-state assoc :accepted-latest latest-canditate))
       @ref-state))))
 
-(defn guess-write-id [oracle]
-  (if (= 0 (rand-int 2))
-    (:accepted-latest @oracle)
-    (rand-nth (:latests @oracle))))
+(defn guess-write-id [oracle key]
+  (let [result (atom nil)]
+    (swap! oracle update-in [:states key]
+      (fn [state]
+        (let [initial-write-id (:initial-write-id @oracle)
+              state (if (nil? state) (create-key-oracle-state initial-write-id) state)]
+          (reset! result (if (= 0 (rand-int 2))
+                           (:accepted-latest state)
+                           (rand-nth (:latests state))))
+          state)))
+    @result))
