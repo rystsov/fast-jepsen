@@ -6,27 +6,19 @@ class MongoKV {
         this.client = null;
     }
 
-    async read(key) {
+    async primary() {
         try {
             const client = await this.connect();
-            const db = client.db("lily");
-            const collection = db.collection("storage");
-            
-            const data = await collection.find(
-                {"key": key}
-            ).toArray();
-            if (data.length==0) {
-                return null;
-            } else {
-                return data[0].val;
-            }
+            var info = await client.db("admin").command({replSetGetStatus: 1});
+            var name = info.members.filter(x=>x.stateStr=="PRIMARY")[0].name;
+            return name.substring(0, name.indexOf(":"));
         } catch (e) {
             this.reset();
             throw e;
         }
     }
 
-    async create(key, val) {
+    async create(key, writeID, val) {
         try {
             const client = await this.connect();
             const db = client.db("lily");
@@ -34,6 +26,7 @@ class MongoKV {
             
             await collection.insertOne({
                 "key": key,
+                "writeID": writeID,
                 "val": val
             }, { writeConcern: { w: "majority" } });
         } catch (e) {
@@ -42,14 +35,14 @@ class MongoKV {
         }
     }
 
-    async update(key, val) {
+    async overwrite(key, writeID, val) {
         try {
             const client = await this.connect();
             const db = client.db("lily");
             const collection = db.collection("storage");
             
             var status = await collection.updateOne(
-                {"key": key}, {$set: {"val": val}},
+                {"key": key}, {$set: {"writeID": writeID, "val": val}},
                 { writeConcern: { w: "majority" } }
             );
 
@@ -62,14 +55,14 @@ class MongoKV {
         }
     }
 
-    async increase(key, val) {
+    async cas(key, prevWriteID, writeID, val) {
         try {
             const client = await this.connect();
             const db = client.db("lily");
             const collection = db.collection("storage");
             
             var status = await collection.updateOne(
-                {"key": key, "val": { $lt: val} }, {$set: {"val": val}},
+                {"key": key, "writeID": prevWriteID }, {$set: {"val": val, "writeID": writeID}},
                 { writeConcern: { w: "majority" } }
             );
 
@@ -82,12 +75,23 @@ class MongoKV {
         }
     }
 
-    async primary() {
+    async read(key) {
         try {
             const client = await this.connect();
-            var info = await client.db("admin").command({replSetGetStatus: 1});
-            var name = info.members.filter(x=>x.stateStr=="PRIMARY")[0].name;
-            return name.substring(0, name.indexOf(":"));
+            const db = client.db("lily");
+            const collection = db.collection("storage");
+            
+            const data = await collection.find(
+                {"key": key}
+            ).toArray();
+            if (data.length==0) {
+                return null;
+            } else {
+                return {
+                    "value": data[0].val,
+                    "writeID": data[0].writeID
+                };
+            }
         } catch (e) {
             this.reset();
             throw e;

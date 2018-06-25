@@ -10,6 +10,7 @@
      [independent :as independent]]
     [mongo-http.isolate :as isolate]
     [mongo-http.db :as db]
+    [mongo-http.oracle :as id-oracle]
     [mongo-http.checker :refer [monotonic-checker]]
     [jepsen.checker.timeline :as timeline]
     [knossos.model :as model]
@@ -18,11 +19,13 @@
 
 ;;;; Generators
 
+(defn uuid [] (.toString (java.util.UUID/randomUUID)))
+
 (defprotocol TaskDispatcherProtocol
   (generator [self])
   (schedule [self host f value]))
 
-(defrecord TaskDispatcher [state]
+(defrecord TaskDispatcher [state oracle]
   TaskDispatcherProtocol
     (generator [self]
       (reify gen/Generator
@@ -31,29 +34,32 @@
             (swap! state update-in [:tasks] (fn [queue] 
                                               (reset! task (peek queue))
                                               (pop queue)))
-            {:type :invoke, :f (:f @task), :value (:value @task), :host (:host @task)}))))
+            (case (:f @task)
+              :read
+                {:type :invoke, :f :read, :host (:host @task)}
+              :write
+                {:type :invoke
+                 :f :write
+                 :value (:value @task)
+                 :write-id (uuid)
+                 :prev-write-id (id-oracle/guess-write-id oracle)})))))
     (schedule [self host f value]
       (swap! state update-in [:tasks] (fn [queue]
                                               (conj queue {:host host, :f f, :value value})))))
 
-(defn create-dispatcher []
+(defn create-dispatcher [oracle]
   (TaskDispatcher. 
     (atom { :tasks (-> (clojure.lang.PersistentQueue/EMPTY)
                        (conj
                          { :host nil     :f :write :value 0 }
                          { :host "node1" :f :read :value nil }
                          { :host "node2" :f :read :value nil }
-                         { :host "node3" :f :read :value nil })) })))
-
-(def dispatchers {
-  "node1" (create-dispatcher)
-  "node2" (create-dispatcher)
-  "node3" (create-dispatcher)
-})
+                         { :host "node3" :f :read :value nil })) })
+    oracle))
 
 ;;;; Client
 
-(defrecord MongoClient []
+(defrecord MongoClient [dispatchers oracles]
   client/Client
 
   (setup! [this test node] this)
@@ -63,24 +69,39 @@
   (invoke! [this test op]
     (let [[key value] (:value op)]
       (case (:f op)
-        :read 
-              (try
-                (let [value (db/read (:host op) key)]
-                  (schedule (get dispatchers key) (:host op) :read nil)
-                  (assoc op :type :ok, :value (independent/tuple key value)))
-                (catch Exception e
-                  (do
-                    (schedule (get dispatchers key) (:host op) :read nil)
-                    (throw e))))
-        :write 
-               (try (do (db/increase key key value)
+        :read  (try
+                 (let [result (db/read (:host op) key)
+                       write-id (:write-id result)
+                       value (:value result)]
+                   (id-oracle/observe-write-id (get oracles key) write-id)
+                   (schedule (get dispatchers key) (:host op) :read nil)
+                   (assoc op :type :ok, :value (independent/tuple key value), :write-id write-id))
+                 (catch Exception e
+                   (do
+                     (schedule (get dispatchers key) (:host op) :read nil)
+                     (throw e))))
+        
+        :write (try (do (id-oracle/propose-write-id (get oracles key) (:prev-write-id op) (:write-id op))
+                        (db/cas key key (:prev-write-id op) (:write-id op) value)
+                        (id-oracle/observe-write-id (get oracles key) (:write-id op))
                         (schedule (get dispatchers key) nil :write (+ 1 value))
                         (assoc op :type :ok))
                  (catch Exception e
                    (do
                      (schedule (get dispatchers key) nil :write (+ 1 value))
-                     (throw e))
-                 ))))))
+                     (throw e))))))))
+
+(def oracles {
+  "node1" (id-oracle/create-oracle)
+  "node2" (id-oracle/create-oracle)
+  "node3" (id-oracle/create-oracle)
+})
+
+(def dispatchers {
+  "node1" (create-dispatcher (get oracles "node1"))
+  "node2" (create-dispatcher (get oracles "node2"))
+  "node3" (create-dispatcher (get oracles "node3"))
+})
 
 (defn nemesis []
   (->> (gen/once (gen/seq 
@@ -91,7 +112,7 @@
   "Returns a Jepsen Test Case"
   [config]
   {:name        "memdb"
-   :client      (MongoClient.)
+   :client      (MongoClient. dispatchers oracles)
    :concurrency 12
    :model       (model/cas-register 0)
    :net         net/iptables

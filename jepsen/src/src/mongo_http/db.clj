@@ -1,6 +1,7 @@
 (ns mongo-http.db
   (:use clojure.tools.logging)
   (:require 
+    [clojure.tools.logging :refer [debug info warn]]
     [clj-http.client :as client]
     [clojure.data.json :as json]))
 
@@ -11,36 +12,40 @@
               :conn-timeout 1000    ;; in milliseconds
               :accept :json}))))
 
-(defn create [host key value]
+(defn create [host key write-id value]
   (:body (client/post (str "http://" host ":8000/create")
              {:as :json,
-              :body (json/write-str {:key key :value value})
+              :body (json/write-str {:key key :writeID write-id :value value})
               :content-type :json
               :socket-timeout 1000  ;; in milliseconds
               :conn-timeout 1000    ;; in milliseconds
               :accept :json})))
 
-(defn update [host key value]
-  (:body (client/post (str "http://" host ":8000/update")
+(defn overwrite [host key write-id value]
+  (:body (client/post (str "http://" host ":8000/overwrite")
              {:as :json,
-              :body (json/write-str {:key key :value value})
+              :body (json/write-str {:key key :writeID write-id :value value})
               :content-type :json
               :socket-timeout 1000  ;; in milliseconds
               :conn-timeout 1000    ;; in milliseconds
               :accept :json})))
 
-(defn increase [host key value]
-  (:body (client/post (str "http://" host ":8000/increase")
+(defn cas [host key prev-write-id write-id value]
+  (:body (client/post (str "http://" host ":8000/cas")
              {:as :json,
-              :body (json/write-str {:key key :value value})
+              :body (json/write-str {:key key :prevWriteID prev-write-id :writeID write-id :value value})
               :content-type :json
               :socket-timeout 1000  ;; in milliseconds
               :conn-timeout 1000    ;; in milliseconds
               :accept :json})))
 
 (defn read [host key]
-  (:value (:body (client/get (str "http://" host ":8000/read/" key)
-             {:as :json,
-              :socket-timeout 1000  ;; in milliseconds
-              :conn-timeout 1000    ;; in milliseconds
-              :accept :json}))))
+  (let [response (:body (client/get 
+                          (str "http://" host ":8000/read/" key)
+                          { :as :json,
+                            :socket-timeout 1000  ;; in milliseconds
+                            :conn-timeout 1000    ;; in milliseconds
+                            :accept :json}))]
+    { :write-id (:writeID response)
+      :value (:value response)
+    }))

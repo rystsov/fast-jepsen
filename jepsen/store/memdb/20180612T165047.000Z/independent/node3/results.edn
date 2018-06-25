@@ -1,6 +1,0 @@
-{:timeline {:valid? true},
- :linear
- {:valid? false,
-  :some-details
-  "Process 10 read 1 but before read started it was already known that the value is at least 130"},
- :valid? false}

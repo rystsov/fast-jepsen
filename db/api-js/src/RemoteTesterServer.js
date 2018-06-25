@@ -22,29 +22,17 @@ class RemoteTesterServer {
         router.route("/read/:key").get((req, res) => {
             this.read(req, res);
         });
-        router.route("/update").post((req, res) => {
-            this.update(req, res);
+        router.route("/overwrite").post((req, res) => {
+            this.overwrite(req, res);
         });
-        router.route("/increase").post((req, res) => {
-            this.increase(req, res);
+        router.route("/cas").post((req, res) => {
+            this.cas(req, res);
         });
         router.route("/primary").get((req, res) => {
             this.primary(req, res);
         });
 
         this.app.use('/', router);
-    }
-
-    increase(req, res) {
-        (async () => {
-            const key = req.body.key;
-            const value = req.body.value;
-            await this.kv.increase(key, value);
-            res.status(200).json({
-                "key": key,
-                "value": value
-            });
-        })();
     }
 
     primary(req, res) {
@@ -59,7 +47,35 @@ class RemoteTesterServer {
         (async () => {
             const key = req.body.key;
             const value = req.body.value;
-            await this.kv.create(key, value);
+            const writeID = req.body.writeID;
+            await this.kv.create(key, writeID, value);
+            res.status(200).json({
+                "key": key,
+                "value": value
+            });
+        })();
+    }
+
+    overwrite(req, res) {
+        (async () => {
+            const key = req.body.key;
+            const value = req.body.value;
+            const writeID = req.body.writeID;
+            await this.kv.overwrite(key, writeID,value);
+            res.status(200).json({
+                "key": key,
+                "value": value
+            });
+        })();
+    }
+
+    cas(req, res) {
+        (async () => {
+            const key = req.body.key;
+            const value = req.body.value;
+            const prevWriteID = req.body.prevWriteID;
+            const writeID = req.body.writeID;
+            await this.kv.cas(key, prevWriteID, writeID, value);
             res.status(200).json({
                 "key": key,
                 "value": value
@@ -70,22 +86,11 @@ class RemoteTesterServer {
     read(req, res) {
         (async () => {
             const key = req.params.key;
-            const value = await this.kv.read(key);
+            const read = await this.kv.read(key);
             res.status(200).json({
                 "key": key,
-                "value": value
-            });
-        })();
-    }
-
-    update(req, res) {
-        (async () => {
-            const key = req.body.key;
-            const value = req.body.value;
-            await this.kv.update(key, value);
-            res.status(200).json({
-                "key": key,
-                "value": value
+                "value": read.value,
+                "writeID": read.writeID
             });
         })();
     }
