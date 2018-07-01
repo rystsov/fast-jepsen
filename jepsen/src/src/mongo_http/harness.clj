@@ -12,7 +12,7 @@
     [mongo-http.db :as db]
     [mongo-http.oracle :as id-oracle]
     [mongo-http.dispatcher :as dispatch]
-    [mongo-http.checker :refer [monotonic-checker]]
+    [mongo-http.fchecker :refer [fchecker]]
     [jepsen.checker.timeline :as timeline]
     [knossos.model :as model]
     [jepsen.db]
@@ -84,7 +84,7 @@
                          :indep (independent/checker
                                   (checker/compose
                                     {:timeline (timeline/html)
-                                     :linear   (monotonic-checker)}))})
+                                     :linear   (fchecker "00000000-0000-0000-0000-000000000000" 0)}))})
       :nodes       ["node1" "node2" "node3"]
       :os          jepsen.os/noop
       :db          jepsen.db/noop
