@@ -45,41 +45,59 @@ class RemoteTesterServer {
 
     create(req, res) {
         (async () => {
-            const key = req.body.key;
-            const value = req.body.value;
-            const writeID = req.body.writeID;
-            await this.kv.create(key, writeID, value);
-            res.status(200).json({
-                "key": key,
-                "value": value
-            });
+            try {
+                const key = req.body.key;
+                const value = req.body.value;
+                const writeID = req.body.writeID;
+                await this.kv.create(key, writeID, value);
+                res.status(200).json({
+                    "key": key,
+                    "value": value
+                });
+            } catch (e) {
+                res.status(500).json({
+                    "message": e.message
+                });
+            }
         })();
     }
 
     overwrite(req, res) {
         (async () => {
-            const key = req.body.key;
-            const value = req.body.value;
-            const writeID = req.body.writeID;
-            await this.kv.overwrite(key, writeID,value);
-            res.status(200).json({
-                "key": key,
-                "value": value
-            });
+            try {
+                const key = req.body.key;
+                const value = req.body.value;
+                const writeID = req.body.writeID;
+                await this.kv.overwrite(key, writeID,value);
+                res.status(200).json({
+                    "key": key,
+                    "value": value
+                });
+            } catch (e) {
+                res.status(500).json({
+                    "message": e.message
+                });
+            }
         })();
     }
 
     cas(req, res) {
         (async () => {
-            const key = req.body.key;
-            const value = req.body.value;
-            const prevWriteID = req.body.prevWriteID;
-            const writeID = req.body.writeID;
-            await this.kv.cas(key, prevWriteID, writeID, value);
-            res.status(200).json({
-                "key": key,
-                "value": value
-            });
+            try {
+                const key = req.body.key;
+                const value = req.body.value;
+                const prevWriteID = req.body.prevWriteID;
+                const writeID = req.body.writeID;
+                await this.kv.cas(key, prevWriteID, writeID, value);
+                res.status(200).json({
+                    "key": key,
+                    "value": value
+                });
+            } catch (e) {
+                res.status(500).json({
+                    "message": e.message
+                });
+            }
         })();
     }
 

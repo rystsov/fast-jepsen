@@ -24,11 +24,15 @@ class MongoKV {
             const db = client.db("lily");
             const collection = db.collection("storage");
             
-            await collection.insertOne({
+            var status = await collection.insertOne({
                 "key": key,
                 "writeID": writeID,
                 "val": val
             }, { writeConcern: { w: "majority" } });
+
+            if (status.insertedCount != 1) {
+                throw new Error(`status.insertedCount (=${status.insertedCount}) != 1`);
+            }
         } catch (e) {
             this.reset();
             throw e;
@@ -47,7 +51,7 @@ class MongoKV {
             );
 
             if (status.modifiedCount != 1) {
-                throw new Error("Something went wrong");
+                throw new Error(`status.modifiedCount (=${status.modifiedCount}) != 1`);
             }
         } catch (e) {
             this.reset();
@@ -67,7 +71,7 @@ class MongoKV {
             );
 
             if (status.modifiedCount != 1) {
-                throw new Error("Precondition failed");
+                throw new Error(`Precondition failed: status.modifiedCount (=${status.modifiedCount}) != 1`);
             }
         } catch (e) {
             this.reset();
