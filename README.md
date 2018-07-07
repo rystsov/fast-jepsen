@@ -1,4 +1,4 @@
-# Jepsen and exponentially fast linearizability checker
+# Jepsen and fast linearizability checker
 
 This project explores an application of an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper to [Jepsen](http://jepsen.io/).
 
@@ -10,7 +10,7 @@ The problem of checking linearizability is NP-complete, and the process of the c
   * ["Knossos times out on benchmark 7 and 99, and runs out of memory on 40, 57, 85 and 97"](https://github.com/ahorn/linearizability-checker)
   * I couldn’t get Knossos to check my histories. It seemed to work okay on histories with a couple concurrent clients, with about a hundred history events in total, but in my tests, I had tens of clients generating histories of thousands of events. From [Testing Distributed Systems for Linearizability](https://www.anishathalye.com/2017/06/04/testing-distributed-systems-for-linearizability/).
 
-TSM paper notices that additional restrictions shift the problem from the NP to the O(n ln n) space and make the process of validation exponentially faster.
+TSM paper notices that additional restrictions shift the problem from the NP to the O(n ln n) space and even further to O(n).
 
 This project successfully implements the TSM-inspired checker, integrates it with Jepsen and reproduces the MongoDB 2.6.7 result to validate that new checker is able to find violations.
 
