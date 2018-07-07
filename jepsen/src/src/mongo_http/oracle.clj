@@ -1,4 +1,12 @@
 (ns mongo-http.oracle
+  "After a client reads or writes a value it is extected to invoke observe-write-id.
+   Just before a write they should invoke propose-write-id. Based on this information
+   oracle guesses the current version and a client can fetch it with guess-write-id.
+   
+   Overwise, executing a compare-and-set operation requires to read a record from
+   the DB, checks its version and perform the db cas write. An additional operation
+   (read) reduces frequency of logical operations and hence the chance of finding a
+   violation"
   (:require
     [clojure.tools.logging :refer [debug info warn]]))
 

@@ -1,4 +1,6 @@
 (ns mongo-http.fchecker
+  "Fast linearizability checker, works in O(n ln n) where n is the lenght of history, 
+   can validate only key/value storages with compare and set."
   (:require
     [jepsen.checker]
     [clojure.tools.logging :refer [debug info warn]]))

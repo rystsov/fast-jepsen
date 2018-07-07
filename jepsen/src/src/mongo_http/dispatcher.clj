@@ -1,4 +1,8 @@
 (ns mongo-http.dispatcher
+  "Dispatcher is a stateful generator. It maintains a list of tasks to yield and
+   allows clients to reschedule an operation once they executed it. So if there is
+   only one write operation then at any point of time there will be only one client
+   executing it."
   (:require
     [jepsen
      [generator :as gen]]

@@ -1,4 +1,5 @@
 (ns mongo-http.isolate
+  "A nemesis 1) isolates a primary 2) waits for 20 seconds 3) re-joins it back"
   (:use clojure.tools.logging)
   (:require [jepsen.nemesis :refer [partition!]]
             [jepsen.util        :as util]

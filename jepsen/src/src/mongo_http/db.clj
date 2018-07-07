@@ -1,4 +1,5 @@
 (ns mongo-http.db
+  "API to work with MongoDB via an exposed HTTP interface"
   (:use clojure.tools.logging)
   (:require 
     [clojure.tools.logging :refer [debug info warn]]
@@ -19,7 +20,9 @@
       (throw (Exception. (str "Got" (:status response) " status code :( expected 200"))))))
 
 (defn create [host key write-id value]
-  "Creates a new record & returns it or throws an exception"
+  "Creates a new record & returns it or throws an exception
+   The record has the following form:
+     { :key \"...\", :value \"...\" }"
   (let [response (client/post
                    (str "http://" host ":8000/create")
                    { :as :json,
@@ -32,7 +35,9 @@
       (:body response)
       (throw (Exception. (str "Got" (:status response) " status code :( expected 200"))))))
 
-(defn overwrite [host key write-id value]
+(defn overwrite
+  "Overwrites the current record and returns it"
+  [host key write-id value]
   (let [response (client/post
                    (str "http://" host ":8000/overwrite")
                    { :as :json,
@@ -45,7 +50,9 @@
       (:body response)
       (throw (Exception. (str "Got" (:status response) " status code :( expected 200"))))))
 
-(defn cas [host key prev-write-id write-id value]
+(defn cas
+  "Overwrites the current record if it's writeID is prev-write-id"
+  [host key prev-write-id write-id value]
   (let [response (client/post
                    (str "http://" host ":8000/cas")
                    { :as :json,

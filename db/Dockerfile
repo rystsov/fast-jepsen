@@ -12,7 +12,7 @@ RUN mkdir /root/.ssh
 COPY id_rsa /root/.ssh/id_rsa
 COPY id_rsa.pub /root/.ssh/id_rsa.pub
 RUN /bin/bash -c "cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys"
-RUN mkdir -p /mongo
+RUN mkdir -p /mongo/logs
 WORKDIR /mongo
 RUN wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.6.7.tgz
 RUN tar -xzvf mongodb-linux-x86_64-2.6.7.tgz

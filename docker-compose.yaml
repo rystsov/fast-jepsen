@@ -6,8 +6,6 @@ services:
     container_name: node1
     hostname: node1
     tmpfs: /mongo/mem
-    volumes:
-      - ./logs:/mongo/logs
     networks:
       - jepsen
   mongo2:
@@ -16,8 +14,6 @@ services:
     container_name: node2
     hostname: node2
     tmpfs: /mongo/mem
-    volumes:
-      - ./logs:/mongo/logs
     networks:
       - jepsen
   mongo3:
@@ -26,8 +22,6 @@ services:
     container_name: node3
     hostname: node3
     tmpfs: /mongo/mem
-    volumes:
-      - ./logs:/mongo/logs
     networks:
       - jepsen
 networks:
