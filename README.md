@@ -1,3 +1,5 @@
+# Jepsen and exponentially fast linearizability checker
+
 This project explores an application of an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper to [Jepsen](http://jepsen.io/).
 
 Jepsen is a tool to test consistency guarantees of distributed systems. It performs operations, injects faults, collects history and then tries to check if the history is linearizable.
@@ -23,7 +25,7 @@ TSM focuses on testing registers supporting update and read operations. Also, it
 
 If a system is expected to have concurrent writes such as a collaboration of multiple users or single user interacting with the system via multiple devices and we don't want to make assumptions on the meaning of the updates, then the system should support CAS.
 
-In multi-threaded applications, we have a choice to use pessimistic concurrency (locking) or optimistic concurrency (compare-and-set) but in a distributed environment [locks don't work and require the underlying storage to support fencing](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html) - compare-and-set.
+In multi-threaded applications, we have a choice to use pessimistic concurrency (locking) or optimistic concurrency (compare-and-set) but in a distributed environment [locks don't work and require the underlying storage to support fencing](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html), so we need CAS even to use pessimistic concurrency.
 
 ## Checker
 
