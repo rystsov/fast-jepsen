@@ -1,27 +1,23 @@
 # Jepsen and fast linearizability checker
 
-This project explores an application of an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper to [Jepsen](http://jepsen.io/).
+This project applies an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper to [Jepsen](http://jepsen.io/).
 
 Jepsen is a tool to test consistency guarantees of distributed systems. It performs operations, injects faults, collects history and then tries to check if the history is linearizable.
 
 The problem of checking linearizability is NP-complete, and the process of the checking belongs to the O(n!) class meaning that it takes an enormous amount of resources (time, memory) to validate long histories:
 
-  * "Jepsen’s linearizability checker, Knossos, is not fast enough to reliably verify long histories," from the [CockroachDB analyze](https://jepsen.io/analyses/cockroachdb-beta-20160829).
-  * "Because checking long histories for linearizability is expensive, we’ll break up our test into operations on different documents, and check each one independently—only working with a given document for ~60 seconds", from the [RethinkDB analyze](https://jepsen.io/analyses/rethinkdb-2-2-3-reconfiguration).
-  * ["OOM: If we run Jepsen for a long time, it may cause OOM easily."](https://medium.com/@siddontang/use-chaos-to-test-the-distributed-system-linearizability-4e0e778dfc7d)
-  * "I couldn’t get Knossos to check my histories. It seemed to work okay on histories with a couple concurrent clients, with about a hundred history events in total, but in my tests, I had tens of clients generating histories of thousands of events", from [Testing Distributed Systems for Linearizability](https://www.anishathalye.com/2017/06/04/testing-distributed-systems-for-linearizability/).
+  * "Jepsen’s linearizability checker, Knossos, is not fast enough to reliably verify long histories," from the [CockroachDB analysis](https://jepsen.io/analyses/cockroachdb-beta-20160829).
+  * "Because checking long histories for linearizability is expensive, we’ll break up our test into operations on different documents, and check each one independently—only working with a given document for ~60 seconds", from the [RethinkDB analysis](https://jepsen.io/analyses/rethinkdb-2-2-3-reconfiguration).
 
-TSM paper notices that additional restrictions shift the problem from the NP to the O(n ln n) space and even further to O(n).
+"Testing shared memories" adds restrictions to shift the problem from the NP to O(n ln n) and O(n) spaces.
 
-This project successfully implements the TSM-inspired checker, integrates it with Jepsen and reproduces the MongoDB 2.6.7 result to validate that new checker can find violations.
+Reduced complexity allows to test systems for hours and check consistency of the long-running operations such as reconfiguration, compaction/vacuuming, splitting a single replica set into several shards, live update, taking backups, etc.
 
-## Benefits
-
-Reduced complexity allows to test systems for hours instead of minutes and check consistency claims during the long-running operations such as reconfiguration, compaction/vacuuming, splitting a single replica set into several shards, live update, taking backups and others.
+This project successfully implements a checker from the paper, integrates it with Jepsen and reproduces the MongoDB 2.6.7 analysis to validate that new checker can find violations.
 
 ## Restrictions?
 
-TSM focuses on testing registers supporting update and read operations. Also, it requires that all the updates are performed using compare-and-set over a record's version (write-id). Formally:
+The paper focuses on testing registers supporting update and read operations. Also, it requires that all the updates are performed using compare-and-set over a record's version (write-id). Formally:
 
  1. Each record has an additional write-id field.
  2. Each version of a record must have unique write-id.
@@ -35,24 +31,31 @@ In multi-threaded applications, we have a choice to use pessimistic concurrency 
 
 ## Checker
 
-The checker implements `jepsen.checker/Checker` protocol, accepts history, keeps start and confirmation of a read operation, start, and confirmation of a write operation and then checks if it's possible to linearize them.
+The checker implements `jepsen.checker/Checker` protocol, accepts history, ignores all but:
+
+ - start of a read - `:type :invoke, :f :read`
+ - result of a read - `:type :ok, :f :read`
+ - start of a write - `:type :invoke, :f :write`
+ - confirmation a write - `:type :ok, :f :write`
+
+and checks if they are consistent.
 
 History sample, each read has `write-id` and write - `prev-write-id` and `w1`:
 
 ```
-{:type :invoke, :f :read, :value nil, :process 8, :time 333383000}
-{:type :ok, :f :read, :value 0, :process 8, :time 443435300, :write-id "00000000-0000-0000-0000-000000000000"}
-{:type :invoke, :f :write, :value 0, :write-id "e2a02cec-2168-45e5-80e4-e009744454e9", :prev-write-id "00000000-0000-0000-0000-000000000000", :process 9, :time 513243900}
-{:type :ok, :f :write, :value 0, :write-id "e2a02cec-2168-45e5-80e4-e009744454e9", :prev-write-id "00000000-0000-0000-0000-000000000000", :process 9, :time 940449900}
+{:host "node1", :type :invoke, :f :read, :value nil, :process 8, :time 333383000}
+{:host "node1", :type :ok, :f :read, :value 0, :process 8, :time 443435300, :write-id "00000000-0000-0000-0000-000000000000"}
+{:host "node2", :type :invoke, :f :write, :value 0, :write-id "e2a02cec-2168-45e5-80e4-e009744454e9", :prev-write-id "00000000-0000-0000-0000-000000000000", :process 9, :time 513243900}
+{:host "node2", :type :ok, :f :write, :value 0, :write-id "e2a02cec-2168-45e5-80e4-e009744454e9", :prev-write-id "00000000-0000-0000-0000-000000000000", :process 9, :time 940449900}
 ```
 
-One of the TSM's algorithms for validation consistency (see Theorem 4.13) is:
+One of the algorithms from "Testing shared memories" (Theorem 4.13) is:
 
   1. Build a graph of the read and write events
   2. Add an edge from a write `w1` to a write `w2` if `w1.write-id == w2.prev-write-id` (write-order). Check that a write `w1` has only one outcoming edge leading to a write.
   3. Add an edge from a write `w1` to a read `r1` if `w1.write-id == r1.write-id` and check that the read value correspond to the written value (read-mapping).
   4. Add an edge from a read `r1` to a write `w2` if `r1.write-id == w2.prev-write-id`.
-  5. Add an edge from an event `e1` to an event `e2` if `e2` starts after `e1's` confirmation in any client's timeline.
+  5. Add an edge from an event `e1` to an event `e2` if `e2` starts after `e1` finishes in any client's timeline.
   6. Any topological sort of the graph gives a linearization of the history.
 
 Jepsen runs on a single control node using multithreading to simulate multiple clients. So we can use its time as absolute time. Edges `2`, `3`, `5` are co-directed with time because they represent causal relations. With linearizability a read is required to return at least the most recent confirmed write known on the moment the read started, it also implies that `4` is co-directed with time so we can check the absence of cycles as time flows (online):
@@ -107,7 +110,7 @@ but ffda150b-fb28-44d3-87e4-f922fdd8e807 is b16e7d06-5786-4139-8420-9ee6ef6515a5
 
 so the read should have returned at least b16e7d06-5786-4139-8420-9ee6ef6515a5.
 
-## Differences between this and vanilla Jepsen setups
+## Other features
 
 This setup has a couple of new features compared to regular structure aimed to increase the probability of finding a violation.
 
