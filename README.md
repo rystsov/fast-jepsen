@@ -57,8 +57,8 @@ Jepsen runs on a single control node using multithreading to simulate multiple c
   4. On observation of a value (end of a read or a write):
       - if the corresponding write is already part of the chain:
         - if the observation is a write confirmation: does nothing
-        - if it's a read: check that the observed value is or comes after the tail of the chain known at the moment the operation started
-      - verify that the CAS-dependencies of the observed value lead to the current tail of the chain and add them making the observed value a new tail
+        - if it's a read: check that the observed value is or comes after the head of the chain known at the moment the operation started
+      - verify that the CAS-dependencies of the observed value lead to the current head of the chain and add them making the observed value a new head
 
 If the history is sorted, then the algorithm takes linear time and can work online otherwise it's O(n ln n).
 
@@ -71,12 +71,15 @@ If the history is sorted, then the algorithm takes linear time and can work onli
 
 If Jepsen observes a violation of consistency, you'll see something like
 
+       {:timeline {:valid? true},
+        :linear {:valid? true, :some-details nil},
+        :valid? true},
        "key1"
        {:timeline {:valid? true},
         :linear
         {:valid? false,
          :some-details
-         "Read read at 35287712100 '20226f4b-2fcb-448f-9efe-20dfeb993f88' write-id but a fresher '63c31089-1c2a-4f30-b0ab-840049a75ecd -> fe7fc6e6-085e-4013-b8da-1882bcc773a0 -> e54d712a-b533-4af0-952b-8d8395aea839 -> 89de57a9-b2c8-4e81-b5aa-ffe6ab82b240 -> 0ffa3246-3cad-4c81-b2d7-b39e298ffa7a -> 478b5ef4-13be-44ab-80ba-c125e9a70c4e -> 0e31c898-15c0-4d95-8a34-728be94192b6 -> 20226f4b-2fcb-448f-9efe-20dfeb993f88' write-id chain was already known at 14329830400 before the read started (35184932600)"},
+         "Read read at 35220694031 'ffda150b-fb28-44d3-87e4-f922fdd8e807' write-id but a fresher 'b16e7d06-5786-4139-8420-9ee6ef6515a5 -> f0045d0e-ff02-4076-80cf-c8d8bd5949b7 -> 26ecb0d6-6ac3-4a7a-870b-4f55314522f4 -> ffda150b-fb28-44d3-87e4-f922fdd8e807' write-id chain was already known at 10173375459 before the read started (35208254096)"},
         :valid? false}},
       :failures ["key1"]},
      :valid? false}
@@ -85,22 +88,18 @@ If Jepsen observes a violation of consistency, you'll see something like
 
 In this case we have the following situation:
 
-    14329830400 - sombody saw 63c31089-1c2a-4f30-b0ab-840049a75ecd
-    35184932600 - read started
-    35287712100 - read returned 20226f4b-2fcb-448f-9efe-20dfeb993f88
+    10173375459 - sombody saw b16e7d06-5786-4139-8420-9ee6ef6515a5
+    35208254096 - read started
+    35220694031 - read returned ffda150b-fb28-44d3-87e4-f922fdd8e807
 
-but 20226f4b-2fcb-448f-9efe-20dfeb993f88 is 63c31089-1c2a-4f30-b0ab-840049a75ecd's dependancy:
+but ffda150b-fb28-44d3-87e4-f922fdd8e807 is b16e7d06-5786-4139-8420-9ee6ef6515a5's dependancy:
 
-    63c31089-1c2a-4f30-b0ab-840049a75ecd -> 
-    fe7fc6e6-085e-4013-b8da-1882bcc773a0 -> 
-    e54d712a-b533-4af0-952b-8d8395aea839 -> 
-    89de57a9-b2c8-4e81-b5aa-ffe6ab82b240 -> 
-    0ffa3246-3cad-4c81-b2d7-b39e298ffa7a -> 
-    478b5ef4-13be-44ab-80ba-c125e9a70c4e ->
-    0e31c898-15c0-4d95-8a34-728be94192b6 -> 
-    20226f4b-2fcb-448f-9efe-20dfeb993f88
+    b16e7d06-5786-4139-8420-9ee6ef6515a5 ->
+    f0045d0e-ff02-4076-80cf-c8d8bd5949b7 ->
+    26ecb0d6-6ac3-4a7a-870b-4f55314522f4 ->
+    ffda150b-fb28-44d3-87e4-f922fdd8e807
 
-so the read should have returned at least 63c31089-1c2a-4f30-b0ab-840049a75ecd.
+so the read should have returned at least b16e7d06-5786-4139-8420-9ee6ef6515a5.
 
 ## Differences between this and vanilla Jepsen setups
 

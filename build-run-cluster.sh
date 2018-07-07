@@ -11,4 +11,4 @@ popd
 cp keys/data/id_rsa db/
 cp keys/data/id_rsa.pub db/
 
-docker-compose -p consistency-mongodb up
+docker-compose -p fastjepsen up
