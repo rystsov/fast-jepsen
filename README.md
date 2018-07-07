@@ -6,13 +6,18 @@ Jepsen is a tool to test consistency guarantees of distributed systems. It perfo
 
 The problem of checking linearizability is NP-complete, and the process of the checking belongs to the O(n!) class meaning that it takes an enormous amount of resources (time, memory) to validate long histories:
 
+  * "Jepsen’s linearizability checker, Knossos, is not fast enough to reliably verify long histories," from the [CockroachDB analyze](https://jepsen.io/analyses/cockroachdb-beta-20160829).
+  * "Because checking long histories for linearizability is expensive, we’ll break up our test into operations on different documents, and check each one independently—only working with a given document for ~60 seconds", from the [RethinkDB analyze](https://jepsen.io/analyses/rethinkdb-2-2-3-reconfiguration).
   * ["OOM: If we run Jepsen for a long time, it may cause OOM easily."](https://medium.com/@siddontang/use-chaos-to-test-the-distributed-system-linearizability-4e0e778dfc7d)
-  * ["Knossos times out on benchmark 7 and 99, and runs out of memory on 40, 57, 85 and 97"](https://github.com/ahorn/linearizability-checker)
-  * I couldn’t get Knossos to check my histories. It seemed to work okay on histories with a couple concurrent clients, with about a hundred history events in total, but in my tests, I had tens of clients generating histories of thousands of events. From [Testing Distributed Systems for Linearizability](https://www.anishathalye.com/2017/06/04/testing-distributed-systems-for-linearizability/).
+  * "I couldn’t get Knossos to check my histories. It seemed to work okay on histories with a couple concurrent clients, with about a hundred history events in total, but in my tests, I had tens of clients generating histories of thousands of events", from [Testing Distributed Systems for Linearizability](https://www.anishathalye.com/2017/06/04/testing-distributed-systems-for-linearizability/).
 
 TSM paper notices that additional restrictions shift the problem from the NP to the O(n ln n) space and even further to O(n).
 
-This project successfully implements the TSM-inspired checker, integrates it with Jepsen and reproduces the MongoDB 2.6.7 result to validate that new checker is able to find violations.
+This project successfully implements the TSM-inspired checker, integrates it with Jepsen and reproduces the MongoDB 2.6.7 result to validate that new checker can find violations.
+
+## Benefits
+
+Reduced complexity allows to test systems for hours instead of minutes and check consistency claims during the long-running operations such as reconfiguration, compaction/vacuuming, splitting a single replica set into several shards, live update, taking backups and others.
 
 ## Restrictions?
 
@@ -26,7 +31,7 @@ TSM focuses on testing registers supporting update and read operations. Also, it
 
 If a system is expected to have concurrent writes such as a collaboration of multiple users or single user interacting with the system via multiple devices and we don't want to make assumptions on the meaning of the updates, then the system should support CAS.
 
-In multi-threaded applications, we have a choice to use pessimistic concurrency (locking) or optimistic concurrency (compare-and-set) but in a distributed environment [locks don't work and require the underlying storage to support fencing](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html), so we need CAS even to use pessimistic concurrency.
+In multi-threaded applications, we have a choice to use pessimistic concurrency (locking) or optimistic concurrency (compare-and-set), but in a distributed environment [locks don't work and require the underlying storage to support fencing](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html), so we need CAS in both cases.
 
 ## Checker
 
@@ -120,8 +125,8 @@ With this symmetrical topology and isolation of any node will affect at least on
 
 Instead of picking a node randomly nemesis asks MongoDB who's the current primary and isolates it to maximize the impact (see isolate.clj).
 
-### Version oracle
+### Currect value predictor
 
 Usually, Jepsen operates on a small set of possible values and to perform CAS it randomly select value to use it as previous value in a predicate. If the set has three elements, then there is 33% chance of guessing it right.
 
-The TSM algorithm requires each update to be unique to map every read with a write. The chance of guessing a right value picking from a countable set is zero. So a particular object (see oracle.clj) asks clients for last observed and written value and helps them to guess right write-id (version) to use in CAS.
+The TSM algorithm requires each update to be unique to map every read to a write event. The chance of guessing a right value picking randomly from a countable set is zero. So clients pass observed values to an oracle (see oracle.clj) and then use it to guess a current write-id (version).
