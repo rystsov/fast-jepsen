@@ -1,6 +1,6 @@
 # Linear linearizability check with Jepsen
 
-I was playing with an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper and created this proof of concent. It's a checker for Jepsen validating linearizability of key/value storages supporting CAS in O(n).
+I was playing with an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper and created this proof of concept. It's a checker for Jepsen validating linearizability of key/value storages supporting CAS in O(n).
 
 [Jepsen](http://jepsen.io/) is a tool for testing consistency guarantees of distributed systems. It performs operations, injects faults, collects history and then tries to see if the history is linearizable.
 
@@ -99,11 +99,11 @@ If Jepsen observes a violation of consistency, you'll see something like
 
 In this case we have the following situation:
 
-    10173375459 - sombody saw b16e7d06-5786-4139-8420-9ee6ef6515a5
+    10173375459 - somebody saw b16e7d06-5786-4139-8420-9ee6ef6515a5
     35208254096 - read started
     35220694031 - read returned ffda150b-fb28-44d3-87e4-f922fdd8e807
 
-but ffda150b-fb28-44d3-87e4-f922fdd8e807 is b16e7d06-5786-4139-8420-9ee6ef6515a5's dependancy:
+but ffda150b-fb28-44d3-87e4-f922fdd8e807 is b16e7d06-5786-4139-8420-9ee6ef6515a5's dependency:
 
     b16e7d06-5786-4139-8420-9ee6ef6515a5 ->
     f0045d0e-ff02-4076-80cf-c8d8bd5949b7 ->
@@ -130,7 +130,7 @@ With this symmetrical topology and isolation of any node will affect at least on
 
 Instead of picking a node randomly nemesis asks MongoDB who's the current primary and isolates it to maximize the impact (see isolate.clj).
 
-### Currect value predictor
+### Current value predictor
 
 Usually, Jepsen operates on a small set of possible values and to perform CAS it randomly select value to use it as previous value in a predicate. If the set has three elements, then there is 33% chance of guessing it right.
 
