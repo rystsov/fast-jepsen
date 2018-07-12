@@ -1,21 +1,21 @@
-# Jepsen and fast linearizability checker
+# Linear linearizability check with Jepsen
 
-This project applies an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper to [Jepsen](http://jepsen.io/).
+I was playing with an idea from the ["Testing shared memories"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.3013&rep=rep1&type=pdf) paper and created this proof of concent. It's a checker for Jepsen validating linearizability of key/value storages supporting CAS in O(n).
 
-Jepsen is a tool to test consistency guarantees of distributed systems. It performs operations, injects faults, collects history and then tries to check if the history is linearizable.
+[Jepsen](http://jepsen.io/) is a tool for testing consistency guarantees of distributed systems. It performs operations, injects faults, collects history and then tries to see if the history is linearizable.
 
-The problem of checking linearizability is NP-complete, and the process of the checking belongs to the O(n!) class meaning that it takes an enormous amount of resources (time, memory) to validate long histories:
+In general, the problem of testing linearizability is NP-complete, and the process of the checking belongs to the O(n!) class meaning that it takes an enormous amount of resources (time, memory) to validate long histories:
 
   * "Jepsen’s linearizability checker, Knossos, is not fast enough to reliably verify long histories," from the [CockroachDB analysis](https://jepsen.io/analyses/cockroachdb-beta-20160829).
   * "Because checking long histories for linearizability is expensive, we’ll break up our test into operations on different documents, and check each one independently—only working with a given document for ~60 seconds", from the [RethinkDB analysis](https://jepsen.io/analyses/rethinkdb-2-2-3-reconfiguration).
 
-"Testing shared memories" adds restrictions to shift the problem from the NP to O(n ln n) and O(n) spaces.
+"Testing shared memories" paper steps away from the general case but stays in the realm of the realm of practical application and shifts the problem from the NP to O(n) space.
 
-Reduced complexity allows to test systems for hours and check consistency of the long-running operations such as reconfiguration, compaction/vacuuming, splitting a single replica set into several shards, live update, taking backups, etc.
+**Reduced complexity allows to test systems for hours and check the consistency of the long-running operations such as reconfiguration, compaction/vacuuming, splitting a single replica set into several shards, live update, taking backups, etc.**
 
 This project successfully implements a checker from the paper, integrates it with Jepsen and reproduces the MongoDB 2.6.7 analysis to validate that new checker can find violations.
 
-## Restrictions?
+## What's the particular case?
 
 The paper focuses on testing registers supporting update and read operations. Also, it requires that all the updates are performed using compare-and-set over a record's version (write-id). Formally:
 
@@ -23,7 +23,7 @@ The paper focuses on testing registers supporting update and read operations. Al
  2. Each version of a record must have unique write-id.
  3. Each update has a precondition on the current value of write-id.
 
-### Isn't it too much to require CAS for every update operation?
+### Isn't it too unique?
 
 If a system is expected to have concurrent writes such as a collaboration of multiple users or single user interacting with the system via multiple devices and we don't want to make assumptions on the meaning of the updates, then the system should support CAS.
 
@@ -60,7 +60,7 @@ One of the algorithms from "Testing shared memories" (Theorem 4.13) is:
 
 Jepsen runs on a single control node using multithreading to simulate multiple clients. So we can use its time as absolute time. Edges `2`, `3`, `5` are co-directed with time because they represent causal relations. With linearizability a read is required to return at least the most recent confirmed write known on the moment the read started, it also implies that `4` is co-directed with time so we can check the absence of cycles as time flows (online):
   
-  1. Sort all the events by time.
+  1. Sort all the events (history) by time.
   2. The set of all observed writes and their dependencies (in a CAS sense) must form a chain leading to the initial value. On start, the chain consists only the initial value.
   3. Process events one-by-one.
   4. On observation of a value (end of a read or a write):
@@ -69,7 +69,9 @@ Jepsen runs on a single control node using multithreading to simulate multiple c
         - if it's a read: check that the observed value is or comes after the head of the chain known at the moment the operation started
       - verify that the CAS-dependencies of the observed value lead to the current head of the chain and add them making the observed value a new head
 
-If the history is sorted, then the algorithm takes linear time and can work online otherwise it's O(n ln n).
+History is a zip of thread-histories. Each thread-history is sorted so if we group history by thread id and do merge sort then we'll get sorted history in linear time because the number of threads is small and independent from the length of the history (it's a constant, see `:concurrency` parameter in Jepsen's configuration).
+
+All the other steps process each event only once so overall the process of checking linearizability takes linear time of the length of the history.
 
 ## How to run?
 

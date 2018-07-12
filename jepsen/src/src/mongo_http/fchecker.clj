@@ -108,13 +108,66 @@
     
   (swap! state update-in [:pending-reads] dissoc process))
 
+(defn sort-history
+"History is a zip of process-histories. Each process-history is sorted so if we group history by process id and do merge sort then we'll get sorted history. But there may be a lot of processes so there is no guarantee for that kind of sorting be more efficient than regular sorting. Fortunately each process maps to a thread and by definition a thread can process only one process at a time so if we group by thread we still get sorted thread-histories and the amount of thread-histories is limited by (:concurrency test) which is low.
+
+So instead of using O(H ln H) sorting we can use O(H ln C) version where 'H' is the lenght of history and 'C' is the number of clients. Since concurrency is constant then sorting becomes linear."
+  [test history]
+  (let [history (->> history
+                      (filter #(or (= :read (:f %)) (= :write (:f %))))
+                      (filter #(or (= :invoke (:type %)) (= :ok (:type %)))))
+        thread-histories (atom {})
+        lin-history (atom [])
+        last-time (atom nil)]
+    
+    (doseq [event history]
+      (let [thread (mod (:process event) (:concurrency test))]
+        (swap! thread-histories assoc thread (conj (get @thread-histories thread [])
+                                                  event))))
+    
+    (doseq [thread (keys @thread-histories)]
+      (let [queue (atom clojure.lang.PersistentQueue/EMPTY)]
+        (doseq [event (get @thread-histories thread)]
+          (swap! queue conj event))
+        (swap! thread-histories assoc thread @queue)))
+    
+    (loop []
+      (let [min-time (atom nil)
+            min-thread (atom nil)]
+        (doseq [thread (keys @thread-histories)]
+          (let [head (:time (peek (get @thread-histories thread)))]
+            (when (or (nil? @min-time) (< head @min-time))
+              (reset! min-time head)
+              (reset! min-thread thread))))
+
+        (let [thread-history (get @thread-histories @min-thread)]
+          (swap! lin-history conj (peek thread-history))
+          (if (< 1 (count thread-history))
+            (swap! thread-histories assoc @min-thread (pop thread-history))
+            (swap! thread-histories dissoc @min-thread)))
+
+        (if (< 0 (count @thread-histories))
+          (recur)
+          nil)))
+    
+    (doseq [event @lin-history]
+      (when (nil? @last-time)
+        (reset! last-time (:time event)))
+      (when (< (:time event) @last-time)
+        (throw (Exception. (str "last-time: " @last-time " current: " (:time event)))))
+      (reset! last-time (:time event)))
+    
+    @lin-history))
+
 (defn fchecker [write-id value]
   (reify jepsen.checker/Checker
     (check [this test model history opts]
+      
+
       (let [history (->> history
                          (filter #(or (= :read (:f %)) (= :write (:f %))))
                          (filter #(or (= :invoke (:type %)) (= :ok (:type %))))
-                         (sort-by #(:time %)))
+                         (sort-history test))
             state (create-state write-id value)]
         
         (loop [history history]
