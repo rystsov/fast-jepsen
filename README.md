@@ -23,7 +23,7 @@ The paper focuses on testing registers supporting update and read operations. Al
  2. Each version of a record must have unique write-id.
  3. Each update has a precondition on the current value of write-id.
 
-### Isn't it too unique?
+### Aren't the conditions too restrictive?
 
 If a system is expected to have concurrent writes such as a collaboration of multiple users or single user interacting with the system via multiple devices and we don't want to make assumptions on the meaning of the updates, then the system should support CAS.
 
