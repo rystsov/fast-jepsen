@@ -42,10 +42,13 @@
 
           (or (not= (:write-id value) zero-write-id)
               (not= (:value value) (int 0)))
-              (db/overwrite endpoint key zero-write-id 0)))))
-
-  (with-redefs [jepsen.store/start-logging! start-logging!]
-    (let [config {:concurrency 12
-                  :timelimit (Integer/parseInt timelimit)
-                  }]
-      (jepsen.core/run! (mongo-http.harness/basic-test config)))))
+              (db/overwrite endpoint key zero-write-id 0))))
+    (with-redefs [jepsen.store/start-logging! start-logging!]
+      (let [config {:endpoint endpoint
+                    :keys ["key1"]
+                    :num-of-writers 1
+                    :num-of-readers 2
+                    :regions (:regions topology)
+                    :timelimit (Integer/parseInt timelimit)
+                    }]
+        (jepsen.core/run! (mongo-http.harness/basic-test config))))))

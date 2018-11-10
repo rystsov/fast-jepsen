@@ -16,6 +16,13 @@ function connect(connectionString) {
     });
 }
 
+class PreconditionError extends Error {
+    constructor(...args) {
+        super(...args)
+        Error.captureStackTrace(this, PreconditionError)
+    }
+}
+
 class MongoKV {
     constructor(host, port, userName, pwd) {
         this.DB_NAME = "lily";
@@ -103,7 +110,7 @@ class MongoKV {
             );
 
             if (status.modifiedCount != 1) {
-                throw new Error(`Precondition failed: status.modifiedCount (=${status.modifiedCount}) != 1`);
+                throw new PreconditionError(`Precondition failed: status.modifiedCount (=${status.modifiedCount}) != 1`);
             }
         } catch (e) {
             this.close();
@@ -195,3 +202,4 @@ class MongoKV {
 }
 
 exports.MongoKV = MongoKV;
+exports.PreconditionError = PreconditionError;

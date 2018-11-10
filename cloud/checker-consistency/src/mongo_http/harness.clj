@@ -47,10 +47,14 @@
                         (id-oracle/observe-write-id oracle key (:write-id op))
                         (dispatch/schedule-write dispatcher key (:endpoint op) (+ 1 value))
                         (assoc op :type :ok))
-                 (catch Exception e
-                   (do
-                     (dispatch/schedule-write dispatcher key (:endpoint op) (+ 1 value))
-                     (throw e))))))))
+
+                    (catch Exception e
+                      (do
+                        (dispatch/schedule-write dispatcher key (:endpoint op) (+ 1 value))
+
+                        (if (.contains (.getMessage e) "PRECONDITION-ERROR")
+                          (assoc op :type :fail :message "wrong prev-write-id")
+                          (throw e)))))))))
 
 (defn nemesis []
   (->> (gen/once (gen/seq (repeat {:type :info})))
@@ -59,12 +63,12 @@
 (defn basic-test
   "Returns a Jepsen Test Case"
   [config]
-  (let [endpoint "127.0.0.1:13452"
-        num-of-writers 1
-        num-of-readers 1
+  (let [endpoint (:endpoint config)
+        num-of-writers (:num-of-writers config)
+        num-of-readers (:num-of-readers config)
         thread-per-key (+ num-of-readers num-of-writers)
-        keys ["key1"]
-        regions ["West US 2"]
+        keys (:keys config)
+        regions (:regions config)
         oracle (id-oracle/create-oracle "00000000-0000-0000-0000-000000000000")
         dispatcher (dispatch/create-dispatcher oracle endpoint regions)]
     { :name        "memdb"
@@ -73,7 +77,7 @@
       :model       (model/cas-register 0)
       :net         nil
       :generator   (->> (independent/concurrent-generator
-                          2
+                          thread-per-key
                           keys
                           (fn [key] (dispatch/generator dispatcher key num-of-writers num-of-readers)))
                         (gen/nemesis (nemesis))

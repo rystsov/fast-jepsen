@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const PreconditionError = require("./MongoKV").PreconditionError;
+
 class RemoteTesterServer {
     constructor(kv, port) {
         this.kv = kv;
@@ -94,10 +96,14 @@ class RemoteTesterServer {
                     "value": value
                 });
             } catch (e) {
-                console.log(e);
-                res.status(500).json({
-                    "message": e.message
-                });
+                if (e instanceof PreconditionError) {
+                    res.sendStatus(409);
+                } else {
+                    console.log(e);
+                    res.status(500).json({
+                        "message": e.message
+                    });
+                }
             }
         })();
     }

@@ -1,7 +1,7 @@
 (ns mongo-http.db
   "API to work with MongoDB via an exposed HTTP interface"
   (:use clojure.tools.logging)
-  (:require 
+  (:require
     [clojure.tools.logging :refer [debug info warn]]
     [clj-http.client :as client]
     [clojure.data.json :as json]))
@@ -65,10 +65,17 @@
                      :content-type :json
                      :socket-timeout TIMEOUT
                      :conn-timeout TIMEOUT
-                     :accept :json})]
-    (if (= (:status response) 200)
-      (:body response)
-      (throw (Exception. (str "Got" (:status response) " status code :( expected 200"))))))
+                     :accept :json
+                     :throw-exceptions false})]
+    (cond
+      (= 200 (:status response))
+        (:body response)
+
+      (= 409 (:status response))
+        (throw (Exception. "PRECONDITION-ERROR"))
+
+      :else
+        (throw (Exception. (str "Got" (:status response) " status code :( expected 200"))))))
 
 (defn read [endpoint region key]
   (let [response (client/get 
