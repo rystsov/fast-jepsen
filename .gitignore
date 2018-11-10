@@ -5,3 +5,10 @@ jepsen/id_rsa
 jepsen/id_rsa.pub
 keys/data
 jepsen/store
+
+checker-consistency/target
+
+webkv-mongodb/node_modules
+
+checker-consistency/.idea/
+checker-consistency/clojure-mongo.iml
