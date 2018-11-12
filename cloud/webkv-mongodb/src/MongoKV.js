@@ -24,7 +24,7 @@ class PreconditionError extends Error {
 }
 
 class MongoKV {
-    constructor(host, port, userName, pwd) {
+    constructor(host, port, userName, pwd, poolSize) {
         this.DB_NAME = "lily";
         this.COLLECTION_NAME = "storage";
         
@@ -35,93 +35,140 @@ class MongoKV {
         
         this.regionByHost = null;
         this.primary = null;
-        this.conn = null;
+        
+        this.pool = [];
+        for (var i=0;i<poolSize;i++) {
+            this.pool.push({
+                conn: null
+            });
+        }
+    }
+
+    async acquireConn() {
+        let connHolder = { conn: null };
+        
+        if (this.pool.length > 0) {
+            connHolder = this.pool.shift();
+        }
+
+        if (connHolder.conn == null) {
+            const conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=20000&socketTimeoutMS=20000`);
+            const info = await conn.db("admin").command({ismaster: 1});
+            this.primary = this.regionByHost.get(info.primary);
+            return conn;
+        }
+
+        return connHolder.conn;
+    }
+
+    releaseConn(conn) {
+        this.pool.push({conn: conn});
+    }
+
+    recycleConn(conn) {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch(e) {}
+        }
+        this.pool.push({conn: null});
     }
 
     async topology() {
+        let conn = null;
+        let info = null;
         try {
-            const conn = await this.connect();
-            const info = await conn.db("admin").command({ismaster: 1});
-            this.primary = this.regionByHost.get(info.primary);
-            return {
-                primary: this.primary,
-                regions: Array.from(this.regionByHost.values())
-            }
+            conn = await this.acquireConn();
+            info = await conn.db("admin").command({ismaster: 1});
+            this.releaseConn(conn);
         } catch(e) {
-            this.close();
+            this.recycleConn(conn);
             throw e;
+        }
+        this.primary = this.regionByHost.get(info.primary);
+        return {
+            primary: this.primary,
+            regions: Array.from(this.regionByHost.values())
         }
     }
 
     async create(key, writeID, val) {
+        let conn = null;
+        let status = null;
         try {
-            const conn = await this.connect();
+            conn = await this.acquireConn();
             const db = conn.db(this.DB_NAME);
             const collection = db.collection(this.COLLECTION_NAME);
             
-            var status = await collection.insertOne(
+            status = await collection.insertOne(
                 { "_id": key,
                   "writeID": writeID,
                   "val": val
                 },
                 { writeConcern: { w: "majority" } }
             );
-
-            if (status.insertedCount != 1) {
-                throw new Error(`status.insertedCount (=${status.insertedCount}) != 1`);
-            }
+            this.releaseConn(conn);
         } catch (e) {
-            this.close();
+            this.recycleConn(conn);
             throw e;
+        }
+        if (status.insertedCount != 1) {
+            throw new Error(`status.insertedCount (=${status.insertedCount}) != 1`);
         }
     }
 
     async overwrite(key, writeID, val) {
+        let conn = null;
+        let status = null;
         try {
-            const client = await this.connect();
-            const db = client.db(this.DB_NAME);
+            conn = await this.acquireConn();
+            const db = conn.db(this.DB_NAME);
             const collection = db.collection(this.COLLECTION_NAME);
             
-            var status = await collection.updateOne(
+            status = await collection.updateOne(
                 { "_id": key},
                 { $set: {"writeID": writeID, "val": val}},
                 { writeConcern: { w: "majority" } }
             );
-
-            if (status.modifiedCount != 1) {
-                throw new Error(`status.modifiedCount (=${status.modifiedCount}) != 1`);
-            }
+            this.releaseConn(conn);
         } catch (e) {
-            this.close();
+            this.recycleConn(conn);
             throw e;
+        }
+        if (status.modifiedCount != 1) {
+            throw new Error(`status.modifiedCount (=${status.modifiedCount}) != 1`);
         }
     }
 
     async cas(key, prevWriteID, writeID, val) {
+        let conn = null;
+        let status = null;
         try {
-            const client = await this.connect();
-            const db = client.db(this.DB_NAME);
+            conn = await this.acquireConn();
+            const db = conn.db(this.DB_NAME);
             const collection = db.collection(this.COLLECTION_NAME);
             
-            var status = await collection.updateOne(
+            status = await collection.updateOne(
                 {"_id": key, "writeID": prevWriteID },
                 {$set: {"val": val, "writeID": writeID}},
                 { writeConcern: { w: "majority" } }
             );
-
-            if (status.modifiedCount != 1) {
-                throw new PreconditionError(`Precondition failed: status.modifiedCount (=${status.modifiedCount}) != 1`);
-            }
+            this.releaseConn(conn);
         } catch (e) {
-            this.close();
+            this.recycleConn(conn);
             throw e;
+        }
+        if (status.modifiedCount != 1) {
+            throw new PreconditionError(`Precondition failed: status.modifiedCount (=${status.modifiedCount}) != 1`);
         }
     }
 
     async read(region, key) {
+        let conn = null;
+        let data = null
         try {
-            const client = await this.connect();
-            const db = client.db(this.DB_NAME);
+            conn = await this.acquireConn();
+            const db = conn.db(this.DB_NAME);
             const collection = db.collection(this.COLLECTION_NAME);
 
             // for some reason only "local" (out of linearizable, majority, available and local) is available
@@ -132,24 +179,25 @@ class MongoKV {
                 readPreference = new ReadPreference(ReadPreference.SECONDARY, [{"region": region}]);
             }
             
-            const data = await collection.find(
+            data = await collection.find(
                 { "_id": key},
                 { readConcern: { level: "local" },
                   readPreference: readPreference
                 }
             ).toArray();
 
-            if (data.length==0) {
-                return null;
-            } else {
-                return {
-                    "value": data[0].val,
-                    "writeID": data[0].writeID
-                };
-            }
+            this.releaseConn(conn);
         } catch (e) {
-            this.close();
+            this.recycleConn(conn);
             throw e;
+        }
+        if (data.length==0) {
+            return null;
+        } else {
+            return {
+                "value": data[0].val,
+                "writeID": data[0].writeID
+            };
         }
     }
 
@@ -181,22 +229,13 @@ class MongoKV {
         this.regionByHost = regionByHost;
     }
 
-    async connect() {
-        if (this.conn == null) {
-            const conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=20000&socketTimeoutMS=20000`);
-            const info = await conn.db("admin").command({ismaster: 1});
-            this.conn = conn;
-            this.primary = this.regionByHost.get(info.primary);
-        }
-
-        return this.conn;
-    }
-
     close() {
-        if (this.conn != null) {
-            const conn = this.conn;
-            this.conn = null;
-            try { conn.close(); } catch(e) { }
+        for(let connHolder of this.pool) {
+            if (connHolder.conn != null) {
+                try {
+                    connHolder.close();
+                } catch(e) {}
+            }
         }
     }
 }
