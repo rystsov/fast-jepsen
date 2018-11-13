@@ -7,3 +7,5 @@ java -jar checker-consistency\target\uberjar\clojure-mongo-0.1.0-SNAPSHOT-standa
 lein uberjar
 
 java -jar target\uberjar\clojure-mongo-0.1.0-SNAPSHOT-standalone.jar 300
+
+java -jar target/uberjar/clojure-mongo-0.1.0-SNAPSHOT-standalone.jar 300

@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const ReadPreference = require('mongodb').ReadPreference;
+const MongoError = require('mongodb').MongoError;
 
 function connect(connectionString) {
     return new Promise((respond, reject) => {
@@ -16,10 +17,58 @@ function connect(connectionString) {
     });
 }
 
+async function loadTopology(userName, pwd, host, port) {
+    let conn = null;
+    let replicas = null;
+    let primary = null;
+    try {
+        conn = await connect(`mongodb://${userName}:${pwd}@${host}:${port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=30000&socketTimeoutMS=30000`);
+        const info = await conn.db("admin").command({ismaster: 1});
+        primary = info.primary;
+        replicas = info.hosts;
+    } finally {
+        try {
+            conn.close();
+        } catch(e) {}
+    }
+
+    const regionByHost = new Map();
+    for (let replica of replicas) {
+        try {
+            conn = await connect(`mongodb://${userName}:${pwd}@${replica}/?ssl=true&connectTimeoutMS=30000&socketTimeoutMS=30000`);
+            const info = await conn.db("admin").command({ismaster: 1});
+            regionByHost.set(replica, info.tags.region);
+        } finally {
+            try {
+                conn.close();
+            } catch(e) {}
+        }
+    }
+    
+    return {
+        regions: Array.from(regionByHost.values()),
+        primary: regionByHost.get(primary)
+    };
+}
+
 class PreconditionError extends Error {
     constructor(...args) {
         super(...args)
         Error.captureStackTrace(this, PreconditionError)
+    }
+}
+
+class NotPrimaryError extends Error {
+    constructor(...args) {
+        super(...args)
+        Error.captureStackTrace(this, NotSecondaryError)
+    }
+}
+
+class NotSecondaryError extends Error {
+    constructor(...args) {
+        super(...args)
+        Error.captureStackTrace(this, NotSecondaryError)
     }
 }
 
@@ -33,8 +82,7 @@ class MongoKV {
         this.userName = userName;
         this.pwd = pwd;
         
-        this.regionByHost = null;
-        this.primary = null;
+        this.regions = null;
         
         this.pool = [];
         for (var i=0;i<poolSize;i++) {
@@ -53,8 +101,6 @@ class MongoKV {
 
         if (connHolder.conn == null) {
             const conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=30000&socketTimeoutMS=30000`);
-            const info = await conn.db("admin").command({ismaster: 1});
-            this.primary = this.regionByHost.get(info.primary);
             return conn;
         }
 
@@ -75,21 +121,9 @@ class MongoKV {
     }
 
     async topology() {
-        let conn = null;
-        let info = null;
-        try {
-            conn = await this.acquireConn();
-            info = await conn.db("admin").command({ismaster: 1});
-            this.releaseConn(conn);
-        } catch(e) {
-            this.recycleConn(conn);
-            throw e;
-        }
-        this.primary = this.regionByHost.get(info.primary);
-        return {
-            primary: this.primary,
-            regions: Array.from(this.regionByHost.values())
-        }
+        const topology = await loadTopology(this.userName, this.pwd, this.host, this.port);
+        this.regions = topology.regions;
+        return topology;
     }
 
     async create(key, writeID, val) {
@@ -132,6 +166,12 @@ class MongoKV {
             );
             this.releaseConn(conn);
         } catch (e) {
+            if (e instanceof MongoError) {
+                if (e.code == 10107) {
+                    this.releaseConn(conn);
+                    throw new NotPrimaryError();
+                }
+            }
             this.recycleConn(conn);
             throw e;
         }
@@ -155,6 +195,12 @@ class MongoKV {
             );
             this.releaseConn(conn);
         } catch (e) {
+            if (e instanceof MongoError) {
+                if (e.code == 10107) {
+                    this.releaseConn(conn);
+                    throw new NotPrimaryError();
+                }
+            }
             this.recycleConn(conn);
             throw e;
         }
@@ -164,6 +210,10 @@ class MongoKV {
     }
 
     async read(region, key) {
+        if (region != null && !this.regions.includes(region)) {
+            throw new Error("Unknown region: " + region);
+        }
+        
         let conn = null;
         let data = null
         try {
@@ -172,8 +222,9 @@ class MongoKV {
             const collection = db.collection(this.COLLECTION_NAME);
 
             // for some reason only "local" (out of linearizable, majority, available and local) is available
+
             let readPreference = null;
-            if (this.primary == region) {
+            if (region == null) {
                 readPreference = ReadPreference.PRIMARY;
             } else {
                 readPreference = new ReadPreference(ReadPreference.SECONDARY, [{"region": region}]);
@@ -188,8 +239,16 @@ class MongoKV {
 
             this.releaseConn(conn);
         } catch (e) {
-            this.recycleConn(conn);
-            throw e;
+            if (e.message == "Cannot read property 'wireProtocolHandler' of null") {
+                // got this error because we're trying to read from primary
+                // thinking that's secondary, kinda expected exception
+                // so do not recycle
+                this.releaseConn(conn);
+                throw new NotSecondaryError();
+            } else {
+                this.recycleConn(conn);
+                throw e;
+            }
         }
         if (data.length==0) {
             return null;
@@ -202,31 +261,8 @@ class MongoKV {
     }
 
     async init() {
-        let conn = null;
-        let replicas = null;
-        try {
-            conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=30000&socketTimeoutMS=30000`);
-            const info = await conn.db("admin").command({ismaster: 1});
-            replicas = info.hosts;
-        } finally {
-            try {
-                conn.close();
-            } catch(e) {}
-        }
-
-        const regionByHost = new Map();
-        for (let replica of replicas) {
-            try {
-                conn = await connect(`mongodb://${this.userName}:${this.pwd}@${replica}/?ssl=true&connectTimeoutMS=30000&socketTimeoutMS=30000`);
-                const info = await conn.db("admin").command({ismaster: 1});
-                regionByHost.set(replica, info.tags.region);
-            } finally {
-                try {
-                    conn.close();
-                } catch(e) {}
-            }
-        }
-        this.regionByHost = regionByHost;
+        const topology = await loadTopology(this.userName, this.pwd, this.host, this.port);
+        this.regions = topology.regions;
     }
 
     close() {
@@ -242,3 +278,5 @@ class MongoKV {
 
 exports.MongoKV = MongoKV;
 exports.PreconditionError = PreconditionError;
+exports.NotSecondaryError = NotSecondaryError;
+exports.NotPrimaryError = NotPrimaryError;

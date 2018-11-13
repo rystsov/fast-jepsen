@@ -47,8 +47,8 @@
       (let [config {:endpoint endpoint
                     :keys ["key1"]
                     :num-of-writers 2
-                    :num-of-readers 4
-                    :regions (:regions topology)
+                    :num-of-readers 3
+                    :regions (conj (:regions topology) "null")
                     :timelimit (Integer/parseInt timelimit)
                     }]
         (jepsen.core/run! (mongo-http.harness/basic-test config))))))

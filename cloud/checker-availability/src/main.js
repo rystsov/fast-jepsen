@@ -210,8 +210,9 @@ class WriterReadersTest {
         threads.push(this.agg());
 
         for (let i=0;i<this.rank;i++) {
-            let key = "key" + i;
+            let key = "okey" + i;
             threads.push(this.startWriter(key));
+            threads.push(this.startReader("null", key));
             for(let region of this.regions) {
                 threads.push(this.startReader(region, key));
             }
@@ -225,7 +226,7 @@ class WriterReadersTest {
     async agg() {
         const started = time_us();
         let legend = "#legend: time|writes|write-errors";
-        let dims = ["writes", "err:writes"]
+        let dims = ["writes", "err:writes", "null", "err:null"]
         for (let region of this.regions) {
             legend += "|" + region + "|err in " + region;
             dims.push(region);
@@ -291,8 +292,11 @@ async function start() {
     const topology = await webkv.topology();
     console.log(topology);
 
-    let test = new WriterReadersTest(webkv, 3, 1000);
+    //console.info(await webkv.read("null", "key0"));
+    //console.info(await webkv.read(topology.regions[0], "key0"));
+    //console.info(await webkv.read(topology.regions[1], "key0"));
 
+    let test = new WriterReadersTest(webkv, 3, 1000);
     await test.run();
 }
 

@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const PreconditionError = require("./MongoKV").PreconditionError;
+const NotSecondaryError = require("./MongoKV").NotSecondaryError;
+const NotPrimaryError = require("./MongoKV").NotPrimaryError;
 
 class RemoteTesterServer {
     constructor(kv, port) {
@@ -75,7 +77,12 @@ class RemoteTesterServer {
                     "value": value
                 });
             } catch (e) {
-                console.log(e);
+                if (e instanceof NotPrimaryError) {
+                    // expected error, not log
+                } else {
+                    console.log("OVERWRITE");
+                    console.log(e);
+                }
                 res.status(500).json({
                     "message": e.message
                 });
@@ -99,7 +106,12 @@ class RemoteTesterServer {
                 if (e instanceof PreconditionError) {
                     res.sendStatus(409);
                 } else {
-                    console.log(e);
+                    if (e instanceof NotPrimaryError) {
+                        // expected error, not log
+                    } else {
+                        console.log("CAS");
+                        console.log(e);
+                    }
                     res.status(500).json({
                         "message": e.message
                     });
@@ -112,7 +124,10 @@ class RemoteTesterServer {
         (async () => {
             try {
                 const key = req.params.key;
-                const region = req.params.region;
+                let region = req.params.region;
+                if (region == "null") {
+                    region = null;
+                }
                 const read = await this.kv.read(region, key);
 
                 if (read == null) {
@@ -125,7 +140,13 @@ class RemoteTesterServer {
                     })
                 }
             } catch(e) {
-                console.log(e);
+                if (e instanceof NotSecondaryError) {
+                    // expected error, not log
+                } else {
+                    console.log("READ");
+                    console.log(e);
+                }
+
                 res.status(500).json({
                     "message": e.message
                 });
