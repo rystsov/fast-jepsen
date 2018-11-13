@@ -52,7 +52,7 @@ class MongoKV {
         }
 
         if (connHolder.conn == null) {
-            const conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=20000&socketTimeoutMS=20000`);
+            const conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=30000&socketTimeoutMS=30000`);
             const info = await conn.db("admin").command({ismaster: 1});
             this.primary = this.regionByHost.get(info.primary);
             return conn;
@@ -205,7 +205,7 @@ class MongoKV {
         let conn = null;
         let replicas = null;
         try {
-            conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=20000&socketTimeoutMS=20000`);
+            conn = await connect(`mongodb://${this.userName}:${this.pwd}@${this.host}:${this.port}/?ssl=true&replicaSet=globaldb&connectTimeoutMS=30000&socketTimeoutMS=30000`);
             const info = await conn.db("admin").command({ismaster: 1});
             replicas = info.hosts;
         } finally {
@@ -217,7 +217,7 @@ class MongoKV {
         const regionByHost = new Map();
         for (let replica of replicas) {
             try {
-                conn = await connect(`mongodb://${this.userName}:${this.pwd}@${replica}/?ssl=true&connectTimeoutMS=20000&socketTimeoutMS=20000`);
+                conn = await connect(`mongodb://${this.userName}:${this.pwd}@${replica}/?ssl=true&connectTimeoutMS=30000&socketTimeoutMS=30000`);
                 const info = await conn.db("admin").command({ismaster: 1});
                 regionByHost.set(replica, info.tags.region);
             } finally {

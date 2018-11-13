@@ -6,7 +6,7 @@
     [clj-http.client :as client]
     [clojure.data.json :as json]))
 
-(def TIMEOUT 10000) ;; in milliseconds
+(def TIMEOUT 30000) ;; in milliseconds
 
 (defn topology
   "Returns regions and primary region"

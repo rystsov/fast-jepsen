@@ -10,6 +10,8 @@
    - try read key "key1":
 
        curl -v 127.0.0.1:13452/read/West%20US%202/key1
+       curl -v 127.0.0.1:13452/read/South%20Central%20US/key1
+       
 
    - if exists - try overwrite:
 
