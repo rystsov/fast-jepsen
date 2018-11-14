@@ -8,6 +8,7 @@ jepsen/store
 
 cloud/webkv-mongodb/node_modules
 cloud/checker-availability/node_modules
+cloud/consistency-eternal/node_modules
 cloud/consistency-jepsen/target
 cloud/consistency-jepsen/store
 cloud/consistency-jepsen/.idea/
