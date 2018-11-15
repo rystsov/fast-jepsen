@@ -20,7 +20,11 @@ async function start() {
         }
     }
 
-    let test = new WriterReadersTest(new History("history.log"), oracle, webkv, keys, 1000);
+    const history = new History("history.log");
+
+    history.dump();
+
+    let test = new WriterReadersTest(history, oracle, webkv, keys, 1000);
     
     await test.run();
 }

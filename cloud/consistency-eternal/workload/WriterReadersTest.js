@@ -111,7 +111,7 @@ class WriterReadersTest {
                 const rb = [this.history.ts(), processId, "rb", key].join(",");
                 const record = await this.db.read(region, key);
                 this.history.record(rb);
-                this.history.record([this.history.ts(), processId, "re"].join(","));
+                this.history.record([this.history.ts(), processId, "re", record.writeID, record.value].join(","));
                 this.oracle.observe(key, record.writeID);
                 this.cps.inc(time_us(), region);
             } catch (e) {  

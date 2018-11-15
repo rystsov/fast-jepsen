@@ -13,3 +13,5 @@ cloud/consistency-jepsen/target
 cloud/consistency-jepsen/store
 cloud/consistency-jepsen/.idea/
 cloud/consistency-jepsen/clojure-mongo.iml
+
+cloud/consistency-eternal/history.log

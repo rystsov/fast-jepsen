@@ -18,7 +18,7 @@ class History {
         return this.clock;
     }
 
-    dump() {
+    async dump() {
         const file = await new Promise((resolve, reject) => {
             fs.open(this.path, 'a', (err, fd) => {
                 if (err) {
