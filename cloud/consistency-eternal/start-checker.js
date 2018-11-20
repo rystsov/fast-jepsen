@@ -5,16 +5,23 @@ class WrongHistoryError extends Error {
     }
 }
 
+class ConsistencyViolationError extends Error {
+    constructor(...args) {
+        super(...args)
+        Error.captureStackTrace(this, ConsistencyViolationError)
+    }
+}
+
 class RegisterChecker {
     constructor(writeID, value) {
         this.writesAcceptedMap   = new Map(); // next -> {time, prev, processId}
         this.writesAcceptedQueue = [];        // [{time, next}]
         this.writesPendingMap    = new Map(); // next -> {time, prev, processId}
         this.writesPendingQueue  = [];        // [{time, next}]
-        this.writesHead          = null;      // next
+        this.head                = null;      // next
         this.writesByProcess     = new Map(); // processId -> next
 
-        this.writesHead = writeID;
+        this.head = writeID;
         this.writesAcceptedMap.set(writeID, {time:0, prev:null, processId:null, value: value});
         this.writesAcceptedQueue.push({time:0, writeID: writeID});
 
@@ -30,9 +37,11 @@ class RegisterChecker {
         }
         this.time = time;
 
+        
+
         this.writesByProcess.set(processId, next);
-        this.writesAcceptedMap.set(next, {time:time, prev:prev, processId:processId, value: value});
-        this.writesAcceptedQueue.push({time:time, writeID: next});
+        this.writesPendingMap.set(next, {time:time, prev:prev, processId:processId, value: value});
+        this.writesPendingQueue.push({time:time, writeID: next});
     }
     endWrite(time, processId) {
         if (this.time >= time) {
@@ -44,7 +53,32 @@ class RegisterChecker {
             throw new WrongHistoryError(`Process ${processId} should start a write before finishing it`);
         }
 
-                
+        const head = this.writesByProcess.get(processId);
+        let curr = head;
+        const chain = [];
+        while (true) {
+            if (this.writesPendingMap.has(curr)) {
+                chain.push(curr);
+                curr = this.writesPendingMap.get(curr).prev;
+            } else {
+                if (curr == this.head) {
+                    chain.reverse();
+                    for (let writeID of chain) {
+                        let record = this.writesPendingMap.get(writeID);
+                        this.writesPendingMap.delete(writeID);
+                        this.writesAcceptedMap.set(writeID, record);
+                        this.writesAcceptedQueue.push({time:record.time, writeID: writeID});
+                    }
+                    this.head = head;
+                    break;
+                } else {
+                    chain.push(curr);
+                    chain.reverse();
+                    const path = chain.join(" -> ");
+                    throw new ConsistencyViolationError(`The observed chain: ${path} doesn't lead to the latest accepted value: ${this.head}`);
+                }
+            }
+        }
         
         // go backward and move chain from waiting to accepted
 
