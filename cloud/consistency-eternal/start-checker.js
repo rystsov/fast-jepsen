@@ -1,22 +1,55 @@
-class FictionHistoryError extends Error {
+class WrongHistoryError extends Error {
     constructor(...args) {
         super(...args)
-        Error.captureStackTrace(this, FictionHistoryError)
+        Error.captureStackTrace(this, WrongHistoryError)
     }
 }
 
 class RegisterChecker {
-    constructor() {
+    constructor(writeID, value) {
+        this.writesAcceptedMap   = new Map(); // next -> {time, prev, processId}
+        this.writesAcceptedQueue = [];        // [{time, next}]
+        this.writesPendingMap    = new Map(); // next -> {time, prev, processId}
+        this.writesPendingQueue  = [];        // [{time, next}]
+        this.writesHead          = null;      // next
+        this.writesByProcess     = new Map(); // processId -> next
 
+        this.writesHead = writeID;
+        this.writesAcceptedMap.set(writeID, {time:0, prev:null, processId:null, value: value});
+        this.writesAcceptedQueue.push({time:0, writeID: writeID});
+
+        this.readsPendingMap   = new Map(); // processId -> {time, head}
+        this.readsPendingQueue = new Map(); // [{time, processId}]
+
+        this.time = 0;
     }
 
     beginWrite(time, processId, prev, next, value) {
-        // put to waiting set
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        this.writesByProcess.set(processId, next);
+        this.writesAcceptedMap.set(next, {time:time, prev:prev, processId:processId, value: value});
+        this.writesAcceptedQueue.push({time:time, writeID: next});
     }
     endWrite(time, processId) {
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        if (!this.writesByProcess.has(processId)) {
+            throw new WrongHistoryError(`Process ${processId} should start a write before finishing it`);
+        }
+
+                
+        
         // go backward and move chain from waiting to accepted
 
-        // 
+        // how long to keep items in pending
+        // if a record is accepted => remove all records which started before the accepted started
         
         // going backwards from the begining of this write
         // an remove from waiting set, they 
@@ -57,7 +90,7 @@ class OnlineChecker {
 
     getLastKey(processId) {
         if (!this.lastKey.has(processId)) {
-            throw new FictionHistoryError("Can't end a write which wasn't started");
+            throw new WrongHistoryError("Can't end a write which wasn't started");
         }
         const key = this.lastKey.get(processId);
         this.lastKey.delete(processId);
