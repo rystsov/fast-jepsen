@@ -35,14 +35,28 @@ class RegisterChecker {
         if (this.time >= time) {
             throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
         }
-        this.time = time;
-
         
-
+        if (this.writesPendingMap.has(prev)) {
+            const dep = this.writesPendingMap.get(prev);
+            if (dep.time >= time) {
+                throw new WrongHistoryError(`${next} is causally related to ${prev} so the latter should be earlier but its time is ${dep.time} but ${next}'s is ${time}`);
+            }
+        } else if (this.head == prev) {
+            if (!this.writesAcceptedMap.has(prev)) {
+                throw new WrongHistoryError(`Latest accepted ${prev} must be in the accepted map`);
+            }
+            const dep = this.writesAcceptedMap.get(prev);
+            if (dep.time >= time) {
+                throw new WrongHistoryError(`${next} is causally related to ${prev} so the latter should be earlier but its time is ${dep.time} but ${next}'s is ${time}`);
+            }
+        }
+        
+        this.time = time;
         this.writesByProcess.set(processId, next);
         this.writesPendingMap.set(next, {time:time, prev:prev, processId:processId, value: value});
         this.writesPendingQueue.push({time:time, writeID: next});
     }
+
     endWrite(time, processId) {
         if (this.time >= time) {
             throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
@@ -54,6 +68,8 @@ class RegisterChecker {
         }
 
         const head = this.writesByProcess.get(processId);
+        this.writesByProcess.delete(processId);
+
         let curr = head;
         const chain = [];
         while (true) {
