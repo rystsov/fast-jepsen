@@ -24,7 +24,6 @@ class RegisterChecker {
         this.writesAcceptedMap   = new Map(); // next -> {beginTs, acceptedTs, prev, value, processId}
         this.writesAcceptedQueue = [];        // [{acceptedTs, writeID}]
         this.writesPendingMap    = new Map(); // next -> {beginTs, prev, value, processId}
-        this.writesRejectionMap  = new Map();
         this.writesPendingQueue  = [];        // [{beginTs, next}]
         this.head                = null;      // next
         this.writesByProcess     = new Map(); // processId -> next
@@ -79,6 +78,138 @@ class RegisterChecker {
         this.readsPendingQueue.push({acceptedTs: this.writesAcceptedMap.get(this.head).acceptedTs, processId: processId});
     }
 
+    endWrite(time, processId) {
+        //console.info(`LOG: endWrite(${time}, ${processId})`);
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        if (!this.writesByProcess.has(processId)) {
+            throw new WrongHistoryError(`Process ${processId} should start a write before finishing it`);
+        }
+
+        if (!this.readsPendingMap.has(processId)) {
+            throw new WrongHistoryError(`Confirmation of a write is equivalent to a read so every write is a read and readsPendingMap must contain write's process id: ${processId}`);
+        }
+
+        const head = this.writesByProcess.get(processId);
+        this.writesByProcess.delete(processId);
+
+        if (this.writesPendingMap.has(head)) {
+            const record = this.writesPendingMap.get(head);
+            this.observe(time, processId, head, record.value);
+        } else if (this.writesAcceptedMap.has(head)) {
+            const record = this.writesAcceptedMap.get(head);
+            this.observe(time, processId, head, record.value);
+        } else {
+            throw new ConsistencyViolationError(`A non-desendent write which started later than ${head} was already accepted. Latest write: ${this.head}`);
+        }
+
+        this.readsPendingMap.delete(processId);
+        this.gc();
+    }
+
+    failWrite(time, processId) {
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        if (!this.writesByProcess.has(processId)) {
+            throw new WrongHistoryError(`Process ${processId} should start a write before it may fail`);
+        }
+
+        if (!this.readsPendingMap.has(processId)) {
+            throw new WrongHistoryError(`Confirmation of a write is equivalent to a read so every write is a read and readsPendingMap must contain write's process id: ${processId}`);
+        }
+
+        this.writesByProcess.delete(processId);
+        this.readsPendingMap.delete(processId);
+        this.gc();
+    }
+
+    conflictWrite(time, processId) {
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        if (!this.writesByProcess.has(processId)) {
+            throw new WrongHistoryError(`Process ${processId} should start a write before it may fail`);
+        }
+
+        if (!this.readsPendingMap.has(processId)) {
+            throw new WrongHistoryError(`Confirmation of a write is equivalent to a read so every write is a read and readsPendingMap must contain write's process id: ${processId}`);
+        }
+
+        const head = this.writesByProcess.get(processId);
+
+        if (this.writesAcceptedMap.has(head)) {
+            throw new ConsistencyViolationError(`${head} can't be rejected because it's already accepted (probably it's dependency was obserted). Latest write: ${this.head}`);
+        } else if (this.writesPendingMap.has(head)) {
+            this.writesPendingMap.delete(head);
+        }
+
+        this.writesByProcess.delete(processId);
+        this.readsPendingMap.delete(processId);
+        this.gc();
+    }
+
+    beginRead(time, processId) {
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+
+        if (this.readsPendingMap.has(processId)) {
+            throw new WrongHistoryError(`Previous read must end before the next read may start`);
+        }
+
+        if (this.writesByProcess.has(processId)) {
+            throw new WrongHistoryError(`Previous write must end before the next read may start`);
+        }
+
+        this.time = time;
+        this.readsPendingMap.set(processId, {beginTs: time, head: this.head});
+        this.readsPendingQueue.push({acceptedTs: this.writesAcceptedMap.get(this.head).acceptedTs, processId: processId});
+    }
+    
+    endRead(time, processId, writeID, value) {
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        if (!this.readsPendingMap.has(processId)) {
+            throw new WrongHistoryError(`Can't confirm read which hasn't started`);
+        }
+
+        if (this.writesPendingMap.has(writeID)) {
+            this.observe(time, processId, writeID, value);
+        } else if (this.writesAcceptedMap.has(writeID)) {
+            this.observe(time, processId, writeID, value);
+        } else {
+            throw new ConsistencyViolationError(`An observed write: ${writeID} isn't in writesPendingMap or writesAcceptedMap maps. Latest write: ${this.head}`);
+        }
+
+        this.readsPendingMap.delete(processId);
+        this.gc();
+    }
+
+    failRead(time, processId) {
+        if (this.time >= time) {
+            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
+        }
+        this.time = time;
+
+        if (!this.readsPendingMap.has(processId)) {
+            throw new WrongHistoryError(`Can't fail read which hasn't started`);
+        }
+
+        this.readsPendingMap.delete(processId);
+        this.gc();
+    }
+
     observe(time, processId, writeID, value) {
         const begin = this.readsPendingMap.get(processId);
         if (!this.writesAcceptedMap.has(begin.head)) {
@@ -86,7 +217,7 @@ class RegisterChecker {
         }
         
         if (this.writesAcceptedMap.has(writeID)) {
-            const beginAcceptedTs = this.writesAcceptedMap.get(begin.head).beginAcceptedTs;
+            const beginAcceptedTs = this.writesAcceptedMap.get(begin.head).acceptedTs;
             const record = this.writesAcceptedMap.get(writeID);
             if (record.acceptedTs < beginAcceptedTs) {
                 throw new ConsistencyViolationError(`Observed ${writeID} at ${time}. But at the moment the observation started ${begin.beginTs} its decentent ${begin.head} was already known (accepted at ${beginAcceptedTs})`);
@@ -118,8 +249,6 @@ class RegisterChecker {
                             if (this.writesPendingQueue[0].beginTs < head.beginTs) {
                                 const next = this.writesPendingQueue[0].next;
                                 if (this.writesPendingMap.has(next)) {
-                                    const pending = this.writesPendingMap.get(next);
-                                    // todo: add to rejected
                                     this.writesPendingMap.delete(next);
                                 }
                                 this.writesPendingQueue.shift();
@@ -141,53 +270,23 @@ class RegisterChecker {
         }
     }
 
-    endWrite(time, processId) {
-        if (this.time >= time) {
-            throw new WrongHistoryError(`Time must go forward got ${time} but ${this.time} is already known`);
-        }
-        this.time = time;
-
-        if (!this.writesByProcess.has(processId)) {
-            throw new WrongHistoryError(`Process ${processId} should start a write before finishing it`);
-        }
-
-        if (!this.readsPendingMap.has(processId)) {
-            throw new WrongHistoryError(`Confirmation of a write is equivalent to a read so every write is a read and readsPendingMap must contain write's process id: ${processId}`);
-        }
-
-        const head = this.writesByProcess.get(processId);
-        this.writesByProcess.delete(processId);
-
-        if (this.writesPendingMap.has(head)) {
-            const record = this.writesPendingMap.get(head);
-            this.observe(time, processId, head, record.value);
-        } else if (this.writesAcceptedMap.has(head)) {
-            const record = this.writesPendingMap.get(head);
-            this.observe(time, processId, head, record.value);
-        } else {
-            // 
-            throw new WrongHistoryError(`Confirmed ${head} must be either in pending or accepted maps.`);
-        }
-
-        this.readsPendingMap.delete(processId);
-        this.gc();
-    }
-    conflictWrite(time, processId) {}
-
-    beginRead(time, processId) { }
-    endRead(time, processId, writeID, value) {}
-
     gc() {
         while (this.readsPendingQueue.length > 0) {
             if (!this.readsPendingMap.has(this.readsPendingQueue[0].processId)) {
                 this.readsPendingQueue.shift();
+            } else {
+                break;
             }
         }
     }
 }
 
 class OnlineChecker {
-    constructor() {
+    constructor(writeID, value) {
+        this.init = {
+            writeID: writeID,
+            value: value
+        };
         this.keyCheckers = new Map();
         this.lastKey = new Map();
     }
@@ -199,6 +298,10 @@ class OnlineChecker {
     endWrite(time, processId) {
         const key = this.getLastKey(processId)
         this.getChecker(key).endWrite(time, processId);
+    }
+    failWrite(time, processId) {
+        const key = this.getLastKey(processId)
+        this.getChecker(key).failWrite(time, processId);
     }
     conflictWrite(time, processId) {
         const key = this.getLastKey(processId)
@@ -213,6 +316,10 @@ class OnlineChecker {
         const key = this.getLastKey(processId)
         this.getChecker(key).endRead(time, processId, writeID, value);
     }
+    failRead(time, processId) {
+        const key = this.getLastKey(processId)
+        this.getChecker(key).failRead(time, processId);
+    }
 
     getLastKey(processId) {
         if (!this.lastKey.has(processId)) {
@@ -225,50 +332,134 @@ class OnlineChecker {
 
     getChecker(key) {
         if (!this.keyCheckers.has(key)) {
-            this.keyCheckers.set(key, new RegisterChecker());
+            this.keyCheckers.set(key, new RegisterChecker(this.init.writeID, this.init.value));
         }
         return this.keyCheckers.get(key);
     }
 }
 
-
-const lineReader = require("readline").createInterface({
-    input: require("fs").createReadStream("history.log")
-});
-
-let lines = 0;
-
-lineReader.on("line", function (line) {
-    const parts = line.split(",");
-    if (parts[2] == "wb") {
-        const time = parseInt(parts[0]);
-        const processId = parseInt(parts[1]);
-        const key = parts[3];
-        const prev = parts[4];
-        const next = parts[5];
-        const value = parseInt(parts[6]);
-    } else if (parts[2] == "rb") {
-        const time = parseInt(parts[0]);
-        const processId = parseInt(parts[1]);
-        const key = parts[3];
-    } else if (parts[2] == "re") {
-        const time = parseInt(parts[0]);
-        const processId = parseInt(parts[1]);
-        const writeID = parts[3];
-        const value = parseInt(parts[4]);
-    } else if (parts[2] == "we") {
-        const time = parseInt(parts[0]);
-        const processId = parseInt(parts[1]);
-    } else if (parts[2] == "wc") {
-        const time = parseInt(parts[0]);
-        const processId = parseInt(parts[1]);
-    } else {
-        throw new Error("Something unknown" + line);
+class Clock {
+    constructor(ts) {
+        this.ts = ts;
     }
-    
-    lines += 1;
-});
+    tick() {
+        this.ts+=1;
+        return this.ts;
+    }
+}
 
-lineReader.on("close", function () {
-    console.info(lines);
-});
+function expectViolation(action) {
+    try {
+        action();
+        throw new Error("Should be non reachible");
+    } catch(e) {
+        if (e instanceof ConsistencyViolationError) {
+            // expected
+        } else {
+            throw e;
+        }
+    }
+}
+
+function writeReadSeqTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.endWrite(clock.tick(), 0);
+
+    checker.beginRead("key1", clock.tick(), 1);
+    checker.endRead(clock.tick(), 1, "0001", 1);
+}
+
+function writeReadParOldTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.beginRead("key1", clock.tick(), 1);
+    checker.endWrite(clock.tick(), 0);
+    checker.endRead(clock.tick(), 1, "0000", 0);
+}
+
+function writeReadParNewTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.beginRead("key1", clock.tick(), 1);
+    checker.endWrite(clock.tick(), 0);
+    checker.endRead(clock.tick(), 1, "0001", 1);
+}
+
+function readWriteParOldTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginRead("key1", clock.tick(), 1);
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.endRead(clock.tick(), 1, "0000", 0);
+    checker.endWrite(clock.tick(), 0);
+}
+
+function readWriteParNewTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginRead("key1", clock.tick(), 1);
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.endRead(clock.tick(), 1, "0001", 1);
+    checker.endWrite(clock.tick(), 0);
+}
+
+function writeReadStaleTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.endWrite(clock.tick(), 0);
+
+    checker.beginRead("key1", clock.tick(), 1);
+    expectViolation(() => {
+        checker.endRead(clock.tick(), 1, "0000", 0);
+    });
+}
+
+function writeReadWrongValueTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.endWrite(clock.tick(), 0);
+
+    checker.beginRead("key1", clock.tick(), 1);
+    expectViolation(() => {
+        checker.endRead(clock.tick(), 1, "0001", 0);
+    });
+}
+
+function writeReadWrongWriteIDTest() {
+    const checker = new OnlineChecker("0000", 0);
+    const clock = new Clock(1);
+
+    checker.beginWrite("key1", clock.tick(), 0, "0000", "0001", 1);
+    checker.endWrite(clock.tick(), 0);
+
+    checker.beginRead("key1", clock.tick(), 1);
+    expectViolation(() => {
+        checker.endRead(clock.tick(), 1, "0002", 0);
+    });
+}
+
+
+
+// readWriteParOldTest();
+// readWriteParNewTest();
+// writeReadParOldTest();
+// writeReadParNewTest();
+// writeReadSeqTest();
+// writeReadStaleTest();
+// writeReadWrongValueTest();
+// writeReadWrongWriteIDTest();
+
+console.info("OK");
