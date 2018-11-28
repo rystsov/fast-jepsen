@@ -89,18 +89,20 @@ class WriterReadersTest {
                 const prev = this.oracle.guess(key);
                 const next = uuid();
                 this.oracle.propose(key, prev, next);
-                // beginWrite(key, time, processId, prev, next, value)
-                this.checker.
+                this.checker.beginWrite(key, this.tick(), processId, prev, next, value);
                 try {
                     await this.db.cas(key, prev, next, value);
                 } catch (e) {
                     if (e instanceof PreconditionError) {
+                        this.checker.conflictWrite(this.tick(), processId);
                         this.cps.inc(time_us(), "writes:409");
                     } else {
+                        this.checker.failWrite(this.tick(), processId);
                         this.cps.inc(time_us(), "writes:500");
                     }
                     continue;
                 }
+                this.checker.endWrite(this.tick(), processId);
                 this.oracle.observe(key, next);
                 this.cps.inc(time_us(), "writes:200");
             }
@@ -113,13 +115,18 @@ class WriterReadersTest {
     async startReader(processId, region, key) {
         try {
             while (this.isActive) {
+                let record = null;
+                this.checker.beginRead(key, this.tick(), processId);
                 try {
-                    const record = await this.db.read(region, key);
-                    this.oracle.observe(key, record.writeID);
-                    this.cps.inc(time_us(), region);
+                    record = await this.db.read(region, key);
                 } catch (e) {  
+                    this.checker.failRead(this.tick(), processId);
                     this.cps.inc(time_us(), "err:" + region);
+                    continue;
                 }
+                this.checker.endRead(this.tick(), processId, record.writeID, record.value);
+                this.oracle.observe(key, record.writeID);
+                this.cps.inc(time_us(), region);
             }
         } catch(e) {
             this.isActive = false;
