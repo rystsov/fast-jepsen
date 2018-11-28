@@ -4,7 +4,7 @@ const {SlidingCounters} = require("./SlidingCounters");
 const {PreconditionError} = require("./WebKV");
 
 class WriterReadersTest {
-    constructor(history, oracle, db, keys, period) {
+    constructor(checker, oracle, db, keys, period) {
         this.db = db;
         this.oracle = oracle;
         this.cps = new SlidingCounters();
@@ -12,7 +12,8 @@ class WriterReadersTest {
         this.period = period;
         this.regions = [];
         this.keys = keys;
-        this.history = history;
+        this.checker = checker;
+        this.ts = 1;
     }
 
     async run() {
@@ -74,50 +75,61 @@ class WriterReadersTest {
                 i+=2;
             }
 
-            record += this.history.pending + "\t|\t";
+            record += this.checker.mem() + "\t|\t";
 
             console.info(record + moment().format("YYYY/MM/DD hh:mm:ss"));
         }
     }
 
     async startWriter(processId, key) {
-        let value = 0;
-        while (this.isActive) {
-            value++;
-            const prev = this.oracle.guess(key);
-            const next = uuid();
-            try {
-                this.history.record([this.history.ts(), processId, "wb", key, prev, next, value].join(","));
+        try { 
+            let value = 0;
+            while (this.isActive) {
+                value++;
+                const prev = this.oracle.guess(key);
+                const next = uuid();
                 this.oracle.propose(key, prev, next);
-                await this.db.cas(key, prev, next, value);
-                this.history.record([this.history.ts(), processId, "we"].join(","));
+                // beginWrite(key, time, processId, prev, next, value)
+                this.checker.
+                try {
+                    await this.db.cas(key, prev, next, value);
+                } catch (e) {
+                    if (e instanceof PreconditionError) {
+                        this.cps.inc(time_us(), "writes:409");
+                    } else {
+                        this.cps.inc(time_us(), "writes:500");
+                    }
+                    continue;
+                }
                 this.oracle.observe(key, next);
                 this.cps.inc(time_us(), "writes:200");
-            } catch (e) {
-                if (e instanceof PreconditionError) {
-                    this.history.record([this.history.ts(), processId, "wc"].join(","));
-                    this.cps.inc(time_us(), "writes:409");
-                } else {
-                    this.history.record([this.history.ts(), processId, "wf"].join(","));
-                    this.cps.inc(time_us(), "writes:500");
-                }
             }
+        } catch(e) {
+            this.isActive = false;
+            throw e;
         }
     }
 
     async startReader(processId, region, key) {
-        while (this.isActive) {
-            try {
-                const rb = [this.history.ts(), processId, "rb", key].join(",");
-                const record = await this.db.read(region, key);
-                this.history.record(rb);
-                this.history.record([this.history.ts(), processId, "re", record.writeID, record.value].join(","));
-                this.oracle.observe(key, record.writeID);
-                this.cps.inc(time_us(), region);
-            } catch (e) {  
-                this.cps.inc(time_us(), "err:" + region);
+        try {
+            while (this.isActive) {
+                try {
+                    const record = await this.db.read(region, key);
+                    this.oracle.observe(key, record.writeID);
+                    this.cps.inc(time_us(), region);
+                } catch (e) {  
+                    this.cps.inc(time_us(), "err:" + region);
+                }
             }
+        } catch(e) {
+            this.isActive = false;
+            throw e;
         }
+    }
+
+    tick() {
+        this.ts+=1;
+        return this.ts;
     }
 }
 

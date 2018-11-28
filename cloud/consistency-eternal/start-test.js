@@ -1,7 +1,7 @@
-const {Oracle} = require("./workload/Oracle");
-const {WebKV} = require("./workload/WebKV");
-const {History} = require("./workload/History");
-const {WriterReadersTest} = require("./workload/WriterReadersTest");
+const {Oracle} = require("./src/Oracle");
+const {WebKV} = require("./src/WebKV");
+const {OnlineChecker} = require("./src/OnlineChecker");
+const {WriterReadersTest} = require("./src/WriterReadersTest");
 const uuid = require("uuid");
 
 async function start() {
@@ -20,11 +20,9 @@ async function start() {
         }
     }
 
-    const history = new History("history.log");
+    const checker = new OnlineChecker(oracle.initial, 0);
 
-    history.dump();
-
-    let test = new WriterReadersTest(history, oracle, webkv, keys, 1000);
+    let test = new WriterReadersTest(checker, oracle, webkv, keys, 1000);
     
     await test.run();
 }
