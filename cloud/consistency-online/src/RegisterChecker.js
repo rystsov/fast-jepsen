@@ -15,10 +15,24 @@ class RegisterChecker {
         this.writesAcceptedMap.set(writeID, {beginTs: 0, acceptedTs: 0, prev: null, processId: null, value: value});
         this.writesAcceptedQueue.push({acceptedTs: 0, writeID: writeID});
 
-        this.readsPendingMap   = new Map(); // processId -> {beginTs, head, acceptedTs}
-        this.readsPendingQueue = []; // [{acceptedTs, processId}]
+        this.readsPendingMap   = new Map(); // processId -> {beginTs, head, headAcceptedTs, processId, isGarbage}
+        this.readsPendingQueue = [];        //             [{beginTs, head, headAcceptedTs, processId, isGarbage}]
 
         this.time = 0;
+    }
+
+    mem() {
+        let consumed = 0;
+
+        consumed += this.writesAcceptedMap.size;
+        consumed += this.writesAcceptedQueue.length;
+        consumed += this.writesPendingMap.size;
+        consumed += this.writesPendingQueue.length;
+        consumed += this.writesByProcess.size;
+        consumed += this.readsPendingMap.size;
+        consumed += this.readsPendingQueue.length;
+
+        return consumed;
     }
 
     beginWrite(time, processId, prev, next, value) {
@@ -57,8 +71,19 @@ class RegisterChecker {
         this.writesByProcess.set(processId, next);
         this.writesPendingMap.set(next, {beginTs: time, prev: prev, processId: processId, value: value});
         this.writesPendingQueue.push({beginTs: time, next: next });
-        this.readsPendingMap.set(processId, {beginTs: time, head: this.head});
-        this.readsPendingQueue.push({acceptedTs: this.writesAcceptedMap.get(this.head).acceptedTs, processId: processId});
+        
+        if (!this.writesAcceptedMap.has(this.head)) {
+            throw new WrongHistoryError(`writesAcceptedMap must always contain current head`);
+        }
+        const readRecord = {
+            processId: processId,
+            beginTs: time,
+            head: this.head,
+            headAcceptedTs: this.writesAcceptedMap.get(this.head).acceptedTs,
+            isGarbage: false
+        };
+        this.readsPendingMap.set(processId, readRecord);
+        this.readsPendingQueue.push(readRecord);
     }
 
     endWrite(time, processId) {
@@ -88,6 +113,7 @@ class RegisterChecker {
             throw new ConsistencyViolationError(`A non-desendent write which started later than ${head} was already accepted. Latest write: ${this.head}`);
         }
 
+        this.readsPendingMap.get(processId).isGarbage = true;
         this.readsPendingMap.delete(processId);
         this.gc();
     }
@@ -107,6 +133,7 @@ class RegisterChecker {
         }
 
         this.writesByProcess.delete(processId);
+        this.readsPendingMap.get(processId).isGarbage = true;
         this.readsPendingMap.delete(processId);
         this.gc();
     }
@@ -134,6 +161,7 @@ class RegisterChecker {
         }
 
         this.writesByProcess.delete(processId);
+        this.readsPendingMap.get(processId).isGarbage = true;
         this.readsPendingMap.delete(processId);
         this.gc();
     }
@@ -152,8 +180,18 @@ class RegisterChecker {
         }
 
         this.time = time;
-        this.readsPendingMap.set(processId, {beginTs: time, head: this.head});
-        this.readsPendingQueue.push({acceptedTs: this.writesAcceptedMap.get(this.head).acceptedTs, processId: processId});
+        if (!this.writesAcceptedMap.has(this.head)) {
+            throw new WrongHistoryError(`writesAcceptedMap must always contain current head`);
+        }
+        const readRecord = {
+            processId: processId,
+            beginTs: time,
+            head: this.head,
+            headAcceptedTs: this.writesAcceptedMap.get(this.head).acceptedTs,
+            isGarbage: false
+        };
+        this.readsPendingMap.set(processId, readRecord);
+        this.readsPendingQueue.push(readRecord);
     }
     
     endRead(time, processId, writeID, value) {
@@ -174,6 +212,7 @@ class RegisterChecker {
             throw new ConsistencyViolationError(`An observed write: ${writeID} isn't in writesPendingMap or writesAcceptedMap maps. Latest write: ${this.head}`);
         }
 
+        this.readsPendingMap.get(processId).isGarbage = true;
         this.readsPendingMap.delete(processId);
         this.gc();
     }
@@ -188,6 +227,7 @@ class RegisterChecker {
             throw new WrongHistoryError(`Can't fail read which hasn't started`);
         }
 
+        this.readsPendingMap.get(processId).isGarbage = true;
         this.readsPendingMap.delete(processId);
         this.gc();
     }
@@ -195,14 +235,13 @@ class RegisterChecker {
     observe(time, processId, writeID, value) {
         const begin = this.readsPendingMap.get(processId);
         if (!this.writesAcceptedMap.has(begin.head)) {
-            throw new WrongCodeError();
+            throw new WrongHistoryError(`writesAcceptedMap must always contain head known at the begining of any ongoing read`);
         }
         
         if (this.writesAcceptedMap.has(writeID)) {
-            const beginAcceptedTs = this.writesAcceptedMap.get(begin.head).acceptedTs;
             const record = this.writesAcceptedMap.get(writeID);
-            if (record.acceptedTs < beginAcceptedTs) {
-                throw new ConsistencyViolationError(`Observed ${writeID} at ${time}. But at the moment the observation started ${begin.beginTs} its decentent ${begin.head} was already known (accepted at ${beginAcceptedTs})`);
+            if (record.acceptedTs < begin.headAcceptedTs) {
+                throw new ConsistencyViolationError(`Observed ${writeID} at ${time}. But at the moment the observation started ${begin.beginTs} its decentent ${begin.head} was already known (accepted at ${begin.headAcceptedTs})`);
             }
             if (record.value != value) {
                 throw new ConsistencyViolationError(`Observed value:${value} of ${writeID} doesn't match accepted value:${record.value}.`);
@@ -253,12 +292,23 @@ class RegisterChecker {
     }
 
     gc() {
-        while (this.readsPendingQueue.length > 0) {
-            if (!this.readsPendingMap.has(this.readsPendingQueue[0].processId)) {
-                this.readsPendingQueue.shift();
-            } else {
-                break;
+        while (this.readsPendingQueue.length > 0 && this.readsPendingQueue[0].isGarbage) {
+            this.readsPendingQueue.shift();
+        }
+        if (this.readsPendingQueue.length == 0) {
+            while (this.writesAcceptedQueue.length > 0 && this.writesAcceptedQueue[0].writeID != this.head) {
+                this.writesAcceptedMap.delete(this.writesAcceptedQueue[0].writeID);
+                this.writesAcceptedQueue.shift();
             }
+        } else {
+            let headAcceptedTs = this.readsPendingQueue[0].headAcceptedTs;
+            while (this.writesAcceptedQueue.length > 0 && this.writesAcceptedQueue[0].acceptedTs < headAcceptedTs) {
+                this.writesAcceptedMap.delete(this.writesAcceptedQueue[0].writeID);
+                this.writesAcceptedQueue.shift();
+            }
+        }
+        if (this.writesAcceptedQueue.length == 0) {
+            throw new WrongCodeError("writesAcceptedQueue must always contain current head");
         }
     }
 }

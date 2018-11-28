@@ -42,7 +42,13 @@ class OnlineChecker {
     }
 
     mem() {
-        return 0;
+        let consumed = 0;
+        
+        for (let register of this.keyCheckers.values()) {
+            consumed += register.mem();
+        }
+        
+        return consumed;
     }
 
     getLastKey(processId) {
