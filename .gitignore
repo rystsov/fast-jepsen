@@ -7,7 +7,6 @@ keys/data
 jepsen/store
 
 cloud/webkv-mongodb/node_modules
-cloud/checker-availability/node_modules
 cloud/consistency-online/node_modules
 cloud/consistency-jepsen/target
 cloud/consistency-jepsen/store
