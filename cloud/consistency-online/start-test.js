@@ -2,6 +2,7 @@ const {Oracle} = require("./src/Oracle");
 const {WebKV} = require("./src/WebKV");
 const {OnlineChecker} = require("./src/OnlineChecker");
 const {WriterReadersTest} = require("./src/WriterReadersTest");
+const {Logger} = require("./src/Logger");
 const uuid = require("uuid");
 
 async function start() {
@@ -21,10 +22,17 @@ async function start() {
     }
 
     const checker = new OnlineChecker(oracle.initial, 0);
+    const logger = new Logger("history.log");
 
-    let test = new WriterReadersTest(checker, oracle, webkv, keys, 1000);
+    logger.start();
+
+    let test = new WriterReadersTest(logger, checker, oracle, webkv, keys, 1000);
     
-    await test.run();
+    try {
+        await test.run();
+    } finally {
+        logger.stop();
+    }
 }
 
 start()

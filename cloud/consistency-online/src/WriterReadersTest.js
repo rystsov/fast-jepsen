@@ -2,9 +2,10 @@ const uuid = require("uuid");
 const moment = require("moment");
 const {SlidingCounters} = require("./SlidingCounters");
 const {PreconditionError} = require("./WebKV");
+const {ConsistencyViolationError} = require("./ConsistencyViolationError");
 
 class WriterReadersTest {
-    constructor(checker, oracle, db, keys, period) {
+    constructor(logger, checker, oracle, db, keys, period) {
         this.db = db;
         this.oracle = oracle;
         this.cps = new SlidingCounters();
@@ -13,6 +14,7 @@ class WriterReadersTest {
         this.regions = [];
         this.keys = keys;
         this.checker = checker;
+        this.logger = logger;
         this.ts = 1;
     }
 
@@ -76,8 +78,12 @@ class WriterReadersTest {
             }
 
             record += this.checker.mem() + "\t|\t";
+            record += this.logger.pending + "\t|\t"
 
-            console.info(record + moment().format("YYYY/MM/DD hh:mm:ss"));
+            const line = record + moment().format("YYYY/MM/DD hh:mm:ss");
+
+            console.info(line);
+            this.logger.record("stat\t" + line);
         }
     }
 
@@ -89,24 +95,37 @@ class WriterReadersTest {
                 const prev = this.oracle.guess(key);
                 const next = uuid();
                 this.oracle.propose(key, prev, next);
-                this.checker.beginWrite(key, this.tick(), processId, prev, next, value);
+                let ts = this.tick();
+                this.logger.record(`write-start\t[${processId}]\t${ts}\t${key}\t${prev}\t${next}\t${value}`);
+                this.checker.beginWrite(key, ts, processId, prev, next, value);
                 try {
                     await this.db.cas(key, prev, next, value);
                 } catch (e) {
                     if (e instanceof PreconditionError) {
-                        this.checker.conflictWrite(this.tick(), processId);
+                        ts = this.tick();
+                        this.logger.record(`write-conflict\t[${processId}]\t${ts}\t${key}`);
+                        this.checker.conflictWrite(ts, processId);
                         this.cps.inc(time_us(), "writes:409");
                     } else {
-                        this.checker.failWrite(this.tick(), processId);
+                        ts = this.tick();
+                        this.logger.record(`write-fail\t[${processId}]\t${ts}\t${key}`);
+                        this.checker.failWrite(ts, processId);
                         this.cps.inc(time_us(), "writes:500");
                     }
                     continue;
                 }
-                this.checker.endWrite(this.tick(), processId);
+                ts = this.tick();
+                this.logger.record(`write-end\t[${processId}]\t${ts}\t${key}`);
+                this.checker.endWrite(ts, processId);
                 this.oracle.observe(key, next);
                 this.cps.inc(time_us(), "writes:200");
             }
         } catch(e) {
+            if (e instanceof ConsistencyViolationError) {
+                const line = `violation-write\t[${processId}]\t${key}\t${e.message}`;
+                this.logger.record(line);
+                console.info(line);
+            }
             this.isActive = false;
             throw e;
         }
@@ -116,7 +135,9 @@ class WriterReadersTest {
         try {
             while (this.isActive) {
                 let record = null;
-                this.checker.beginRead(key, this.tick(), processId);
+                let ts = this.tick();
+                const begin = `read-start\t[${processId}]\t${ts}\t"${region}"\t${key}`;
+                this.checker.beginRead(key, ts, processId);
                 try {
                     record = await this.db.read(region, key);
                 } catch (e) {  
@@ -124,11 +145,24 @@ class WriterReadersTest {
                     this.cps.inc(time_us(), "err:" + region);
                     continue;
                 }
-                this.checker.endRead(this.tick(), processId, record.writeID, record.value);
-                this.oracle.observe(key, record.writeID);
-                this.cps.inc(time_us(), region);
+                this.logger.record(begin);
+                ts = this.tick();
+                if (record == null) {
+                    this.logger.record(`read-end\t[${processId}]\t${ts}\t${key}\tnull`);
+                    throw new ConsistencyViolationError("read returned null");
+                } else {
+                    this.logger.record(`read-end\t[${processId}]\t${ts}\t${key}\t${record.writeID}\t${record.value}`);
+                    this.checker.endRead(ts, processId, record.writeID, record.value);
+                    this.oracle.observe(key, record.writeID);
+                    this.cps.inc(time_us(), region);
+                }
             }
         } catch(e) {
+            if (e instanceof ConsistencyViolationError) {
+                const line = `violation-read\t[${processId}]\t${key}\t${e.message}`;
+                this.logger.record(line);
+                console.info(line);
+            }
             this.isActive = false;
             throw e;
         }
