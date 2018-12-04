@@ -131,13 +131,16 @@ class RemoteTesterServer {
                 const read = await this.kv.read(region, key);
 
                 if (read == null) {
-                    res.set('KEY-MISSING', 42);
-                    res.sendStatus(404);
+                    res.status(200).json({
+                        "value": null
+                    });
                 } else {
                     res.status(200).json({
-                        "value": read.value,
-                        "writeID": read.writeID
-                    })
+                        "value": {
+                            "value": read.value,
+                            "writeID": read.writeID
+                        }
+                    });
                 }
             } catch(e) {
                 if (e instanceof NotSecondaryError) {

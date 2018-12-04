@@ -140,11 +140,7 @@ class WebKV {
                         return;
                     }
                     if (res.statusCode == 200) {
-                        resolve(JSON.parse(body));
-                        return;
-                    }
-                    if (res.statusCode == 404 && res.headers["key-missing"]==42) {
-                        resolve(null);
+                        resolve(JSON.parse(body).value);
                         return;
                     }
                     reject(new Error("Unexpected return code: " + res.statusCode));
