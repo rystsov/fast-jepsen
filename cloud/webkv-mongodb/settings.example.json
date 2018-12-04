@@ -1,0 +1,10 @@
+{
+    "mongodb" : {
+        "host": "rystsov-mongo-42.documents.azure.com",
+        "port": 10255,
+        "userName": "rystsov-mongo-42",
+        "pwd": "<< put your url escaped key here >>",
+        "poolSize": 1
+    },
+    "port": 13452
+}
